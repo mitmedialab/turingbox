@@ -58,94 +58,48 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div class="row">
-    <div class="col-md-6">
-        <div class = "explore">
-            <form>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect2">Function Input</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                        <option>Faces</option>
-                        <option>Animals</option>
-                        <option>Objects</option>
-                        <option>Concepts</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect2">Function Output</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                        <option>Object Classify</option>
-                        <option>Image Style</option>
-                        <option>Image Caption</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Explore</button>
-            </form>
 
-
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Algorithm</th>
-                    <th>Author</th>
-                    <th>Upvotes</th>
-                    <th>Favorite Benchmarks</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Cloud Vision API</td>
-                    <td>Microsioft</td>
-                    <td>67</td>
-                    <td>Clarifai</td>
-                </tr>
-                <tr>
-                    <td>Flow</td>
-                    <td>Google</td>
-                    <td>58</td>
-                    <td>Accuracy</td>
-                </tr>
-                <tr>
-                    <td>Clarifai</td>
-                    <td>Clarifai</td>
-                    <td>44</td>
-                    <td>Demographics</td>
-                </tr>
-                </tbody>
-            </table>
-
-
+<h1> Upload Your Algorithm </h1>
+<div class="col-md-6">
+    <form id="ALG">
+        <div class="form-group">
+            <label for="exampleName">Name</label>
+            <input type="text" class="form-control" id="exampleName" aria-describedby="emailHelp" placeholder="Your Name">
         </div>
-    </div>
-    <div class="col-md-6">
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">MIT Name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter MIT">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Benchmarks</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter benchmarks">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">MIT description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlFile1">Upload Dataset</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        $('.manifesto').click(function(){
-            $('.landText').html($('.manifestoText').html());
-        });
-        $('.team').click(function(){
-            $('.landText').html($('.teamText').html());
-        });
-    </script>
-</body>
+        <div class="form-group">
+            <label for="exampleAlgName">Algorithm Title</label>
+            <input type="text" class="form-control" id="exampleAlgName" placeholder="Algorithm Title">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Algorithm Input</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option>Faces</option>
+                <option>Animals</option>
+                <option>Objects</option>
+                <option>Concepts</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Algorithm Output</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option>Object Classify</option>
+                <option>Image Style</option>
+                <option>Image Caption</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Algorithm Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleDatasetFile">Upload Dataset</label>
+            <input type="file" class="form-control-file" id="exampleDatasetFile">
+        </div>
+        <div class="form-group">
+            <label for="exampleAlgorithmFile">Upload Algorithm</label>
+            <input type="file" class="form-control-file" id="exampleAlgorithmFile">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 </html>
