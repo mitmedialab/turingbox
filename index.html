@@ -6,9 +6,12 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+<link rel="stylesheet" href="css/style.css">
+
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -32,16 +35,27 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Manfiesto</a></li>
-            <li><a href="#">Team</a></li>
-            <li><a href="#">Whitepaper</a></li>
+            <li class = "manifesto"><a>Manfiesto</a></li>
+            <li><a class = "team">Team</a></li>
+            <li><a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/">Whitepaper</a></li>
           </ul>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <h1>Hello, world!</h1>
+    <div class = "landText">An experimental marketplace for the production and study of AI systems.</div>
+    <div class = "manifestoText" style="display:none">The lack of incentives in both academia and industry has prevented the replication and scalable auditing of emerging AI systems. This structure in turn has resulted in unexpected biases within, unethical behavior of and unequal access to these systems.  We propose a two-sided digital marketplace that facilitates both the behavioural study of heterogeneous AI systems and the production of new, socially-aware AI systems. On one side of the market, AI researchers upload existing and novel algorithms to both benchmark their algorithms with respect to performance and fairness and to demonstrate expertise in their community. On the other side, AI evaluators develop and post machine intelligence tasks designed to understand and characterize algorithmic behavior. In this algorithm-task market, both sides are driven by both exogenous and endogenous incentives rather than money, which democratizes AI research. We compare this market to existing markets for human and artificial intelligence and argue for a set of incentives that make it viable. Finally, we discuss the implications of this market as the critical methodological tool for the emerging field of machine ethology. 
+</div>
+    <div class = "teamText" style="display:none">team</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  $('.manifesto').click(function(){
+    $('.landText').html($('.manifestoText').html());
+});
+   $('.team').click(function(){
+    $('.landText').html($('.teamText').html());
+});
+</script>
   </body>
 </html>
