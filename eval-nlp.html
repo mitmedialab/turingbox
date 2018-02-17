@@ -24,7 +24,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">TuringBox</a>
+      <a class="navbar-brand" href="index.html">TuringBox</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,7 +38,7 @@
             <li><a href="dev-nlp.html">NLP</a></li>
           </ul>
         </li>
-          <li class="dropdown">
+          <li class="dropdown active">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluators<span class="caret"></span></a>
           <ul class="dropdown-menu">
              <li class = "manifesto"><a href = "eval-cv.html">Computer Vision</a></li>
@@ -49,8 +49,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class = "manifesto"><a>Manfiesto</a></li>
-            <li><a class = "team">Team</a></li>
+            <li class = "manifesto" href = "index.html"><a>Manfiesto</a></li>
+            <li><a class = "team" href = "index.html">Team</a></li>
             <li><a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/">Whitepaper</a></li>
           </ul>
         </li>
@@ -58,32 +58,34 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+Twitter Bots
+<button type="button" class="btn btn-default" aria-label="Left Align" id = "mitButton">
+  <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Make a new MIT
+</button>
 <div class="row">
-	<div class="col-md-6">
+  <div class="col-md-6">
 <div class = "explore">
 <form>
   <div class="form-group">
     <label for="exampleFormControlSelect2">Function Input</label>
     <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>Faces</option>
-      <option>Animals</option>
-      <option>Objects</option>
-      <option>Concepts</option>
+      <option>Network parameters</option>
+      <option>Tweet at</option>
+      <option>Retweet</option>
     </select>
   </div>
    <div class="form-group">
     <label for="exampleFormControlSelect2">Function Output</label>
     <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>Object Classify</option>
-      <option>Image Style</option>
-      <option>Image Caption</option>
+      <option>Folllow back</option>
+      <option>Text</option>
     </select>
   </div>
-   <button type="submit" class="btn btn-primary">Explore</button>
+   <button type='button' class="btn btn-primary" id="exploreButton">Explore</button>
 </form>
 
 
-<table class="table table-striped">
+<table style="display: none" class="table table-striped" id = "algs">
     <thead>
       <tr>
         <th>Algorithm</th>
@@ -94,22 +96,28 @@
     </thead>
     <tbody>
       <tr>
-        <td>Cloud Vision API</td>
-        <td>Microsioft</td>
-        <td>67</td>
-        <td>Clarifai</td>
+        <td>Tay</td>
+        <td>Microsoft</td>
+        <td>47</td>
+        <td>Content</td>
       </tr>
       <tr>
-        <td>Flow</td>
-        <td>Google</td>
-        <td>58</td>
-		<td>Accuracy</td>
+        <td>Olivia Taters</td>
+        <td>Rob Dubbin</td>
+        <td>81</td>
+    <td>Conent</td>
       </tr>
       <tr>
-        <td>Clarifai</td>
-        <td>Clarifai</td>
-        <td>44</td>
-        <td>Demographics</td>
+        <td>Dear Assistant</td>
+        <td>Amit Agarwal</td>
+        <td>4</td>
+        <td>Correctness</td>
+      </tr>
+      <tr>
+        <td>DeepMoji</td>
+        <td>Bjarke Feblo</td>
+        <td>110</td>
+        <td>Sentiment</td>
       </tr>
     </tbody>
   </table>
@@ -118,7 +126,7 @@
 </div>
 </div>
 <div class="col-md-6">
-	<form>
+  <form  style="display: none" id="MIT">
   <div class="form-group">
     <label for="exampleInputEmail1">MIT Name</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter MIT">
@@ -140,11 +148,11 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-  $('.manifesto').click(function(){
-    $('.landText').html($('.manifestoText').html());
+  $('#exploreButton').click(function(){
+     $('#algs').show();
 });
-   $('.team').click(function(){
-    $('.landText').html($('.teamText').html());
+   $('#mitButton').click(function(){
+     $('#MIT').show();
 });
 </script>
   </body>
