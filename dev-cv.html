@@ -58,7 +58,65 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<!--<div class="container-fluid">-->
 
+<!--&lt;!&ndash; Stack the columns on mobile by making one full-width and the other half-width &ndash;&gt;-->
+<!--<div class="row">-->
+    <!--<div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>-->
+    <!--<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop &ndash;&gt;-->
+<!--<div class="row">-->
+    <!--<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>-->
+    <!--<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>-->
+    <!--<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Columns are always 50% wide, on mobile and desktop &ndash;&gt;-->
+<!--<div class="row">-->
+    <!--<div class="col-xs-6">.col-xs-6</div>-->
+    <!--<div class="col-xs-6">.col-xs-6</div>-->
+<!--</div>-->
+</div>
+
+<div style="float: left; width: 50%">
+<table class="table table-striped" id = "algs">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Input</th>
+        <th>Output</th>
+        <th>Benchmark</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Machine Gaze</td>
+        <td>Blakeley Hoffman</td>
+        <td>Images of swimwear models</td>
+        <td>Adult Content Moderation Scores</td>
+        <td>Fairness</td>
+    </tr>
+    <tr>
+        <td>Machine Gaze</td>
+        <td>Blakeley Hoffman</td>
+        <td>Images of swimwear models</td>
+        <td>Adult Content Moderation Scores</td>
+        <td>Fairness</td>
+    </tr>
+    <tr>
+        <td>Machine Gaze</td>
+        <td>Blakeley Hoffman</td>
+        <td>Images of swimwear models</td>
+        <td>Adult Content Moderation Scores</td>
+        <td>Fairness</td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
 <h1> Upload Your Algorithm </h1>
 <div class="col-md-6">
     <form id="ALG">
@@ -70,27 +128,27 @@
             <label for="exampleAlgName">Algorithm Title</label>
             <input type="text" class="form-control" id="exampleAlgName" placeholder="Algorithm Title">
         </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect2">Algorithm Input</label>
-            <select multiple class="form-control" id="exampleFormControlSelect2">
-                <option>Faces</option>
-                <option>Animals</option>
-                <option>Objects</option>
-                <option>Concepts</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect2">Algorithm Output</label>
-            <select multiple class="form-control" id="exampleFormControlSelect2">
-                <option>Object Classify</option>
-                <option>Image Style</option>
-                <option>Image Caption</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Algorithm Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label for="exampleFormControlSelect2">Algorithm Input</label>-->
+            <!--<select multiple class="form-control" id="exampleFormControlSelect2">-->
+                <!--<option>Faces</option>-->
+                <!--<option>Animals</option>-->
+                <!--<option>Objects</option>-->
+                <!--<option>Concepts</option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="exampleFormControlSelect2">Algorithm Output</label>-->
+            <!--<select multiple class="form-control" id="exampleFormControlSelect2">-->
+                <!--<option>Object Classify</option>-->
+                <!--<option>Image Style</option>-->
+                <!--<option>Image Caption</option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="exampleFormControlTextarea1">Algorithm Description</label>-->
+            <!--<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+        <!--</div>-->
         <div class="form-group">
             <label for="exampleDatasetFile">Upload Dataset</label>
             <input type="file" class="form-control-file" id="exampleDatasetFile">
@@ -102,45 +160,13 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+</div>
+
+<div style="float: right; width: 50%">
+
+</div>
 
 
-<table class="table table-striped" id = "algs">
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Input</th>
-        <th>Output</th>
-        <th>Benchmark</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Machine Gaze</td>
-        <td>Blakeley Hoffman</td>
-        <td>Images of swimwear models</td>
-        <td>Adult Content Moderation Scores</td>
-        <td>Fairness</td>
-        <td>Quantifying the difference in NSFW/Adult Moderation scores between plus-sized and non-plus-sized women.</td>
-    </tr>
-    <tr>
-        <td>Machine Gaze</td>
-        <td>Blakeley Hoffman</td>
-        <td>Images of swimwear models</td>
-        <td>Adult Content Moderation Scores</td>
-        <td>Fairness</td>
-        <td>Quantifying the difference in NSFW/Adult Moderation scores between plus-sized and non-plus-sized women.</td>
-    </tr>
-    <tr>
-        <td>Machine Gaze</td>
-        <td>Blakeley Hoffman</td>
-        <td>Images of swimwear models</td>
-        <td>Adult Content Moderation Scores</td>
-        <td>Fairness</td>
-        <td>Quantifying the difference in NSFW/Adult Moderation scores between plus-sized and non-plus-sized women.</td>
-    </tr>
-    </tbody>
-</table>
+</body>
 
 </html>
