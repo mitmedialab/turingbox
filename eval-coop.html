@@ -38,7 +38,7 @@
             <li><a href="dev-nlp.html">NLP</a></li>
           </ul>
         </li>
-          <li class="dropdown">
+          <li class="dropdown active">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluators<span class="caret"></span></a>
           <ul class="dropdown-menu">
              <li class = "manifesto"><a href = "eval-cv.html">Computer Vision</a></li>
@@ -58,17 +58,109 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <div class = "landText">An experimental marketplace for the production and study of AI systems.</div>
-    <div class = "manifestoText" style="display:none">The lack of incentives in both academia and industry has prevented the replication and scalable auditing of emerging AI systems. This structure in turn has resulted in unexpected biases within, unethical behavior of and unequal access to these systems.  We propose a two-sided digital marketplace that facilitates both the behavioural study of heterogeneous AI systems and the production of new, socially-aware AI systems. On one side of the market, AI researchers upload existing and novel algorithms to both benchmark their algorithms with respect to performance and fairness and to demonstrate expertise in their community. On the other side, AI evaluators develop and post machine intelligence tasks designed to understand and characterize algorithmic behavior. In this algorithm-task market, both sides are driven by both exogenous and endogenous incentives rather than money, which democratizes AI research. We compare this market to existing markets for human and artificial intelligence and argue for a set of incentives that make it viable. Finally, we discuss the implications of this market as the critical methodological tool for the emerging field of machine ethology. 
+Cooperation Bots
+<button type="button" class="btn btn-default" aria-label="Left Align" id = "mitButton">
+  <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Make a new MIT
+</button>
+<div class="row">
+  <div class="col-md-6">
+<div class = "explore">
+<form>
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Function Input</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>Game parameters</option>
+      <option>Noisy play</option>
+      <option>Prisoner's Dilemma</option>
+      <option>Opponent Content</option>
+    </select>
+  </div>
+   <div class="form-group">
+    <label for="exampleFormControlSelect2">Function Output</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>Cooperation Decision</option>
+      <option>Aspiration Level</option>
+      <option>Natural Language Signal</option>
+    </select>
+  </div>
+   <button type='button' class="btn btn-primary" id="exploreButton">Explore</button>
+</form>
+
+
+<table style="display: none" class="table table-striped" id = "algs">
+    <thead>
+      <tr>
+        <th>Algorithm</th>
+        <th>Author</th>
+        <th>Upvotes</th>
+        <th>Favorite Benchmarks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Godfather</td>
+        <td>Littman and Stone</td>
+        <td>47</td>
+        <td>TFT-y</td>
+      </tr>
+      <tr>
+        <td>Q-learning</td>
+        <td>Google</td>
+        <td>58</td>
+    <td>Accuracy</td>
+      </tr>
+      <tr>
+        <td>GIGA-wolf</td>
+        <td>Clarifai</td>
+        <td>44</td>
+        <td>Demographics</td>
+      </tr>
+      <tr>
+        <td>Manipulator</td>
+        <td>Clarifai</td>
+        <td>44</td>
+        <td>Demographics</td>
+      </tr>
+      <tr>
+        <td>S++</td>
+        <td>Clarifai</td>
+        <td>44</td>
+        <td>Demographics</td>
+      </tr>
+    </tbody>
+  </table>
+
+
 </div>
-    <div class = "teamText" style="display:none">team</div>
+</div>
+<div class="col-md-6">
+  <form  style="display: none" id="MIT">
+  <div class="form-group">
+    <label for="exampleInputEmail1">MIT Name</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter MIT">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Benchmarks</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter benchmarks">
+  </div>
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1">MIT description</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+   <div class="form-group">
+    <label for="exampleFormControlFile1">Upload Dataset</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-  $('.manifesto').click(function(){
-    $('.landText').html($('.manifestoText').html());
+  $('#exploreButton').click(function(){
+     $('#algs').show();
 });
-   $('.team').click(function(){
-    $('.landText').html($('.teamText').html());
+   $('#mitButton').click(function(){
+     $('#MIT').show();
 });
 </script>
   </body>
