@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Chivo:300,400');
 
-html {
-	font-family: 'Chivo',sans-serif !important;
+body {
+	font-family: 'Chivo',sans-serif;
 }
 
 .container-fluid{
@@ -52,7 +52,7 @@ padding-right: 3vw;
 }
 
 .content{
-	padding:5vh;
+	padding:0px 4vw 4vw 4vw;
 	font-family: 'Chivo',sans-serif;
 }
 
