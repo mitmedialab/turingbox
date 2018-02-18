@@ -1,3 +1,4 @@
-li.aboutUsButton a {
-  color: white;!important
+.aboutUsButton{
+	background: #ff1d25;
+	border-width: 0px;
 }
