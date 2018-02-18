@@ -1,0 +1,122 @@
+<html lang="en">
+  <head>
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+                 <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TuringBox</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li><a href="about.html">About Us</a></li>
+          <li class = "active"><a href="dev-land.html">Developers</a></li>
+          <li><a href="eval-land.html">Evaluators</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<h2>Explore the research questions in the community</h2>
+<table class="table table-striped" id = "algs">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Input</th>
+        <th>Output</th>
+        <th>Benchmark</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Machine Gaze</td>
+        <td>Blakeley Hoffman</td>
+        <td>Images of swimwear models</td>
+        <td>Adult Content Moderation Scores</td>
+        <td>Fairness</td>
+    </tr>
+    <tr>
+        <td>Gender Bias in Word2Vec</td>
+        <td>Tolga Bolukbasi</td>
+        <td>Natural Language Corpus</td>
+        <td>Word Embeddings</td>
+        <td>Gender Differences</td>
+    </tr>
+    <tr>
+        <td>Racism in Recidivism Risk Scores</td>
+        <td>Julia Angwin</td>
+        <td>Prisoner's profiles</td>
+        <td>Recividism scores</td>
+        <td>Different treatment of race</td>
+    </tr>
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-md-6">
+<div class = "explore">
+    <h2>Upload an algorithm</h2>
+<form id="ALG">
+        <div class="form-group">
+            <label for="exampleAlgName">Algorithm Title</label>
+            <input type="text" class="form-control" id="exampleAlgName" placeholder="Algorithm Title">
+        </div>
+        <div class="form-group">
+           <div class="col-sm-6">
+              <label for="exampleSelect1">Algorithm Input</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>Images of Faces</option>
+      <option>Images of Objects</option>
+      <option>Images of Memes</option>
+      <option>Images of Humans</option>
+    </select>
+           </div>       
+           <div class="col-sm-6">
+             <label for="exampleSelect1">Algorithm Output</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>Nudity Detection Score</option>
+      <option>Object Classifier</option>
+      <option>Natural Language description</option>
+    </select>
+           </div>
+    </div>
+        <div class="form-group">
+            <label for="exampleAlgorithmFile">Upload Algorithm</label>
+            <input type="file" class="form-control-file" id="exampleAlgorithmFile">
+        </div>
+        <button type="button" class="btn btn-primary" id = "submitAlg">Submit</button>
+    </form>
+</div>
+</div>
+<div class="col-md-6">
+    <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  $('#submitAlg').click(function(){
+     $('#results').show();
+});
+</script>
+  </body>
+</html>
