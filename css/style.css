@@ -15,7 +15,10 @@ html {
 }
 
 .nav>li{
-	margin: 2vw;
+	margin-top: 3vw;
+	margin-left: 3vw;
+	margin-bottom: 3vw;
+	margin-right:none;
 	border-style: solid;
 	border-color: black;
 	border-width: 2px;
@@ -23,12 +26,14 @@ html {
 }
 
 .navbar-header {
-	max-width: 20vh;
+	max-width: 15vw;
+	min-width: 125px;
 }
 
 .logo img {
 width: 100% \9; /*Force IE10 and below to size SVG images correctly*/
 max-width: 100%;
-padding-top: 15px;
+margin:3vw;
+padding-right: 3vw;
 }
 
