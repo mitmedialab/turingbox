@@ -14,7 +14,7 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -24,49 +24,42 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">TuringBox</a>
+      <a class="navbar-brand" href="index.html">TuringBox</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-         <li class="dropdown">
+        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class = "manifesto"><a>Manfiesto</a></li>
+            <li><a class = "philosophy">Philosophy</a></li>
             <li><a class = "team">Team</a></li>
             <li><a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/">Whitepaper</a></li>
           </ul>
         </li>
-          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Developers<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li class = "manifesto"><a href = "dev-cv.html">Computer Vision</a></li>
-            <li><a class = "team"  href = "dev-coop.html">Cooperation</a></li>
-            <li><a href="dev-nlp.html">NLP</a></li>
-          </ul>
-        </li>
+          <li><a href="dev.html">Developers <span class="sr-only">(current)</span></a></li>
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluators<span class="caret"></span></a>
           <ul class="dropdown-menu">
-             <li class = "manifesto"><a href = "eval-cv.html">Computer Vision</a></li>
-            <li><a class = "team"  href = "eval-coop.html">Cooperation</a></li>
+            <li><a href = "eval-cv.html">Computer Vision</a></li>
+            <li><a href = "eval-coop.html">Cooperation</a></li>
             <li><a href="eval-nlp.html">NLP</a></li>
           </ul>
         </li>
-       
+        
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
     <div class = "landText">An experimental marketplace for the production and study of AI systems.</div>
-    <div class = "manifestoText" style="display:none">The lack of incentives in both academia and industry has prevented the replication and scalable auditing of emerging AI systems. This structure in turn has resulted in unexpected biases within, unethical behavior of and unequal access to these systems.  We propose a two-sided digital marketplace that facilitates both the behavioural study of heterogeneous AI systems and the production of new, socially-aware AI systems. On one side of the market, AI researchers upload existing and novel algorithms to both benchmark their algorithms with respect to performance and fairness and to demonstrate expertise in their community. On the other side, AI evaluators develop and post machine intelligence tasks designed to understand and characterize algorithmic behavior. In this algorithm-task market, both sides are driven by both exogenous and endogenous incentives rather than money, which democratizes AI research. We compare this market to existing markets for human and artificial intelligence and argue for a set of incentives that make it viable. Finally, we discuss the implications of this market as the critical methodological tool for the emerging field of machine ethology. 
+    <div class = "philosophyText" style="display:none">The lack of incentives in both academia and industry has prevented the replication and scalable auditing of emerging AI systems. This structure in turn has resulted in unexpected biases within, unethical behavior of and unequal access to these systems.  We propose a two-sided digital marketplace that facilitates both the behavioural study of heterogeneous AI systems and the production of new, socially-aware AI systems. On one side of the market, AI researchers upload existing and novel algorithms to both benchmark their algorithms with respect to performance and fairness and to demonstrate expertise in their community. On the other side, AI evaluators develop and post machine intelligence tasks designed to understand and characterize algorithmic behavior. In this algorithm-task market, both sides are driven by both exogenous and endogenous incentives rather than money, which democratizes AI research. We compare this market to existing markets for human and artificial intelligence and argue for a set of incentives that make it viable. Finally, we discuss the implications of this market as the critical methodological tool for the emerging field of machine ethology. 
 </div>
     <div class = "teamText" style="display:none">team</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-  $('.manifesto').click(function(){
-    $('.landText').html($('.manifestoText').html());
+  $('.philosophy').click(function(){
+    $('.landText').html($('.philosophyText').html());
 });
    $('.team').click(function(){
     $('.landText').html($('.teamText').html());
