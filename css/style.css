@@ -1,0 +1,8 @@
+.container-fluid{
+	background-color: white;
+}
+
+.navbar {
+	box-shadow: none;
+	border-style: none;
+}
