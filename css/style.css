@@ -14,6 +14,8 @@ body {
 	font-family: 'Chivo',sans-serif;
 	font-weight: 300;
 	font-size: 3vw;
+	text-shadow: none;
+	color:black;
 }
 
 .nav>li{
