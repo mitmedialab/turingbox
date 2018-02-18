@@ -38,45 +38,47 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class = "content">
-<h2>Explore the research questions in the community</h2>
-<table class="table table-striped" id = "algs">
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Input</th>
-        <th>Output</th>
-        <th>Benchmark</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Machine Gaze</td>
-        <td>Blakeley Hoffman</td>
-        <td>Images of swimwear models</td>
-        <td>Adult Content Moderation Scores</td>
-        <td>Fairness</td>
-    </tr>
-    <tr>
-        <td>Emotional Affect in Style Transfer</td>
-        <td>Manuel Cebrian</td>
-        <td>Images of Disasters</td>
-        <td>Stylized Images</td>
-        <td>Cultural Differences in Empathy</td>
-    </tr>
-    <tr>
-        <td>Are Arts and Culture App Racist?</td>
-        <td>Benjamin Goggin</td>
-        <td>Image of Face</td>
-        <td>Portrait</td>
-        <td>Percent Match</td>
-    </tr>
-    </tbody>
-</table>
-<div class="row">
+  <div class = "splashImage">foo</div>
+  <div class="row">
+    <div class="col-md-6">
+   
+
+      <h3>Explore  research questions in the community</h3>
+      <table class="table table-striped" id = "algs">
+          <thead>
+          <tr>
+              <th>Title</th>
+              <th>Input</th>
+              <th>Output</th>
+              <th>Benchmark</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>Machine Gaze</td>
+              <td>Images of swimwear models</td>
+              <td>Adult Content Moderation Scores</td>
+              <td>Fairness</td>
+          </tr>
+          <tr>
+              <td>Emotional Affect in Style Transfer</td>
+              <td>Images of Disasters</td>
+              <td>Stylized Images</td>
+              <td>Cultural Differences in Empathy</td>
+          </tr>
+          <tr>
+              <td>Are Arts and Culture App Racist?</td>
+              <td>Image of Face</td>
+              <td>Portrait</td>
+              <td>Percent Match</td>
+          </tr>
+          </tbody>
+      </table>
+      </div>
+
     <div class="col-md-6">
 <div class = "explore">
-    <h2>Upload an algorithm</h2>
+    <h3>Upload an algorithm</h3>
 <form id="ALG">
         <div class="form-group">
             <label for="exampleAlgName">Algorithm Title</label>
@@ -108,10 +110,9 @@
         <button type="button" class="btn btn-primary" id = "submitAlg">Submit</button>
     </form>
 </div>
+ <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
 </div>
-<div class="col-md-6">
-    <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
-</div>
+
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
