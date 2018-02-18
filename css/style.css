@@ -16,6 +16,7 @@ body {
 	font-size: 3vw;
 	text-shadow: none;
 	color:black;
+	margin-bottom:0px;
 }
 
 .nav>li{
@@ -41,6 +42,10 @@ margin:3vw;
 padding-right: 3vw;
 }
 
+h1{
+	text-align: center;
+}
+
 .aboutUsButton{
 	background: #ff1d25;
 }
@@ -60,4 +65,13 @@ padding-right: 3vw;
 
 .btn-default{
 	background-color: #29abe2;
+}
+
+.splashImage{
+	min-width:300px;
+	max-width:600px;
+	margin-left:20vw;
+	margin-right:20vw;
+	margin-bottom: 50px;
+	
 }
