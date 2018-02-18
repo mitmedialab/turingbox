@@ -18,3 +18,9 @@ html {
 	margin: 20px;
 }
 
+.logo img {
+width: 100% \9; /*Force IE10 and below to size SVG images correctly*/
+max-width: 100%;
+padding-top: 15px;
+}
+
