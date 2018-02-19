@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Chivo:300,400');
+.explore{
+	width:50%;
+}@import url('https://fonts.googleapis.com/css?family=Chivo:300,400');
 
 body {
 	font-family: 'Chivo',sans-serif;
@@ -62,6 +64,11 @@ h1{
 
 h3{
 	padding:2vw 0 1vw 0;
+}
+
+.tableContainer{
+	height: 40% !important;
+    overflow: scroll;
 }
 
 .table-curved {
