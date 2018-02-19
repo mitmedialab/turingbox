@@ -40,12 +40,11 @@
 <div class = "content">
 <div class = "splashImage"><img src="img/cv.png" width="100%"/> </div>
 <div class = "splashSpacer"></div>
-  <div class="row">
-    <div class="col-md-6">
+
    
 
       <h3>Explore  research questions in the community</h3>
-      <table class="table table-striped" id = "algs">
+      <table class="table table-curved" id = "algs">
           <thead>
           <tr>
               <th>Title</th>
@@ -75,18 +74,17 @@
           </tr>
           </tbody>
       </table>
-      </div>
-
-    <div class="col-md-6">
+  <div class="row">
+         <div class="col-sm-6">
 <div class = "explore">
     <h3>Upload an algorithm</h3>
 <form id="ALG">
         <div class="form-group">
             <label for="exampleAlgName">Algorithm Title</label>
-            <input type="text" class="form-control" id="exampleAlgName" placeholder="Algorithm Title">
+            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
         </div>
         <div class="form-group">
-           <div class="col-sm-6">
+           <div class="col-sm-6 noPadding">
               <label for="exampleSelect1">Algorithm Input</label>
     <select class="form-control" id="exampleSelect1">
       <option>Images of Faces</option>
@@ -95,7 +93,7 @@
       <option>Images of Humans</option>
     </select>
            </div>       
-           <div class="col-sm-6">
+           <div class="col-sm-6 noPadding">
              <label for="exampleSelect1">Algorithm Output</label>
     <select class="form-control" id="exampleSelect1">
       <option>Nudity Detection Score</option>
@@ -108,11 +106,15 @@
             <label for="exampleAlgorithmFile">Upload Algorithm</label>
             <input type="file" class="form-control-file" id="exampleAlgorithmFile">
         </div>
-        <button type="button" class="btn btn-default" id = "submitAlg">Submit</button>
+        <button type="button" class="btn btn-new" id = "submitAlg">Submit</button>
     </form>
 </div>
- <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
 </div>
+ <div class="col-sm-6">
+  <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
+ </div>
+</div>
+ 
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
