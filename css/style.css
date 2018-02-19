@@ -59,6 +59,7 @@ h1{
 }
 
 .content{
+	top:20vh;
 	padding:0px 4vw 4vw 4vw;
 	font-family: 'Chivo',sans-serif;
 }
@@ -68,10 +69,13 @@ h1{
 }
 
 .splashImage{
-	min-width:300px;
-	max-width:600px;
-	margin-left:20vw;
-	margin-right:20vw;
-	margin-bottom: 50px;
-	
+	position: absolute;
+	top:175px;
+	margin-left:15vw;
+	margin-right:15vw;
+	margin-bottom: 100px;	
+}
+
+.splashSpacer{
+	height:30vw;
 }
