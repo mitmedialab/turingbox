@@ -31,63 +31,54 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
           <li><a href="about.html">about us</a></li>
-          <li class = "evalButton"><a href="eval-land.html" style = "color:white">examiner</a></li>
-          <li><a href="dev-land.html">creator</a></li>
+          <li><a href="eval-land.html" >examiner</a></li>
+          <li class = "devButton"><a href="dev-land.html" style = "color:white">creator</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-
-
 <div class = "content">
-<div class = "splashImage">Cooperation </div><!--add image here -->
+<div class = "splashImage"> </div>
 <div class = "splashSpacer"></div>
 
-      <h3>AI systems to examine</h3>
-
-
+      <h3>Create for the latest and most popular boxes</h3> <!--add image here -->
       <table class="table table-curved" id = "algs">
           <thead>
           <tr>
-              <th>Name</th>
+              <th>Title</th>
               <th>Input</th>
               <th>Output</th>
               <th>Benchmark</th>
-              <th>Popularity</th>
           </tr>
           </thead>
           <tbody>
           <tr>
-        <td>Cloud Vision API by Microsoft</td>
-        <td>Image</td>
-        <td>Raciness Score, Caption</td>
-        <td>Accuracy</td>
-        <td>4.2</td>
+              <td>Machine Gaze</td>
+              <td>Images of swimwear models</td>
+              <td>Adult Content Moderation Scores</td>
+              <td>Fairness</td>
           </tr>
           <tr>
-              <td>Flow by Google</td>
-        <td>Image</td>
-        <td>Raciness Score, Caption</td>
-        <td>Accuracy</td>
-        <td>4.5</td>
+              <td>Emotional Affect in Style Transfer</td>
+              <td>Images of Disasters</td>
+              <td>Stylized Images</td>
+              <td>Cultural Differences in Empathy</td>
           </tr>
           <tr>
-               <td>Clarifai</td>
-        <td>Image</td>
-        <td>Raciness Score, Caption</td>
-        <td>Accuracy</td>
-        <td>4.7</td>
+              <td>Are Arts and Culture App Racist?</td>
+              <td>Image of Face</td>
+              <td>Portrait</td>
+              <td>Percent Match</td>
           </tr>
           </tbody>
       </table>
   <div class="row">
          <div class="col-sm-6">
 <div class = "explore">
-    <h3>Launch a box</h3>
+    <h3>Upload an algorithm</h3>
 <form id="ALG">
         <div class="form-group">
-            <label for="exampleAlgName">Benchmark Name</label>
+            <label for="exampleAlgName">Algorithm Title</label>
             <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
         </div>
         <div class="form-group">
@@ -110,7 +101,7 @@
            </div>
     </div>
         <div class="form-group">
-            <label for="exampleAlgorithmFile">Upload A Dataset</label>
+            <label for="exampleAlgorithmFile">Upload Algorithm</label>
             <input type="file" class="form-control-file" id="exampleAlgorithmFile">
         </div>
         <button type="button" class="btn btn-new" id = "submitAlg">Submit</button>

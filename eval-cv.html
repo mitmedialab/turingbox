@@ -14,7 +14,7 @@
 
   </head>
   <body>
-  <nav class="navbar navbar-default">
+ <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -24,112 +24,110 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-       <a href="index.html" class="logo"><img src="img/logo.png" /></a>
+       <a href="index.html" class="logo"><img src="img/logo.png"/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
           <li><a href="about.html">about us</a></li>
-          <li><a href="dev-land.html">developers</a></li>
-          <li class="evalButton"><a href="eval-land.html" style = "color:white">evaluators</a></li>
+          <li class = "evalButton"><a href="eval-land.html" style = "color:white">examiner</a></li>
+          <li><a href="dev-land.html">creator</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
+
+
 <div class = "content">
-Computer Vision Algorithms
-<button type="button" class="btn btn-default" aria-label="Left Align" id = "mitButton">
-  <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Make a new MIT
-</button>
-<div class="row">
-	<div class="col-md-6">
+<div class = "splashImage"><img src="img/cv.png" width="100%"/> </div>
+<div class = "splashSpacer"></div>
+
+      <h3>AI systems to examine</h3>
+
+
+      <table class="table table-curved" id = "algs">
+          <thead>
+          <tr>
+              <th>Name</th>
+              <th>Input</th>
+              <th>Output</th>
+              <th>Benchmark</th>
+              <th>Popularity</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+        <td>Cloud Vision API by Microsoft</td>
+        <td>Image</td>
+        <td>Raciness Score, Caption</td>
+        <td>Accuracy</td>
+        <td>4.2</td>
+          </tr>
+          <tr>
+              <td>Flow by Google</td>
+        <td>Image</td>
+        <td>Raciness Score, Caption</td>
+        <td>Accuracy</td>
+        <td>4.5</td>
+          </tr>
+          <tr>
+               <td>Clarifai</td>
+        <td>Image</td>
+        <td>Raciness Score, Caption</td>
+        <td>Accuracy</td>
+        <td>4.7</td>
+          </tr>
+          </tbody>
+      </table>
+  <div class="row">
+         <div class="col-sm-6">
 <div class = "explore">
-<form>
-  <div class="form-group">
-    <label for="exampleFormControlSelect2">Function Input</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>Faces</option>
-      <option>Animals</option>
-      <option>Objects</option>
-      <option>Concepts</option>
+    <h3>Launch a box</h3>
+<form id="ALG">
+        <div class="form-group">
+            <label for="exampleAlgName">Benchmark Name</label>
+            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
+        </div>
+        <div class="form-group">
+           <div class="col-sm-6 noPadding">
+              <label for="exampleSelect1">Algorithm Input</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>Images of Faces</option>
+      <option>Images of Objects</option>
+      <option>Images of Memes</option>
+      <option>Images of Humans</option>
     </select>
-  </div>
-   <div class="form-group">
-    <label for="exampleFormControlSelect2">Function Output</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>Object Classify</option>
-      <option>Image Style</option>
-      <option>Image Caption</option>
+           </div>       
+           <div class="col-sm-6 noPadding">
+             <label for="exampleSelect1">Algorithm Output</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>Nudity Detection Score</option>
+      <option>Object Classifier</option>
+      <option>Natural Language description</option>
     </select>
-  </div>
-   <button type='button' class="btn btn-primary" id="exploreButton">Explore</button>
-</form>
-
-
-<table style="display: none" class="table table-striped" id = "algs">
-    <thead>
-      <tr>
-        <th>Algorithm</th>
-        <th>Author</th>
-        <th>Upvotes</th>
-        <th>Favorite Benchmarks</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Cloud Vision API</td>
-        <td>Microsioft</td>
-        <td>67</td>
-        <td>Clarifai</td>
-      </tr>
-      <tr>
-        <td>Flow</td>
-        <td>Google</td>
-        <td>58</td>
-		<td>Accuracy</td>
-      </tr>
-      <tr>
-        <td>Clarifai</td>
-        <td>Clarifai</td>
-        <td>44</td>
-        <td>Demographics</td>
-      </tr>
-    </tbody>
-  </table>
-
-
+           </div>
+    </div>
+        <div class="form-group">
+            <label for="exampleAlgorithmFile">Upload A Dataset</label>
+            <input type="file" class="form-control-file" id="exampleAlgorithmFile">
+        </div>
+        <button type="button" class="btn btn-new" id = "submitAlg">Submit</button>
+    </form>
 </div>
 </div>
-<div class="col-md-6">
-	<form  style="display: none" id="MIT">
-  <div class="form-group">
-    <label for="exampleInputEmail1">MIT Name</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter MIT">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Benchmarks</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter benchmarks">
-  </div>
-    <div class="form-group">
-    <label for="exampleFormControlTextarea1">MIT description</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-   <div class="form-group">
-    <label for="exampleFormControlFile1">Upload Dataset</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+ <div class="col-sm-6">
+  <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
+ </div>
+</div>
+ 
+
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-  $('#exploreButton').click(function(){
-     $('#algs').show();
-});
-   $('#mitButton').click(function(){
-     $('#MIT').show();
+  $('#submitAlg').click(function(){
+     $('#results').show();
 });
 </script>
 </div>

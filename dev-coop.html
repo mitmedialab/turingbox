@@ -14,7 +14,7 @@
 
   </head>
   <body>
-                <nav class="navbar navbar-default">
+ <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -24,80 +24,79 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-       <a href="index.html" class="logo"><img src="img/logo.png" /></a>
+       <a href="index.html" class="logo"><img src="img/logo.png"/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
           <li><a href="about.html">about us</a></li>
-          <li class="devButton"><a href="dev-land.html" style = "color:white">developers</a></li>
-          <li><a href="eval-land.html">evaluators</a></li>
+          <li><a href="eval-land.html" >examiner</a></li>
+          <li class = "devButton"><a href="dev-land.html" style = "color:white">creator</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <div class = "content">
-<h2>Explore the research questions in the community</h2>
-<table class="table table-striped" id = "algs">
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Input</th>
-        <th>Output</th>
-        <th>Benchmark</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Are RL Agents Bullies?</td>
-        <td>Jacob Crandall</td>
-        <td>Prisoner's Dilemma Situation</td>
-        <td>Cooperation Decision</td>
-        <td>Bully-ness</td>
-    </tr>
-    <tr>
-        <td>Does Regret Minimization create cooperation?</td>
-        <td>Robert Axelrod</td>
-        <td>Prisoner's Dilemma Situation</td>
-        <td>Cooperation Decision</td>
-        <td>Regret</td>
-    </tr>
-    <tr>
-        <td>Belief-Based Agent Turing Test</td>
-        <td>Macy Beehive</td>
-        <td>Prisoner's Dilemma Situation</td>
-        <td>Model Architecture</td>
-        <td>Probability of BBA</td>
-    </tr>
-    </tbody>
-</table>
-<div class="row">
-    <div class="col-md-6">
+<div class = "splashImage"> Cooperation</div> <!--add image here -->
+<div class = "splashSpacer"></div>
+
+      <h3>Create for the latest and most popular boxes</h3>
+      <table class="table table-curved" id = "algs">
+          <thead>
+          <tr>
+              <th>Title</th>
+              <th>Input</th>
+              <th>Output</th>
+              <th>Benchmark</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>Machine Gaze</td>
+              <td>Images of swimwear models</td>
+              <td>Adult Content Moderation Scores</td>
+              <td>Fairness</td>
+          </tr>
+          <tr>
+              <td>Emotional Affect in Style Transfer</td>
+              <td>Images of Disasters</td>
+              <td>Stylized Images</td>
+              <td>Cultural Differences in Empathy</td>
+          </tr>
+          <tr>
+              <td>Are Arts and Culture App Racist?</td>
+              <td>Image of Face</td>
+              <td>Portrait</td>
+              <td>Percent Match</td>
+          </tr>
+          </tbody>
+      </table>
+  <div class="row">
+         <div class="col-sm-6">
 <div class = "explore">
-    <h2>Upload an algorithm</h2>
+    <h3>Upload an algorithm</h3>
 <form id="ALG">
         <div class="form-group">
             <label for="exampleAlgName">Algorithm Title</label>
-            <input type="text" class="form-control" id="exampleAlgName" placeholder="Algorithm Title">
+            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
         </div>
         <div class="form-group">
-           <div class="col-sm-6">
+           <div class="col-sm-6 noPadding">
               <label for="exampleSelect1">Algorithm Input</label>
     <select class="form-control" id="exampleSelect1">
-      <option>Game Parameters</option>
-      <option>Opponenet's Play</option>
-      <option>Noise Parameter</option>
-      <option>Shadow of the Future</option>
+      <option>Images of Faces</option>
+      <option>Images of Objects</option>
+      <option>Images of Memes</option>
+      <option>Images of Humans</option>
     </select>
            </div>       
-           <div class="col-sm-6">
+           <div class="col-sm-6 noPadding">
              <label for="exampleSelect1">Algorithm Output</label>
     <select class="form-control" id="exampleSelect1">
-      <option>Architecure Score</option>
-      <option>Cooperation Decision</option>
-      <option>Regret Level</option>
+      <option>Nudity Detection Score</option>
+      <option>Object Classifier</option>
+      <option>Natural Language description</option>
     </select>
            </div>
     </div>
@@ -105,13 +104,16 @@
             <label for="exampleAlgorithmFile">Upload Algorithm</label>
             <input type="file" class="form-control-file" id="exampleAlgorithmFile">
         </div>
-        <button type="button" class="btn btn-primary" id = "submitAlg">Submit</button>
+        <button type="button" class="btn btn-new" id = "submitAlg">Submit</button>
     </form>
 </div>
 </div>
-<div class="col-md-6">
-    <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
+ <div class="col-sm-6">
+  <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
+ </div>
 </div>
+ 
+
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
