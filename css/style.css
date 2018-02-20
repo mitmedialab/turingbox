@@ -1,4 +1,4 @@
-}@import url('https://fonts.googleapis.com/css?family=Chivo:300,400');
+@import url('https://fonts.googleapis.com/css?family=Chivo:300,400');
 
 body {
 	font-family: 'Chivo',sans-serif;
@@ -13,10 +13,24 @@ body {
 	border-style: none;
 	font-family: 'Chivo',sans-serif;
 	font-weight: 300;
-	font-size: 3vw;
+	font-size: 3rem;
 	text-shadow: none;
 	color:black;
 	margin-bottom:0px;
+}
+
+.navbar-toggle{
+  	border-color:black !important;
+  	border-width: 2px;
+  	margin: 10px 0px 0px 0px !important;
+}
+
+.navbar-toggle:focus{
+  	background-color: white !important;
+}
+
+.icon-bar{
+	background-color: black !important;
 }
 
 .form-control{
