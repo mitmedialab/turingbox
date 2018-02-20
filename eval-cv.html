@@ -41,88 +41,69 @@
 
 
 <div class = "content">
-<div class = "splashImage"><img src="img/cv.png" width="100%"/> </div>
-<div class = "splashSpacer"></div>
+<!--<div class = "splashImage"><img src="img/cv.png" width="100%"/> </div>
+<div class = "splashSpacer"></div>-->
 
-      <h3>AI systems to examine</h3>
-
-
-      <table class="table table-curved" id = "algs">
-          <thead>
-          <tr>
-              <th>Name</th>
-              <th>Input</th>
-              <th>Output</th>
-              <th>Benchmark</th>
-              <th>Popularity</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-        <td>Cloud Vision API by Microsoft</td>
-        <td>Image</td>
-        <td>Raciness Score, Caption</td>
-        <td>Accuracy</td>
-        <td>4.2</td>
-          </tr>
-          <tr>
-              <td>Flow by Google</td>
-        <td>Image</td>
-        <td>Raciness Score, Caption</td>
-        <td>Accuracy</td>
-        <td>4.5</td>
-          </tr>
-          <tr>
-               <td>Clarifai</td>
-        <td>Image</td>
-        <td>Raciness Score, Caption</td>
-        <td>Accuracy</td>
-        <td>4.7</td>
-          </tr>
-          </tbody>
-      </table>
-  <div class="row">
-         <div class="col-sm-6">
-<div class = "explore">
-    <h3>Launch a box</h3>
-<form id="ALG">
-  <div class="form-group">
-            <label for="exampleAlgName">Question</label>
-            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
-        </div>
-        <div class="form-group">
-            <label for="exampleAlgName">Benchmark Name</label>
-            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
-        </div>
-        <div class="form-group">
-    <label for="exampleFormControlSelect2">Add algorithms to box</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <h3>Launch a box</h3>
+      <form>
+      <div class="row">
+    <div class="col-sm-4">
+      <label for="exampleFormControlSelect2">Add algorithms to the box...</label>
+    <select name = "algs" multiple class="form-control" id="exampleFormControlSelect2">
       <option selected = "True">All</option>
       <option>Cloud Vision API</option>
       <option>Flow by Google</option>
       <option>Clarifai</option>
+      <option>PreCog</option>
+      <option>PredPol</option>
     </select>
-  </div>
-        <div class="form-group">
-            <label for="exampleAlgorithmFile">Upload A Dataset</label>
+    or <a> make a call </a> for new algorithms to be uploaded.
+    </div>
+     <div class="col-sm-4">
+        <label for="exampleFormControlSelect2">...a dataset...</label>
+    <select name = "data" multiple class="form-control" id="exampleFormControlSelect2">
+      <option>ImageNet</option>
+      <option>Boston City Crimes</option>
+      <option>Prisoner's Dillema</option>
+    </select>
+     <div class="form-group">
+            <label for="exampleAlgorithmFile"> or upload your own</label>
             <input type="file" class="form-control-file" id="exampleAlgorithmFile">
         </div>
-        <button type="button" class="btn btn-new" id = "submitAlg">Submit</button>
-    </form>
-</div>
-</div>
- <div class="col-sm-6">
-  <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
- </div>
-</div>
+    </div>
+     <div class="col-sm-4">
+       <label for="exampleFormControlSelect2">...and a benchmark</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>Accuracy</option>
+      <option>Disparate Treatment</option>
+      <option>Disparate Mistreatment</option>
+      <option>Loyalty</option>
+    </select>
+      <label for="exampleAlgName">or enter your own</label>
+            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
+    </div>
+  </div>
+   <button type="button" class="btn btn-new" onClick='submitBox()'>Submit</button>
+</form>
+ <img style = "display:none" src="img/dev-results.png" id = "CV-results" width = "80%;">
+ <img style = "display:none" src="img/crime.png" id = "crime-results" width = "80%;">
+
+
  
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-  $('#submitAlg').click(function(){
-     $('#results').show();
-});
+  function submitBox(){
+     $('#CV-results').hide();
+      $('#crime-results').hide();
+    var formData = $('form').serializeArray();
+    if (formData[0].value == "Clarifai"){
+       $('#CV-results').show();
+    } else if (formData[0].value == "PreCog"){
+      $('#crime-results').show();
+    }
+  }
 </script>
 </div>
   </body>
