@@ -171,6 +171,10 @@ h3{
 	padding:0 0 2vw 0;
 }
 
+.thumbPad{
+	padding-bottom: 20px;
+}
+
 #results {
 	padding:5vw 0 2vw 0vw;
 }
@@ -198,6 +202,9 @@ h3{
 	margin:10px;
 }
 
+background-image: url("coop.png");
+}
+
 /*desktop*/
 @media (min-width: 800px) and (max-width: 2000px) { 
 	.landText {
@@ -220,7 +227,7 @@ h3{
 	}
 
 	.aboutText{
-		position: absolute;
+		position: absolute !important;
 		top:18vh;
 	}
 }
