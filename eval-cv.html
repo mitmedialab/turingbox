@@ -30,7 +30,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <li><a href="about.html">about us</a></li>
+          <li><a href="about.html">learn more</a></li>
           <li class = "evalButton"><a href="eval-land.html" style = "color:white">examine</a></li>
           <li><a href="dev-land.html">create</a></li>
       </ul>
@@ -86,29 +86,23 @@
 <div class = "explore">
     <h3>Launch a box</h3>
 <form id="ALG">
+  <div class="form-group">
+            <label for="exampleAlgName">Question</label>
+            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
+        </div>
         <div class="form-group">
             <label for="exampleAlgName">Benchmark Name</label>
             <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
         </div>
         <div class="form-group">
-           <div class="col-sm-6 noPadding">
-              <label for="exampleSelect1">Algorithm Input</label>
-    <select class="form-control" id="exampleSelect1">
-      <option>Images of Faces</option>
-      <option>Images of Objects</option>
-      <option>Images of Memes</option>
-      <option>Images of Humans</option>
+    <label for="exampleFormControlSelect2">Function Input</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option selected = "True">All</option>
+      <option>Cloud Vision API</option>
+      <option>Flow by Google</option>
+      <option>Clarifai</option>
     </select>
-           </div>       
-           <div class="col-sm-6 noPadding">
-             <label for="exampleSelect1">Algorithm Output</label>
-    <select class="form-control" id="exampleSelect1">
-      <option>Nudity Detection Score</option>
-      <option>Object Classifier</option>
-      <option>Natural Language description</option>
-    </select>
-           </div>
-    </div>
+  </div>
         <div class="form-group">
             <label for="exampleAlgorithmFile">Upload A Dataset</label>
             <input type="file" class="form-control-file" id="exampleAlgorithmFile">
