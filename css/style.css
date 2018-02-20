@@ -8,6 +8,10 @@ body {
 	background-color: white;
 }
 
+.navbar-collapse{
+	border-color: white !important;
+}
+
 .navbar {
 	box-shadow: none;
 	border-style: none;
@@ -51,7 +55,6 @@ body {
 	margin-top: 3vw;
 	margin-left: 3vw;
 	margin-bottom: 3vw;
-	margin-right:none;
 	border-style: solid;
 	border-color: black;
 	border-width: 2px;
@@ -119,14 +122,17 @@ h3{
 
 .aboutUsButton{
 	background: #f4e600;
+	max-width: 160px;
 }
 
 .devButton{
 	background: #29abe2;
+	max-width: 130px;
 }
 
 .evalButton{
 	background: #ff1d25;
+	max-width: 150px;
 }
 
 .noPadding{
