@@ -125,6 +125,13 @@ h3{
 .table-curved td {
 }
 
+.landTable{
+ display: block; /* important */
+  height: 300px;
+  overflow-y: scroll;
+
+}
+
 
 .aboutUsButton{
 	background: #f4e600;
