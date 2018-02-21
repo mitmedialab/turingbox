@@ -1,109 +1,99 @@
 <html lang="en">
-  <head>
-   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<link rel="stylesheet" href="css/style.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-  </head>
-  <body>
- <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-       <a href="index.html" class="logo"><img src="img/logo.png"/></a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-          <li><a href="about.html">learn more</a></li>
-          <li class = "evalButton"><a href="examinerLand.html" style = "color:white">examine</a></li>
-          <li><a href="contributorLand.html">contribute</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
-
-<div class = "content">
-<!--<div class = "splashImage"><img src="img/cv.png" width="100%"/> </div>
-<div class = "splashSpacer"></div>-->
-
-      <h3>Launch a box</h3>
-      <form>
-      <div class="row">
-     <div class="col-sm-4">
-        <label for="exampleFormControlSelect2">Provide input dataset...</label>
-    <select name = "data" multiple class="form-control" id="exampleFormControlSelect2">
-      <option selected = "True">ImageNet</option>
-      <option>Boston City Crimes</option>
-      <option>Prisoner's Dillema</option>
-    </select>
-     <div class="form-group">
-            <label for="exampleAlgorithmFile"> or upload your own</label>
-            <input type="file" class="form-control-file" id="exampleAlgorithmFile">
-        </div>
-    </div>
-    <div class="col-sm-4">
-      <label for="exampleFormControlSelect2">...and the algorithms inside the box...</label>
-    <select name = "algs" multiple class="form-control" id="exampleFormControlSelect2">
-      <option>Cloud Vision API</option>
-      <option>Flow by Google</option>
-      <option>Clarifai</option>
-      <option>PreCog</option>
-      <option>PredPol</option>
-    </select>
-    or <a> make a call </a> for new algorithms to be uploaded.
-    </div>
-     <div class="col-sm-4">
-       <label for="exampleFormControlSelect2">...and a benchmark for the output</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>Accuracy</option>
-      <option>Disparate Treatment</option>
-      <option>Disparate Mistreatment</option>
-      <option>Loyalty</option>
-    </select>
-      <label for="exampleAlgName">or enter your own</label>
-            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
-    </div>
-  </div>
-   <button type="button" class="btn btn-new" onClick='submitBox()'>Submit</button>
-</form>
- <img style = "display:none" src="img/dev-results.png" id = "CV-results" width = "80%;">
- <img style = "display:none" src="img/crime.png" id = "crime-results" width = "80%;">
-
-
- 
-
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-  function submitBox(){
-     $('#CV-results').hide();
-      $('#crime-results').hide();
-    var formData = $('form').serializeArray();
-    if (formData[0].value == "Clarifai"){
-       $('#CV-results').show();
-    } else if (formData[1].value == "PreCog"){
-      $('#crime-results').show();
-    }
-  }
-</script>
-</div>
-  </body>
+   <head>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   </head>
+   <body>
+      <nav class="navbar navbar-default">
+         <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a href="index.html" class="logo"><img src="img/logo.png"/></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav">
+                  <li><a href="about.html">learn more</a></li>
+                  <li class = "evalButton"><a href="launchBox.html" style = "color:white">examine</a></li>
+                  <li><a href="contributorLand.html">contribute</a></li>
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </div>
+         <!-- /.container-fluid -->
+      </nav>
+      <div class = "content">
+         <!--<div class = "splashImage"><img src="img/cv.png" width="100%"/> </div>
+            <div class = "splashSpacer"></div>-->
+         <p>TuringBox allows anyone to examine the behavior of AI systems. As an examiner, you can explore the most recent and popular algorithms on the site. If you think of a study, you can launch a box to analyze the algorithms on the site.</p>
+         <h3>Launch a box</h3>
+         <form>
+            <div class="row">
+               <div class="col-sm-4">
+                  <label for="exampleFormControlSelect2">Provide input dataset...</label>
+                  <select name = "data" multiple class="form-control" id="exampleFormControlSelect2">
+                     <option selected = "True">ImageNet</option>
+                     <option>Boston City Crimes</option>
+                     <option>Prisoner's Dillema</option>
+                  </select>
+                  <div class="form-group">
+                     <label for="exampleAlgorithmFile"> or upload your own</label>
+                     <input type="file" class="form-control-file" id="exampleAlgorithmFile">
+                  </div>
+               </div>
+               <div class="col-sm-4">
+                  <label for="exampleFormControlSelect2">...and the algorithms inside the box...</label>
+                  <select name = "algs" multiple class="form-control" id="exampleFormControlSelect2">
+                     <option>Cloud Vision API</option>
+                     <option>Flow by Google</option>
+                     <option>Clarifai</option>
+                     <option>PreCog</option>
+                     <option>PredPol</option>
+                  </select>
+                  or <a> make a call </a> for new algorithms to be uploaded.
+               </div>
+               <div class="col-sm-4">
+                  <label for="exampleFormControlSelect2">...and a benchmark for the output</label>
+                  <select multiple class="form-control" id="exampleFormControlSelect2">
+                     <option>Accuracy</option>
+                     <option>Disparate Treatment</option>
+                     <option>Disparate Mistreatment</option>
+                     <option>Loyalty</option>
+                  </select>
+                  <label for="exampleAlgName">or enter your own</label>
+                  <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
+               </div>
+            </div>
+            <button type="button" class="btn btn-new" onClick='submitBox()'>Submit</button>
+         </form>
+         <img style = "display:none" src="img/dev-results.png" id = "CV-results" width = "80%;">
+         <img style = "display:none" src="img/crime.png" id = "crime-results" width = "80%;">
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script>
+         function submitBox(){
+            $('#CV-results').hide();
+             $('#crime-results').hide();
+           var formData = $('form').serializeArray();
+           if (formData[1].value == "Clarifai"){
+              $('#CV-results').show();
+           } else if (formData[1].value == "PreCog"){
+             $('#crime-results').show();
+           }
+         }
+      </script>
+      </div>
+   </body>
 </html>

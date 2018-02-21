@@ -32,8 +32,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
           <li><a href="about.html">learn more</a></li>
-          <li><a href="examinerLand.html" >examine</a></li>
-          <li class = "devButton"><a href="donorLand.html" style = "color:white">donate</a></li>
+          <li><a href="launchBox.html" >examine</a></li>
+          <li class = "devButton"><a href="upload.html" style = "color:white">contribute</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -41,7 +41,7 @@
 <div class = "content">
 <!--<div class = "landImage"><img src="img/cv.png" width="100%"/> </div>
 <div class = "splashSpacer"></div>-->
-
+<p>Contributers can upload AI systems to TuringBox. As a creator, you can upload an algorithm to have it benchmarked and score points for important boxes. You can also explore the latest and most popular boxes in your community (some have bounties!).</p>
   <div class="row">
     <div class="col-sm-6">
 <div class = "explore">
@@ -103,12 +103,48 @@
 
 </div>
  
+<h3 style = "display:none" id = "tableText"> Boxes recommended for you</h3>
+<table style = "display:none" class="table table-curved" id = "algs">
+          <thead>
+          <tr>
+            <th>Metric</th>
+              <th>Question</th>
+              <th>Input</th>
+              <th>Output</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+             <td>Fairness</td>
+              <td>Machine Gaze</td>
+              <td>Images of swimwear models</td>
+              <td>Adult Content Moderation Scores</td>
+             
+          </tr>
+          <tr>
+            <td>Cultural Differences in Empathy</td>
+              <td>Emotional Affect in Style Transfer</td>
+              <td>Images of Disasters</td>
+              <td>Stylized Images</td>
+              
+          </tr>
+          <tr>
+            <td>Percent Match</td>
+              <td>Are Arts and Culture Apps Racist?</td>
+              <td>Image of Face</td>
+              <td>Portrait</td>
+              
+          </tr>
+          </tbody>
+      </table>
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
   $('#submitAlg').click(function(){
      $('#results').show();
+     $('#algs').show();
+     $('#tableText').show();
 });
 </script>
 </div>
