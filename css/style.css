@@ -210,7 +210,7 @@ h3{
 }
 
 /*desktop*/
-@media (min-width: 768px) { 
+@media (min-width: 1025px) { 
 	.landText {
 		position: absolute;
 		top:9vw;
@@ -220,11 +220,9 @@ h3{
 	.landImage {
 		position: absolute;
 		top:10vw;
-		height: 70vh;
+		width:50vw;
 		z-index: 0 ;
 	}
-
-	
 
 	.aboutText{
 		position: absolute !important;
@@ -232,14 +230,42 @@ h3{
 	}
 }
 
+/*tablet*/
+@media (min-width:480px) and (max-width:1024px)  { 
+	.landText {
+		position: absolute;
+		top:9vw;
+		margin-right: 10vw;
+	}
+
+	.landImage {
+		margin-top: 20vh;
+		width:50vw;
+		z-index: 0;
+		margin-left: 10vw;
+	}
+
+	
+	.aboutText{
+		position: absolute !important;
+		top:18vh;
+	}
+
+	.content{
+	padding:0px 5vw 0 30vw;
+	font-family: 'Chivo',sans-serif;
+	}
+}
+
 /*mobile*/
-@media (max-width: 767px) { 
+@media (max-width: 480px) { 
 	.landText {
 		position: relative;
 		margin-right: 10vw;
 	}
 
 	.landImage {
+		margin-top: 2vh;
 		width:90vw;
 		z-index: 0 ;
 		margin-bottom: 10px;
