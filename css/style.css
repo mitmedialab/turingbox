@@ -136,6 +136,7 @@ h3{
 .aboutUsButton{
 	background: #f4e600;
 	max-width: 200px;
+	font-color:black;
 }
 
 .devButton{
@@ -200,13 +201,35 @@ h3{
 .logoAbout{
 	position:relative;
 	width:100px;
-	margin:10px;
+	margin:15px 15px 15px 0px;
 }
 
 .content{
-	top:10vh;
+	top:20vh;
 	padding:10vh 10vw 10vw 25vw;
 	font-family: 'Chivo',sans-serif;
+}
+
+.subButton{
+	border-radius: 5px;
+	background-color: #f4e600;
+	border-color: black !important;
+  	border-width: 1px !important;
+  	margin: 10px 0px 0px 165px !important;
+  	width:83px;
+}
+
+.subButton:focus{
+	color:white;
+	background-color: #ff1d25;
+	box-shadow: none;
+}
+
+#mce-EMAIL{
+	border-radius: 5px;
+	border-color:black !important;
+  	border-width: 1px;
+  	margin: 10px 0px 0px 0px !important;
 }
 
 /*desktop*/
@@ -239,7 +262,7 @@ h3{
 	}
 
 	.landImage {
-		margin-top: 20vh;
+		margin-top: 15vh;
 		width:50vw;
 		z-index: 0;
 		margin-left: 10vw;
@@ -252,7 +275,7 @@ h3{
 	}
 
 	.content{
-	padding:0px 5vw 0 30vw;
+	padding:5vh 5vw 0 32vw;
 	font-family: 'Chivo',sans-serif;
 	}
 }
