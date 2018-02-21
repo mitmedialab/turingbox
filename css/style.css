@@ -26,7 +26,8 @@ body {
 .navbar-toggle{
   	border-color:black !important;
   	border-width: 2px;
-  	margin: 10px 0px 0px 0px !important;
+  	margin: 0 0px 0px 6vw !important;
+  	float:left;
 }
 
 .navbar-toggle:focus{
@@ -52,8 +53,6 @@ body {
 }
 
 .nav>li{
-	margin-top: 3vw;
-	margin-left: 3vw;
 	margin-bottom: 3vw;
 	border-style: solid;
 	border-color: black;
@@ -83,7 +82,7 @@ h1{
 	text-align: left;
 	z-index: 10;
 	position: relative;
-	font-size: 5vh;
+	font-size: 4.5vh;
 }
 
 h3{
@@ -262,6 +261,10 @@ h3{
 		position: absolute !important;
 		top:18vh;
 	}
+
+	.nav>li {
+		margin-left: 4vw;
+	}
 }
 
 /*tablet*/
@@ -289,6 +292,10 @@ h3{
 	padding:5vh 5vw 0 32vw;
 	font-family: 'Chivo',sans-serif;
 	}
+
+	.nav>li {
+		margin-left: 4vw;
+	}
 }
 
 /*mobile*/
@@ -307,8 +314,13 @@ h3{
 
 	.content{
 	top:20vh;
-	padding:0px 5vw 0 5vw;
+	padding:10px 5vw 0 5vw;
 	font-family: 'Chivo',sans-serif;
+	}
+
+	.nav>li {
+		margin-left: 6vw;
+		max-width: 200px;
 	}
 
 }
