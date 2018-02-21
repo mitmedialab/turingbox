@@ -236,6 +236,13 @@ h3{
   	margin: 10px 0px 0px 0px !important;
 }
 
+.banner{
+	position:absolute;
+	top:0vh;
+	right:0vw;
+	width:200px;
+}
+
 /*desktop*/
 @media (min-width: 1025px) { 
 	.landText {
