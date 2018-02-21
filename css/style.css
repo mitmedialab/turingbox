@@ -152,12 +152,6 @@ h3{
 	padding:0 15px 1vw 0;
 }
 
-.content{
-	top:20vh;
-	padding:0px 10vw 10vw 19vw;
-	font-family: 'Chivo',sans-serif;
-}
-
 .btn-default{
 	background-color: #29abe2;
 }
@@ -209,11 +203,14 @@ h3{
 	margin:10px;
 }
 
-background-image: url("coop.png");
+.content{
+	top:10vh;
+	padding:10vh 10vw 10vw 25vw;
+	font-family: 'Chivo',sans-serif;
 }
 
 /*desktop*/
-@media (min-width: 800px) and (max-width: 2000px) { 
+@media (min-width: 768px) { 
 	.landText {
 		position: absolute;
 		top:9vw;
@@ -227,11 +224,7 @@ background-image: url("coop.png");
 		z-index: 0 ;
 	}
 
-	.content{
-	top:20vh;
-	padding:0px 10vw 10vw 19vw;
-	font-family: 'Chivo',sans-serif;
-	}
+	
 
 	.aboutText{
 		position: absolute !important;
@@ -240,7 +233,7 @@ background-image: url("coop.png");
 }
 
 /*mobile*/
-@media (max-width: 800px) { 
+@media (max-width: 767px) { 
 	.landText {
 		position: relative;
 		margin-right: 10vw;
