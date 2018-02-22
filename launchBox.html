@@ -85,14 +85,25 @@
                   <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
                </div>
             </div>
-            <button type="button" class="btn btn-new" onClick='submitBox()'>Submit</button>
+            <button type="button" class="btn btn-new" onClick='submitBox()'>Launch</button>
          </form>
-         <img style = "display:none" src="img/dev-results.png" id = "CV-results" width = "80%;">
-         <img style = "display:none" src="img/crime.png" id = "crime-results" width = "80%;">
+         <div class = "row" id = "theBox" style = "display:none">
+             <div class="col-sm-4"> <img src="img/logo.png" width = "30%;">
+               <button type="button" class="btn btn-new" onClick='probeBox()'>Summarize</button>
+               <button type="button" class="btn btn-new" onClick='probeBox()'>Apply Metric</button>
+               <button type="button" class="btn btn-new" onClick='probeBox()'><a href="img/logo.png" style = "color:white" download>Download</a></button>
+
+
+
+             </div>
+            <div class="col-sm-8">  <img style = "display:none" src="img/blakeley1.png" id = "CV-results" width = "80%;">
+         <img style = "display:none" src="img/crime.png" id = "crime-results" width = "80%;"></div>
+         </div>
+       
       </div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script>
-         function submitBox(){
+          function probeBox(){
             $('#CV-results').hide();
              $('#crime-results').hide();
            var formData = $('form').serializeArray();
@@ -101,6 +112,10 @@
            } else if (formData[1].value == "PreCog"){
              $('#crime-results').show();
            }
+         }
+         function submitBox(){
+            $('#theBox').show();
+            
          }
       </script>
       </div>
