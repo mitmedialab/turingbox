@@ -222,7 +222,7 @@ h3{
 	background-color: #f4e600;
 	border-color: black !important;
   	border-width: 1px !important;
-  	margin: 10px 0px 0px 165px !important;
+  	margin: 10px 0px 0px 86px !important;
   	width:163px;
 }
 
@@ -339,6 +339,10 @@ h3{
 	.nav>li {
 		margin-left: 6vw;
 		max-width: 200px;
+	}
+
+	.dirtyMarg{
+		margin:10px 0 0 5vw !important;
 	}
 
 }
