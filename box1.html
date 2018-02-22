@@ -44,19 +44,32 @@
   <div><img class = "banner" src="img/banner.png" width="100%"/> </div>
   <!-- <div><img class = "landImage" src="img/about.png"/> </div>-->
   <h1>Box #1583 &nbsp&nbsp<i class="far fa-thumbs-up"></i>47</h1>
-               <button type="button" class="btn btn-new" onClick='probeBox()'>Summarize</button>
-               <button type="button" class="btn btn-new" onClick='probeBox()'>Apply Metric</button>
-               <button type="button" class="btn btn-new" onClick='probeBox()'><a href="img/logo.png" style = "color:white" download>Download data</a></button>
+               <button type="button" class="btn btn-new mb-2" onClick='sumBox()'>Summarize</button>
+               <button type="button" class="btn btn-new mb-2" onClick='metricBox()'>Apply Metric</button>
+               <button type="button" class="btn btn-new mb-2" onClick='probeBox()'><a href="img/logo.png" style = "color:white" download>Download data</a></button>
 
+            <div class = "smolSpacer"></div>
+            
             <div class = "row">
-            <div class="col-sm-6">  <img style = "display:none" src="img/blakeley1.png" id = "CV-results" width = "80%;">
-         <img style = "display:none" src="img/crime.png" id = "crime-results" width = "80%;"></div>
-         </div>
+            <div class="col-sm-6"> 
+              <img src="img/blank_box.png" id = "blank-box" width = "75%;">
+              <img style = "display:none" src="img/blakeley_box.png" id = "CV-results" width = "75%;">
+              <img style = "display:none" src="img/crime_box.png" id = "crime-results" width = "75%;">
+            </div>
+            </div>
 </div>
 <script>
-          function probeBox(){
+          function sumBox(){
           $('#CV-results').show();
-           $('#crime-results').show();           
+          $('#crime-results').hide();
+          $('#blank-box').hide();
+                      
+         }
+
+         function metricBox(){
+          $('#crime-results').show();
+          $('#CV-results').hide();
+          $('#blank-box').hide();
          }
       </script>
   </body>

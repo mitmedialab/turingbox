@@ -38,6 +38,14 @@ body {
 	background-color: black !important;
 }
 
+.mb-2{
+	margin-bottom: 5px;
+}
+
+.smolSpacer{
+	height:20px;
+}
+
 .form-control{
 	box-shadow: none;
 	border-color: black;
@@ -148,10 +156,6 @@ h3{
 	max-width: 200px;
 }
 
-.evalButton:hover{
-	background: blue;
-}
-
 .noPadding{
 	padding:0 15px 1vw 0;
 }
@@ -242,6 +246,12 @@ h3{
 	width:200px;
 }
 
+.boxContainer {
+	border-color: black !important;
+	border-width: 1px !important; 
+	border-radius:5px;
+}
+
 /*desktop*/
 @media (min-width: 1025px) { 
 	.landText {
@@ -290,6 +300,7 @@ h3{
 
 	.content{
 	padding:5vh 5vw 0 32vw;
+	width:90vw;
 	font-family: 'Chivo',sans-serif;
 	}
 
