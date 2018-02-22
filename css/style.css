@@ -223,7 +223,7 @@ h3{
 	border-color: black !important;
   	border-width: 1px !important;
   	margin: 10px 0px 0px 165px !important;
-  	width:83px;
+  	width:163px;
 }
 
 .subButton:focus{
@@ -233,6 +233,13 @@ h3{
 }
 
 #mce-EMAIL{
+	border-radius: 5px;
+	border-color:black !important;
+  	border-width: 1px;
+  	margin: 10px 0px 0px 0px !important;
+}
+
+#mce-MMERGE1{
 	border-radius: 5px;
 	border-color:black !important;
   	border-width: 1px;
