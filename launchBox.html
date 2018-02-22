@@ -55,15 +55,18 @@
          <form>
             <div class="row">
                 <div class="col-sm-4">
-                  <label for="exampleFormControlSelect2">Provide input dataset...</label>
+                  <label for="exampleFormControlSelect2" class = "subheader">Provide input dataset</label>
                   <div class="checkbox">
   <label><input type="checkbox" value=""><a href = "context.html?item=IJB-A (Human Faces)" style ="color:black">IJB-A (Human Faces)</a></label>
 </div>
 <div class="checkbox">
-  <label><input type="checkbox" value=""><a href = "context.html?item=Boston City Crimes" style ="color:black">Boston City Crimes</a></label>
+  <label><input type="checkbox" value=""><a href = "context.html?item=MNIST" style ="color:black">MNIST</a></label>
 </div>
 <div class="checkbox">
   <label><input type="checkbox" value="" ><a href = "context.html?item=Swimsuit Models" style ="color:black">Swimsuit Models</a></label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value=""><a href = "context.html?item=Boston City Crimes" style ="color:black">Boston City Crimes</a></label>
 </div>
 <div class="checkbox">
   <label><input type="checkbox" value="" ><a href = "context.html?item=Prisoner's Dilemma" style ="color:black">Prisoner's Dilemma</a></label>
@@ -75,8 +78,14 @@
                   
                </div>
                <div class="col-sm-4">
-                  <label for="exampleFormControlSelect2">...and the algorithms...</label>
+
+                  <label for="exampleFormControlSelect2" class = "subheader">Select algorithms</label>
                  <div class="checkbox">
+
+<div class="checkbox"><label><input type="checkbox" value="" id ="DropConnect"><a href = "context.html?item=DropConnect" style ="color:black">DropConnect</a></label>
+</div>
+<div class="checkbox">
+
   <label><input type="checkbox" value=""><a href = "context.html?item=Cloud Vision API" style ="color:black">Cloud Vision API</a></label>
 </div>
 <div class="checkbox">
@@ -86,28 +95,39 @@
 </div>
 <div class="checkbox"><label><input type="checkbox" value="" id ="precog" ><a href = "context.html?item=PreCog" style ="color:black">PreCog</a></label>
 </div>
-<div class="checkbox"><label><input type="checkbox" value="" ><a href = "context.html?item=PredPol" style ="color:black">PredPol</a></label>
-</div>
+
                   or <a href>make a call</a> for new AI <br>algorithms to be uploaded.
                   <br>
                </div>
 
-             <div class="col-sm-4">
-                  <label for="exampleFormControlSelect2">..and a metric for the output</label>
+        
+                  
+               </div>
+
+               <div class="col-sm-4">
+
+                  <label for="exampleFormControlSelect2" class = "subheader">Select output metric</label>
                  <div class="checkbox">
   <label><input type="checkbox" value=""><a href = "context.html?item=Accuracy" style ="color:black">Accuracy</a></label>
-</div>
+</div>             
+
 <div class="checkbox">
   <label><input type="checkbox" value=""><a href = "context.html?item=Disparate Treatment" style ="color:black">Disparate Treatment</a></label>
 </div>
 <div class="checkbox"><label><input type="checkbox" value="" ><a href = "context.html?item=Disparate Mistreatment" style ="color:black">Disparate Mistreatment</a></label>
 </div>
+ <div class="checkbox">
+  <label><input type="checkbox" value=""><a href = "context.html?item=Accuracy" style ="color:black">Accuracy</a></label>
+
+</div>
+<div class="checkbox"><label><input type="checkbox" value="" ><a href = "context.html?item=Loyalty" style ="color:black">Loyalty</a></label>
+
+</div>
 <div class="checkbox"><label><input type="checkbox" value="" ><a href = "context.html?item=Loyalty" style ="color:black">Loyalty</a></label>
 </div>
-</div>
-                   <label for="exampleAlgName">or enter your own</label>
+ <label for="exampleAlgName">or enter your own</label>
                   <input type="text" class="form-control" id="exampleAlgName" placeholder="..." style = "width:170px;">
-               </div>
+</div>
             <button type="button" class="btn btn-new" onClick='submitBox()'>Launch</button>
          </form>
 
@@ -120,6 +140,8 @@
              location.href = 'box1.html';
            } else if ($('#precog').is(":checked")){
              location.href = 'box2.html';
+           } else if ($('#DropConnect').is(":checked")){
+             location.href = 'box3.html';
            }
          }
       </script>
