@@ -45,10 +45,13 @@
   <!-- <div><img class = "landImage" src="img/about.png"/> </div>-->
   <h1><span id = "title">Clarifai's Image Recognition</span>  &nbsp&nbsp<i class="far fa-thumbs-up"></i>47</h1>
 
-<p><b>Contents:</b> Clarifai’s image recognition models accept images and videos of the following format: JPEG, PNG, TIFF, BMP; MP4, MKV, AVI, MOV, OGG, GIF. <br><br>The moderation model identifies possible unwanted content, such as gore, drugs, or nudity and returns probabilities for the following concepts: explicit, suggestive, gore, drugs, or safe (none of the previous four concepts). <br><br>
+<p><b>Contents:</b> <span id = "label">Clarifai’s image recognition models accept images and videos of the following format: JPEG, PNG, TIFF, BMP; MP4, MKV, AVI, MOV, OGG, GIF. <br><br>The moderation model identifies possible unwanted content, such as gore, drugs, or nudity and returns probabilities for the following concepts: explicit, suggestive, gore, drugs, or safe (none of the previous four concepts). <br><br>
 The NSFW model identifies different levels of nudity and returns probabilities for the following labels: NSFW, SFW. <br><br>
 The general model returns a list of concept words related to the image. 
-
+</span>
+<br>
+  <img style = "display:none" src="img/swim19_front_non.jpg" class = "swim" width = "15%;">
+    <img style = "display:none" src="img/swim19_front_plus.jpg" class = "swim" width = "15%;">
 <br>
 <b>Discussion:</b>
 <table class="table table-curved" id = "algs">
@@ -56,17 +59,17 @@ The general model returns a list of concept words related to the image.
           <tbody>
           <tr>
              <td>user123</td>
-              <td>I really don't like this algorithm. It didnt work very well for me. Sad</td>
+              <td><span id = "comment1">I really don't like this algorithm. It don't think the creators thought it through. Sad</span></td>
              
           </tr>
           <tr>
             <td>user3</td>
-           <td>Really? It was great for me!</td>
+           <td><span id = "comment2">Woah I didn't know that!</span></td>
 
           </tr>
           <tr>
             <td>user33</td>
-            <td>Be careful! The utility funciton of a lot of these bots aren't great</td>
+            <td><span id = "comment3">Yeah they go into depth on the Wikipedia article...</span></td>
           </tr>
           </tbody>
       </table>
@@ -89,9 +92,25 @@ var getUrlParameter = function getUrlParameter(sParam) {
 var item = getUrlParameter('item');
 
 $('#title').text(item);
+console.log(item);
+if (item == "Cloud Vision API"){
+  console.log(45);
+} else if (item == "Swimsuit Models"){
+  $('.swim').show();
+  $('#label').text("This a dataset of swimsuit models collected from Nordstrom's website. They organized by the sensitive feature of 'plus-sized' and 'non-plus sized'. See some example photos below.");
+   $('#comment1').text("Is this data a representative sample?");
+   $('#comment1').text("I do like that its balanced on swimsuit, pose and background!");
+} else if (item == "IJB-A (Human Faces)"){
+  $('#comment1').text("Beware! This dataset is 77% male and mostly white! Not a representative sample!");
+} else if (item == "Boston City Crimes"){
+  $('#label').text("This data set comprises all the reported crimes in Boston during October 2015-July 2016, including locaiton of crime, a time-step and the type of crime. The link to the dataset can be found here.");
+  $('#comment1').text("I think there is an important distinction between crime reported and actual crime. This skews the data in problematic ways.");
+} else if (item == "PreCog"){
+   $('#label').text("PreCog is a MIT Media Lab developed algorithm that predicts the probability of crime in a given time/space block. It takes as input a census block-group and 2 hour window from October 2015-July 2016 and classifies as high crime/low crime. It is parameterized by a fairness constant that modulates the relationship between held-out accuracy of the model, and disparate treatment");
+  $('#comment1').text("How is disparate treatment defined? And how does that effect the architecture");
+   $('#comment2').text("There is a discussion about that!");
+}
 
-console.log(tech);
-console.log(blog);
 </script>
   </body>
 </html>
