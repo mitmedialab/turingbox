@@ -43,7 +43,7 @@
 <div class = "content">
   <div><img class = "banner" src="img/banner.png" width="100%"/> </div>
   <!-- <div><img class = "landImage" src="img/about.png"/> </div>-->
-  <h1>Clarifai's Image Recognition  &nbsp&nbsp<i class="far fa-thumbs-up"></i>47</h1>
+  <h1><span id = "title">Clarifai's Image Recognition</span>  &nbsp&nbsp<i class="far fa-thumbs-up"></i>47</h1>
 
 <p><b>Contents:</b> Clarifai’s image recognition models accept images and videos of the following format: JPEG, PNG, TIFF, BMP; MP4, MKV, AVI, MOV, OGG, GIF. <br><br>The moderation model identifies possible unwanted content, such as gore, drugs, or nudity and returns probabilities for the following concepts: explicit, suggestive, gore, drugs, or safe (none of the previous four concepts). <br><br>
 The NSFW model identifies different levels of nudity and returns probabilities for the following labels: NSFW, SFW. <br><br>
@@ -70,7 +70,28 @@ The general model returns a list of concept words related to the image.
           </tr>
           </tbody>
       </table>
+      <script>
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
 
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
 
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
+var item = getUrlParameter('item');
+
+$('#title').text(item);
+
+console.log(tech);
+console.log(blog);
+</script>
   </body>
 </html>
