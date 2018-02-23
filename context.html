@@ -96,7 +96,11 @@ $('#title').text(item);
 console.log(item);
 if (item == "Cloud Vision API"){
   console.log(45);
-} else if (item == "Swimsuit Models"){
+  $('#label').text("The Google Cloud Vision API takes images of the following formats: JPEG, PNG8, PNG24, GIF, Animated GIF (first frame only), BMP, WEBP, RAW, ICO. It returns the following information with confidence scores in JSON form: text labels, web entities related to the image, natural language included in the image, properties such as dominant colors or aspect ratio, safe search attributes. ");
+} else if (item == "MS"){
+    $('#label').text("The Microsoft Azure Computer Vision API accepts images of the following formats: JPEG, PNG, GIF, BMP. It returns the following information with confidence scores: description tags, captions, image format and dimensions, clip art or line drawing type, black or white truth value, adult and racy content truth values, adult and racy content confidence scores, category label, facial detection, and prominent colors in the image.")
+}
+else if (item == "Swimsuit Models"){
   $('.swim').show();
   $('#label').text("This a dataset of swimsuit models collected from several fashion retailers' (Nordstrom, Dillards, Macy's, Target, Old Navy) websites. They organized by the sensitive feature of 'plus-sized' and 'non-plus sized'. See some example photos below.");
    $('#comment1').text("Is this data a representative sample?");
