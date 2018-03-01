@@ -50,104 +50,35 @@
             <div class = "splashSpacer"></div>-->
          <p>TuringBox allows anyone to examine the behavior of artificial intelligence systems. As an examiner, you can explore the most recent and popular systems on the site. To begin your own study, you can launch a box by selecting a dataset, a few AI systems, and a metric. You can also make a call to contributors for the development of new AI systems. <br>
           <br>
-        Click on any box component to learn more.</p>
          <h3>Launch a box</h3>
          <form>
             <div class="row">
                 <div class="col-sm-4">
-                  <label for="exampleFormControlSelect2" class = "subheader">1. Provide a stimulus:</label>
-                  <div class="checkbox">
-  <label><input type="checkbox" value=""><a href = "context.html?item=IJB-A (Human Faces)" style ="color:black">IJB-A (Human Faces)</a></label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value=""><a href = "context.html?item=MNIST" style ="color:black">MNIST</a></label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value="" ><a href = "context.html?item=Swimsuit Models" style ="color:black">Swimsuit Models</a></label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value=""><a href = "context.html?item=Boston City Crimes" style ="color:black">Boston City Crimes</a></label>
-</div>
-<div class="checkbox">
-<label><input type="checkbox" value=""><a href = "context.html?item=Buyer Personas" style ="color:black">Buyer Personas</a></label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value="" ><a href = "context.html?item=Prisoner's Dilemma" style ="color:black">Prisoner's Dilemma</a></label>
-</div>
-                  <div class="form-group">
-                     <label for="exampleAlgorithmFile"> or upload your own</label>
-                     <input type="file" class="form-control-file" id="exampleAlgorithmFile">
+                  <label for="exampleFormControlSelect2" class = "subheader">1. Provide a stimulus</label>
                   </div>
-                  
-               </div>
                <div class="col-sm-4">
 
-                  <label for="exampleFormControlSelect2" class = "subheader">2. Select AI systems:</label>
-                 <div class="checkbox">
-
-<div class="checkbox"><label><input type="checkbox" value="" id ="DropConnect"><a href = "context.html?item=DropConnect" style ="color:black">DropConnect</a></label>
-</div>
-<div class="checkbox">
-
-  <label><input type="checkbox" value=""><a href = "context.html?item=Cloud Vision API" style ="color:black">Google Cloud Vision API</a></label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value=""><a href = "context.html?item=MS" style ="color:black">Microsoft Azure Vision API</a></label>
-</div>
-<div class="checkbox"><label><input type="checkbox" value="" id = "clarifai"><a href = "context.html?item=Clarifai" style ="color:black">Clarifai</a></label>
-</div>
-<div class="checkbox"><label><input type="checkbox" value="" id ="precog" ><a href = "context.html?item=PreCog" style ="color:black">PreCog</a></label>
-</div>
- <div class="checkbox"><label><input type="checkbox" value="" id ="amazon"" ><a href = "context.html?item=amazon" style ="color:black">Amazon Pricing</a></label>
- </div>
-
-                  or <a href>make a call</a> for new AI <br>systems to be uploaded.
-                  <br>
-               </div>
-
-        
-                  
+                  <label for="exampleFormControlSelect2" class = "subheader">2. Select AI systems</label>
+                
                </div>
 
                <div class="col-sm-4">
 
-                  <label for="exampleFormControlSelect2" class = "subheader">3. Select output metric:</label>
-                 <div class="checkbox">
-  <label><input type="checkbox" value=""><a href = "context.html?item=Accuracy" style ="color:black">Accuracy</a></label>
-</div>             
-
-<div class="checkbox">
-  <label><input type="checkbox" value=""><a href = "context.html?item=Disparate Treatment" style ="color:black">Disparate Treatment</a></label>
-</div>
-<div class="checkbox"><label><input type="checkbox" value="" ><a href = "context.html?item=Disparate Mistreatment" style ="color:black">Disparate Mistreatment</a></label>
-</div>
-<div class="checkbox"><label><input type="checkbox" value="" ><a href = "context.html?item=Loyalty" style ="color:black">Loyalty</a></label>
-
-</div>
-
- <label for="exampleAlgName">or enter your own</label>
-                  <input type="text" class="form-control" id="exampleAlgName" placeholder="..." style = "width:170px;">
-</div>
+                  <label for="exampleFormControlSelect2" class = "subheader">3. Select output metric</label>
+                 
 
 
-         </form>
       </div>
+    </div>
           <button type="button" class="btn btn-new dirtyMarg" onClick='submitBox()'>Launch</button>
+          <div id = "message" style="color:red; display:none;">This functionality is coming soon!</div>
 
 
 
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script>
           function submitBox(){
-           if ($('#clarifai').is(":checked")){
-             location.href = 'box1.html';
-           } else if ($('#precog').is(":checked")){
-             location.href = 'box2.html';
-           } else if ($('#DropConnect').is(":checked")){
-             location.href = 'box3.html';
-           } else if ($('#amazon').is(":checked")){
-             location.href = 'box4.html';
-           }
+           $('#message').show();
          }
       </script>
       </div>

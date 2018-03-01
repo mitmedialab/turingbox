@@ -98,11 +98,12 @@
       </div>
         <button type="button" class="btn btn-new" id = "submitAlg">Submit</button>
     </form>
+        <div style = "display:none; color:red" id = "message">This functionality is coming soon!</div>
+
 </div>
  
 </div>
   <div class="col-sm-6">
-    <img style = "display:none" src="img/dev-results.png" id = "results" width = "80%;">
   </div>
      
          
@@ -151,7 +152,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
   $('#submitAlg').click(function(){
-     $('#results').show();
+     $('#message').show();
      $('#algs').show();
      $('#tableText').show();
 });
