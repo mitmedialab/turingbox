@@ -74,8 +74,8 @@ body {
 }
 
 .logo img {
-width: 105% \9; /*Force IE10 and below to size SVG images correctly*/
-max-width: 105%;
+width: 100%; /*Force IE10 and below to size SVG images correctly*/
+max-width: 100%;
 margin:3vw;
 padding-right: 3vw;
 }
