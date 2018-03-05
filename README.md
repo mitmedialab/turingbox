@@ -10,16 +10,17 @@ This represents the verticals (case studies) used for the Turing Box platform, a
 </ul>
   
 
-<h2>Tier 1: Reasonably actionable</h2>
+<h2>Tier 2: Reasonably actionable</h2>
 <ul>
   <li><b>Cooperation</b> (Ziv)</li>
    <li><b>Twitter Bots</b> (???)</li>
+  <li><b>[Humanm trafficiking alg](https://womenintheworld.com/2018/02/13/mother-of-invention-created-ingenious-way-to-track-down-human-trafficking-victims/)</b> (???)</li>
     <li><b>Walking Behavior of RL Agents</b> (Abhi)</li>
       <li><b>Amazon Price Descrimination</b> (Alan)</li>
    <li><b>Bias in hirint CV</b> (Sendhil)</li>
 </ul>
 
-<h2>Tier 1: Highly Speculative</h2>
+<h2>Tier 3: Highly Speculative</h2>
 <ul>
   <li><b>Cortico Flavored Newsfeed Studies</b></li>
 </ul>
