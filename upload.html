@@ -50,113 +50,13 @@
   <a href = "about.html"><img class = "banner" src="img/banner.png" width="100%"/> </a>
 <!--<div class = "landImage"><img src="img/cv.png" width="100%"/> </div>
 <div class = "splashSpacer"></div>-->
-<p>Contributors can upload artificial intelligence systems to TuringBox. As a contributor, you can upload an system to have it benchmarked and to score points for important boxes. You can also explore the latest and most popular boxes in your community (some have bounties!).</p>
-  <div class="row">
-    <div class="col-sm-6">
-<div class = "explore">
-    <h3>Upload an AI system</h3>
-<form id="ALG">
-        <div class="form-group">
-            <label for="exampleAlgName">Title</label>
-            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
-        </div>
-        <div class="form-group">
-           <div class="col-sm-6 noPadding">
-              <label for="exampleSelect1">Stimulus Type</label>
-    <select class="form-control" id="exampleSelect1">
-      <option>Image</option>
-      <option>Text</option>
-      <option>Time/Space Blocks</option>
-      <option>Matrix Game Situation</option>
-    </select>
-           </div>       
-           <div class="col-sm-6 noPadding">
-             <label for="exampleSelect1">Output</label>
-    <select class="form-control" id="exampleSelect1">
-      <option>Nudity Detection Score</option>
-      <option>Object Classifier</option>
-      <option>Natural Language description</option>
-      <option>Probability of Crime</option>
-      <option>Cooperation decision</option>
-    </select>
-           </div>
-    </div>
-           
+<p>Contributors can upload artificial intelligence systems to TuringBox. </p>
 
-        <div class="form-group">
-           <div class="col-sm-6 noPadding">
-             <label for="exampleSelect1">Metrics</label>
-    <select class="form-control" id="exampleSelect1">
-      <option>Accuracy</option>
-      <option>Disparate Treatment</option>
-    </select>
-           </div>
-   <div class="col-sm-6 noPadding">
-            <label for="exampleAlgorithmFile">Upload</label>
-            <input type="file" class="form-control-file" id="exampleAlgorithmFile">
-        </div>
-      </div>
-        <button type="button" class="btn btn-new" id = "submitAlg">Submit</button>
-    </form>
-        <div style = "display:none; color:red" id = "message">This functionality is coming soon!</div>
-
-</div>
+<p>As a contributor, you can upload an system to have it benchmarked and to score points for important boxes. You can also explore the latest and most popular boxes in your community (some have bounties!).</p>
+  
  
-</div>
-  <div class="col-sm-6">
-  </div>
-     
-         
-
-</div>
- 
-<h3 style = "display:none" id = "tableText"> Boxes recommended for you</h3>
-<table style = "display:none" class="table table-curved" id = "algs">
-          <thead>
-          <tr>
-            <th>Metric</th>
-              <th>Question</th>
-              <th>Stimulus Type</th>
-              <th>Output</th>
-              <th>Popularity</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr onclick="window.location='box1.html';">
-             <td>Disparate Treatment</td>
-              <td>Does body type matter?</td>
-              <td>Images of swimwear models</td>
-              <td>Adult Content Moderation Scores</td>
-              <td><i class="far fa-thumbs-up"></i>8</td>
-             
-          </tr>
-          <tr>
-            <td>Cultural Differences in Empathy</td>
-              <td>Emotional Affect in Style Transfer</td>
-              <td>Images of Disasters</td>
-              <td>Stylized Images</td>
-              <td><i class="far fa-thumbs-up"></i>22</td>
-
-          </tr>
-          <tr>
-            <td>Percent Match</td>
-              <td>Are Arts and Culture Apps Racist?</td>
-              <td>Image of Face</td>
-              <td>Portrait</td>
-              <td><i class="far fa-thumbs-up"></i>47</td>
-          </tr>
-          </tbody>
-      </table>
-
-</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-  $('#submitAlg').click(function(){
-     $('#message').show();
-     $('#algs').show();
-     $('#tableText').show();
-});
-</script>
+
 </div>
   </body>
 </html>
