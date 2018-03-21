@@ -336,6 +336,7 @@ h3{
 	font-family: 'Chivo',sans-serif;
 	}
 
+	
 	.nav>li {
 		margin-left: 6vw;
 		max-width: 200px;
@@ -351,3 +352,12 @@ h3{
 	color:black;
 }
 
+.indexCard a{
+	 color: inherit; /* blue colors for links too */
+  text-decoration: inherit;
+}
+
+.indexCard{
+	margin-left: 10px;
+border: 2px solid black;
+    border-radius: 5px;}
