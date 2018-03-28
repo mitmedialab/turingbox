@@ -65,29 +65,19 @@
     <br>
     <br>
     For research or media inquiries, please email us at <a href = "mailto:turingbox@mit.edu">turingbox@mit.edu</a>. To stay up to date, enter your email below.
-    <div id="mc_embed_signup">
-   <form action="https://zepstein.us17.list-manage.com/subscribe/post?u=aa0148cdf82dcc077b6e4f898&amp;id=3e757313d0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-      <div id="mc_embed_signup_scroll">
-         <div class="mc-field-group">
-            <label for="mce-EMAIL">Email Address:
-            </label>
-            <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" style = "width:200px">
-            <br> 
-            <div class="mc-field-group">
-               <label for="mce-MMERGE1">Comments:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-               <textarea value="" name="MMERGE1" class="" id="mce-MMERGE1" style = "width:200px"></textarea>
-            </div>
-            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button subButton" ></div>
-         </div>
+
+   
+      <div>
+         <label>Email Address:</label>
+            <input type="email" value="" name="EMAIL" class="required email" id="contact-email" style = "width:200px">
       </div>
-      <div id="mce-responses" class="clear">
-         <div class="response" id="mce-error-response" style="display:none"></div>
-         <div class="response" id="mce-success-response" style="display:none"></div>
+      <div>
+        <label>Comments:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+               <textarea value="" name="MMERGE1" class="" style = "width:200px" id="contact-comments"></textarea>
       </div>
-      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_aa0148cdf82dcc077b6e4f898_3e757313d0" tabindex="-1" value=""></div>
-  </form>
-</div>
+      <div>
+        <input type="submit" value="Subscribe" name="subscribe" id="subscribeButton" class="button subButton" />
+      </div>
 
 
     <br>
@@ -98,7 +88,25 @@
   </div>
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<script>
+  document.getElementById("subscribeButton").onclick = () => {
+  var data = {"email": document.getElementById("contact-email").value, "comments":document.getElementById("contact-comments").value}
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function(){
+  if ( this.readyState == 4 && this.status == 200 ) {
+    //cleanup on succcess 
+    document.getElementById("contact-email").value = "";
+    document.getElementById("contact-comments").value = "";
+    } else if (this.readyState == 4){
+  //show error div
+      }
+  };
+
+  httpRequest.open("PUT", "https://fpejxtu3ih.execute-api.us-east-2.amazonaws.com/prod/entry", true);
+  httpRequest.setRequestHeader("Content-Type", "application/json");
+  httpRequest.send(JSON.stringify(data));
+}
+ </script>
 
   </body>
 </html>
