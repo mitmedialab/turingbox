@@ -53,12 +53,6 @@ body {
 	border-radius:5px;
 }
 
-.form-control:focus {
-	box-shadow: none;
-	border-color: black;
-	border-width: 1px;
-	border-radius:5px;
-}
 
 .nav>li{
 	margin-bottom: 3vw;
@@ -222,7 +216,7 @@ h3{
 	background-color: #f4e600;
 	border-color: black !important;
   	border-width: 1px !important;
-  	margin: 10px 0px 0px 170px !important;
+  	margin: 10px 0px 0px 0px !important;
   	width:120px;
 }
 
@@ -372,4 +366,8 @@ h3{
 .avatar{
 	max-width: 80%;
     height: auto;
+}
+
+.formWrapper{
+	margin-left: 00%;
 }
