@@ -363,6 +363,16 @@ h3{
     height: 100%;
 } 
 
+.imgwrapper {
+    float: none;
+    clear: both;
+    width: 100%;
+    position: relative;
+    padding-bottom: 26.25%;
+    padding-top: 25px;
+    height: 0;
+}
+
 .avatar{
 	max-width: 80%;
     height: auto;
