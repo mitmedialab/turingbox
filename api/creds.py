@@ -1,5 +1,5 @@
-rds_username = 47
-rds_password = 47
-rds_url = 47
-rds_port = 47
-rds_db = 47
+rds_username = 'zive'
+rds_password = 'foobar007'
+rds_url = 'turingboxdb.cvglsqmau8xc.us-east-2.rds.amazonaws.com'
+rds_port = 5432
+rds_db = 'turingBoxDB'

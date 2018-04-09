@@ -5,7 +5,7 @@ import json
 
 #access code
 sys.path.append('/Users/zive/GDrive/research/scalable/TuringBox/web/api')
-import utils
+from utils import turing_box
 
 def call(path_to_data):
 	df = pd.read_csv(path_to_data)
@@ -15,5 +15,5 @@ def call(path_to_data):
 	return yhat
 
 if __name__ == "__main__":
-	utils.turing_box(call, sys.argv)
+	turing_box(call, sys.argv)
 	
