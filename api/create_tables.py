@@ -1,16 +1,16 @@
 import psycopg2
 import time
-from creds import rds_username, rds_password, rds_url
-from creds import rds_port, rds_db
+from creds import db_username, db_password, db_url
+from creds import rds_port, db_name
 
-
+print(rds_username,rds_password,rds_url,rds_port,rds_db)
 conn = psycopg2.connect(
     host=rds_url,
     port=rds_port,
     dbname=rds_db,
     user=rds_username,
     password=rds_password)
-
+print(47)
 data = """
     CREATE TABLE data (
         id              integer PRIMARY KEY,
