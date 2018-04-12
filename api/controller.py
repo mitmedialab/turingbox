@@ -1,40 +1,49 @@
+import pandas as pd
 import subprocess
+import psycopg2
+from sqlalchemy import create_engine, text
+import hashlib
 
 def get_current_state(user_id, engine):
 	"""
 	returns data and models visible to user
 	"""
 	data_query = """ SELECT * from data """
-    data_files = pd.read_sql_query(text(data_query), engine)
+	data = pd.read_sql_query(text(data_query), engine)
+	
+	model_query = """ SELECT * from models """
+	models = pd.read_sql_query(text(model_query), engine)
+	return {"data" : data.to_json(orient="records"), "models" : models.to_json(orient="records")}
 
-    model_query = """ SELECT * from models """
-    model_files = pd.read_sql_query(text(model_query), engine)
 
-    return data.to_json(orient="records")
-
-
-def launch_job(model_id, data_id, user_id,conn):
+def launch_job(model_id, data_id, user_id,conn, engine):
 	"""
 	core computation that launch_box() calls in the API
 	"""
-    job_id = model_id + data_id + user_id 
+	job_id = model_id + data_id + user_id #think this about this more
 
-    add_job = """ INSERT INTO jobs VALUES (%s, %s,%s, %s, false)"""
-
-    cur = conn.cursor()
-    cur.execute(add_job, (job_id,
-                          model_id,
-                          data_id,
-                          logfile))
+	add_job = """ INSERT INTO jobs VALUES (%s, %s,%s, %s, FALSE)"""
+	cur = conn.cursor()
+	cur.execute(add_job, (job_id,model_id,data_id,job_id))
 
     #get model url from model_id
-    model_path = "assets/models/model1.py"
+	get_model_path = """ SELECT path from models where id = '{}' """.format(model_id)
+	model_path = pd.read_sql_query(text(get_model_path), engine)
+	model_path = model_path.values[0][0]
 
-    #get data url from data_id
-    data_path = "assets/data/data1.csv"    
+	get_data_path = """ SELECT path from data where id = '{}' """.format(data_id)
+	data_path = pd.read_sql_query(text(get_data_path), engine)
+	data_path = data_path.values[0][0]
 
-    subprocess.call("python3 {} {} {}".format(model_path,data_path, job_id), shell=True)
+	subprocess.call("python3 {} {} {}".format(model_path,data_path, job_id), shell=True)
+	
+	update_job = """ UPDATE jobs SET completed = TRUE WHERE id = %s """
+	cur.execute(update_job, (job_id,))
+	#get logfile and user_id from job and send along to API 
 
-    update_job = """ UPDATE jobs SET completed = true WHERE id = %s"""
-    cur.execute(update_job, (job_id))
-    #get logfile and user_id from job and send along to API 
+
+def hash_token(mystring):
+	return(hashlib.md5(mystring.encode()).hexdigest())
+
+
+    

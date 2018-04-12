@@ -1,49 +1,53 @@
 import psycopg2
 import time
+import os
 from creds import db_username, db_password, db_url
-from creds import rds_port, db_name
+from creds import db_port, db_name
 
-print(rds_username,rds_password,rds_url,rds_port,rds_db)
+from creds import rds_username, rds_password, rds_url
+from creds import rds_port, rds_name
+from controller import hash_token
+
 conn = psycopg2.connect(
     host=rds_url,
     port=rds_port,
-    dbname=rds_db,
+    dbname=rds_name,
     user=rds_username,
     password=rds_password)
-print(47)
+
 data = """
     CREATE TABLE data (
-        id              integer PRIMARY KEY,
+        id              varchar(256) PRIMARY KEY,
         title           varchar(256),
         description     varchar(256),
+        type            varchar(256),
         path            varchar(256)
     );
     """
 
 models = """
     CREATE TABLE models (
-        id              integer,
+        id              varchar(256),
         title           varchar(256),
         description     varchar(256),
+        input_type      varchar(256),
+        output_type     varchar(256),
         path            varchar(256)
     );
     """
 
 jobs = """
     CREATE TABLE jobs (
-        id              integer,
-        model_id        integer,
-        data_id         integer,
+        id              varchar(256),
+        model_id        varchar(256),
+        data_id         varchar(256),
         logfile         varchar(256),
         completed       boolean
     );
     """
 
-add_data = """ INSERT INTO data VALUES  (%s, %s, %s, %s)"""
-add_model = """ INSERT INTO model VALUES  (%s, %s, %s, %s)"""
-add_job = """ INSERT INTO jobs VALUES (%s, %s,%s, %s, false)"""
-complete_job = """ """
-
+add_data = """ INSERT INTO data VALUES  (%s, %s, %s, %s, %s)"""
+add_model = """ INSERT INTO models VALUES  (%s, %s, %s, %s, %s, %s)"""
 
 
 if __name__ == '__main__':
@@ -51,17 +55,37 @@ if __name__ == '__main__':
     cur = conn.cursor()
     cur.execute(data)
     cur.execute(add_data, (
-        1,
+        "1",
         "data1",
         "this is dummy data",
-        "assets/data/data1.csv"))
+        "botsheet",
+        "assets/data/data1.csv",))
 
-    cur.execute(model)
+    for i,swim in enumerate(os.listdir("assets/data/swim")):
+        cur.execute(add_data, (
+            hash_token(swim),
+            "Swim Suite Image {}".format(i),
+            swim,
+            "image",
+            "assets/data/swim/{}".format(swim)))
+
+
+    cur.execute(models)
     cur.execute(add_model, (
-        1,
+        "0",
         "model1",
         "this is a dummy model",
-        "assets/models/model1.csv"))
+        "botsheet",
+        "magnitude",
+        "assets/models/model1.py"))
+
+    cur.execute(add_model, (
+        "1",
+        "Clarify",
+        "Clarify's vision API",
+        "image",
+        "nsfw score",
+        "assets/models/cf_main.py"))
 
     cur.execute(jobs)
     conn.commit()

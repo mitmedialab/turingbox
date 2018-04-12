@@ -2,24 +2,27 @@ import pandas as pd
 import psycopg2
 from flask import Flask, jsonify, request, abort
 from sqlalchemy import create_engine, text
+from creds import db_username, db_password, db_url
+from creds import db_port, db_name
 from creds import rds_username, rds_password, rds_url
-from creds import rds_port, rds_db
+from creds import rds_port, rds_name
 import controller
 # from OpenSSL import SSL
 
-# rds_creds = 'postgresql://{0}:{1}@{2}:{3}/{4}'.format(
-#     rds_username,
-#     rds_password,
-#     rds_url,
-#     rds_port,
-#     rds_db)
-# engine = create_engine(rds_creds)
-# conn = psycopg2.connect(
-#     host=rds_url,
-#     port=rds_port,
-#     dbname=rds_db,
-#     user=rds_username,
-#     password=rds_password)
+rds_creds = 'postgresql://{0}:{1}@{2}:{3}/{4}'.format(
+    rds_username,
+    rds_password,
+    rds_url,
+    rds_port,
+    rds_name)
+engine = create_engine(rds_creds)
+
+conn = psycopg2.connect(
+    host=rds_url,
+    port=rds_port,
+    dbname=rds_name,
+    user=rds_username,
+    password=rds_password)
 
 
 app = Flask(__name__)
@@ -67,6 +70,7 @@ def launch_box():
         abort(400)
 
     controller.launch_job(model_id, data_id, user_id, conn)
+    controller.launch_job("1", "1", "1", conn, engine)
 
 
 if __name__ == '__main__':
