@@ -1,0 +1,15 @@
+Twitter
+mean = 0.572
+sem = 0.0366
+acc = 0.8 
+
+Amazon 
+mean = 0.548
+sem = 0.0384
+acc = 0.84 
+
+SST 
+mean = 0.570 
+sem = 0.0341
+acc = 0.68 
+
