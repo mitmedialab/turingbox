@@ -69,8 +69,11 @@ def launch_box():
     if not request.json:
         abort(400)
 
-    controller.launch_job(model_id, data_id, user_id, conn)
-    controller.launch_job("1", "1", "1", conn, engine)
+    controller.launch_job(request.json["model_id"], request.json["data_id"], request.json["user_id"], conn, engine)
+
+@app.route('/')
+def hello_world():
+    return("Hello")
 
 
 if __name__ == '__main__':
