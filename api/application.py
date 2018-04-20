@@ -8,27 +8,42 @@ from creds import rds_username, rds_password, rds_url
 from creds import rds_port, rds_name
 import controller
 # from OpenSSL import SSL
+local = True
 
-rds_creds = 'postgresql://{0}:{1}@{2}:{3}/{4}'.format(
-    rds_username,
-    rds_password,
-    rds_url,
-    rds_port,
-    rds_name)
-engine = create_engine(rds_creds)
+if local:
+    username = db_username
+    password = db_password
+    url = db_url
+    port = db_port
+    name = db_name
+else:
+    username = rds_username
+    password = rds_password
+    url = rds_url
+    port = rds_port
+    name = rds_name
+
+creds = 'postgresql://{0}:{1}@{2}:{3}/{4}'.format(
+    username,
+    password,
+    url,
+    port,
+    name)
+engine = create_engine(creds)
 
 conn = psycopg2.connect(
-    host=rds_url,
-    port=rds_port,
-    dbname=rds_name,
-    user=rds_username,
-    password=rds_password)
+    host=url,
+    port=port,
+    dbname=name,
+    user=username,
+    password=password)
 
 
 app = Flask(__name__)
 
 
-@app.route('/api/v1/refresh/', methods=['POST'])
+
+@app.route('/api/v1/refresh/', methods=['GET'])
 def get_state():
     """
     Input:
@@ -49,10 +64,8 @@ def get_state():
                 }]
         }
     """
-    if not request.json:
-        abort(400)
-    state = controller.get_current_state(request.json["user_id"], engine)
-    return state
+    state = controller.get_current_state("47", engine)
+    return(jsonify(state))
 
 
 @app.route('/api/v1/launch/', methods=['POST'])
@@ -62,18 +75,22 @@ def launch_box():
         {
             "user_id": text,
             "data_id": text,
-            "model_id": text
+            "model_id": text,
+            "job_id": text,
         }
     performs core computation
     """
     if not request.json:
         abort(400)
+    controller.launch_job(request.json["model_id"], request.json["data_id"], request.json["user_id"],request.json["job_id"], conn, engine)
+    return(request.json["job_id"])
 
-    controller.launch_job(request.json["model_id"], request.json["data_id"], request.json["user_id"], conn, engine)
-
-@app.route('/')
-def hello_world():
-    return("Hello")
+@app.route('/api/v1/access_data/', methods = ['POST'])
+def access_data():
+    if not request.json:
+        abort(400)
+    print(request.json["job_id"])
+    return("hello")
 
 
 if __name__ == '__main__':

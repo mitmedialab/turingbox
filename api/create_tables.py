@@ -8,12 +8,27 @@ from creds import rds_username, rds_password, rds_url
 from creds import rds_port, rds_name
 from controller import hash_token
 
+local = True
+
+if local:
+    username = db_username
+    password = db_password
+    url = db_url
+    port = db_port
+    name = db_name
+else:
+    username = rds_username
+    password = rds_password
+    url = rds_url
+    port = rds_port
+    name = rds_name
+
 conn = psycopg2.connect(
-    host=rds_url,
-    port=rds_port,
-    dbname=rds_name,
-    user=rds_username,
-    password=rds_password)
+    host=url,
+    port=port,
+    dbname=name,
+    user=username,
+    password=password)
 
 data = """
     CREATE TABLE data (

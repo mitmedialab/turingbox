@@ -2,6 +2,7 @@ import json
 from time import gmtime, strftime
 
 def turing_box(algorithm, args):
+	print(args[2])
 	y = ""
 	success = True 
 	
