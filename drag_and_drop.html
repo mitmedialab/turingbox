@@ -15,7 +15,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!--<link href="css/navbar-fixed-side.css" rel="stylesheet" />-->
     <link rel="stylesheet" href="css/style.css">
     <style>
         body {
@@ -162,50 +161,18 @@
 </head>
 <body>
 
-<!--<div class="container-fluid">-->
-    <!--<nav class="navbar navbar-fixed-side">-->
-        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
-        <!--<div class="navbar-header">-->
-
-            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-                <!--<span class="sr-only">Toggle navigation</span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
-        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-            <!--<ul class="nav navbar-nav">-->
-                <!--<li><a href="about.html" class = "inactive">learn more</a></li>-->
-                <!--<li class = "evalButton"><a href="launchBox.html" style = "color:white">Examine</a></li>-->
-
-                <!--<li><a href="upload.html" class = "inactive">Contribute</a></li>-->
-            <!--</ul>-->
-        <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
-
-    <!--</nav>-->
-<!--<header>-->
-    <!--<a href="index.html" class="logo"><img src="img/logo.png" width="100" height="100"/></a>-->
-
-<!--</header>-->
-
 <div class = "content">
     <a href = "about.html"><img class = "banner" src="img/logo.png" width="80%"/> </a>
     <br>
     <br>
     <br>
 
-    <!--<a href = "about.html"><img class = "banner" src="img/banner.png" width="100%"/> </a>-->
-    <!--<h2>Launch a Box</h2>-->
     <div class="row">
         <div class="column left">
             <h3>stimulus</h3>
 
             <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-            <!--<img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">-->
         </div>
         </div>
         <div class="column middle">
@@ -234,14 +201,26 @@
     </div>
 
     <div class="row">
-        <div class="column left" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="column left">
 
 
             <br>
-            <button type="button" onclick="alert('Hello world!')"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners3" width="70" height="60"></button>
-            <button type="button" onclick="alert('Hello world!')"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners3" width="70" height="60"></button>
-            <button type="button" onclick="alert('Hello world!')"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners3" width="70" height="60"></button>
-
+            <div class="row">
+            <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" onclick="showRottenDiv()"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners3" width="70" height="60"></button></div>
+        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" onclick="showAmazonDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners3" width="70" height="60"></button></div>
+        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" onclick="showTwitterDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners3" width="70" height="60"></button></div>
+        </div>
+            <div class="row">
+            <div id="rottenTomatoesDiv">
+                This is my DIV element.
+            </div>
+            <div id="amazonDiv">
+                This is my DIV element.
+            </div>
+            <div id="twitterDiv">
+                This is my DIV element.
+            </div>
+            </div>
             <!--<button src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png" draggable="true" ondragstart="drag(event)" id="drag2" class="rcorners3" width="70" height="60"></button>-->
             <!--<button src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png" draggable="true" ondragstart="drag(event)" id="drag3"  class="rcorners3" width="70" height="60"></button>-->
 
@@ -296,6 +275,34 @@
         ev.target.appendChild(document.getElementById(data));
     }
 
+    function showRottenDiv() {
+        var x = document.getElementById("rottenTomatoesDiv");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function showAmazonDiv() {
+        var x = document.getElementById("amazonDiv");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function showTwitterDiv() {
+        var x = document.getElementById("twitterDiv");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+
     function submitBox(){
         if ($('#clarifai').is(":checked")){
             location.href = 'box1.html';
@@ -303,7 +310,7 @@
             location.href = 'box2.html';
         } else if ($('#DropConnect').is(":checked")){
             location.href = 'box3.html';
-        }
+        }t
     }
 
 </script>
