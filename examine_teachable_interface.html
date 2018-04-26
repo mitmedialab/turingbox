@@ -1,10 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="css/navbar-fixed-side.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .column {
+            float: left;
+            padding: 10px;
+        }
+
+        .left, .right {
+            width: 30%;
+        }
+
+        .middle {
+            width: 40%;
+        }
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        #rcorners1 {
+            border-radius: 25px;
+            /*border: 6px solid #ff1d25;*/
+            border: 5px solid #b7b7b3;
+            padding: 20px;
+            /*width: 200px;*/
+            /*height: 300px;*/
+        }
+        #rcorners2 {
+            border-radius: 25px;
+            /*border: 6px solid #f4e600;*/
+            border: 5px solid #b7b7b3;
+
+            padding: 20px;
+
+            /*width: 200px;*/
+            /*height: 300px;*/
+        }
+        #rcorners3 {
+            border-radius: 25px;
+            /*border: 6px solid #29abe2;*/
+            border: 5px solid #b7b7b3;
+
+            padding: 20px;
+            /*width: 200px;*/
+            /*height: 300px;*/
+        }
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+            .#rcorners1 {
+                width: 100%;
+            }
+            .#rcorners2 {
+                width: 100%;
+            }
+            .#rcorners3 {
+                width: 100%;
+            }
+        }
+
+        h3 {
+            text-align: center;
+        }
+        ul.a{
+            list-style-type: none;
+
+        }
+        ul li.a {
+            /*background: #cce5ff;*/
+            /*margin: 5px;*/
+            font-size:16px;
+            text-align: left;
+
+
+        }
+        section__container{background:#123456;border-radius:5px;padding:15px}
+
+        output__controls{height:40px;display:flex}.output__selector-wrapper{width:100%;position:relative;display:flex;justify-content:space-around;align-items:center;}.output_selector__option{flex:1 1 1;cursor:pointer;margin:0}.output_selector__option--selected,.output_selector__option:hover{color:#3e80f6;text-decoration:underline}.divider{display:flex;flex-direction:column;float:left;margin:10px 0;width:100%}
+
+    </style>
+
 </head>
 <body>
-$END$
+<div class="container-fluid">
+    <nav class="navbar navbar-fixed-side">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <a href="index.html" class="logo"><img src="img/logo.png" /></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="about.html" class = "inactive">learn more</a></li>
+                <li class = "evalButton"><a href="launchBox.html" style = "color:white">Examine</a></li>
+
+                <li><a href="upload.html" class = "inactive">Contribute</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+
+    </nav>
+</div><!-- /.container-fluid -->
+<div class = "content">
+    <!--<a href = "about.html"><img class = "banner" src="img/banner.png" width="100%"/> </a>-->
+    <!--<h2>Launch a Box</h2>-->
+
+    <div class="row">
+        <div class="column left">
+            <!--<h3 style="color: #ff1d25">stimulus</h3>-->
+
+            <h3>stimulus</h3>
+
+            <div id="rcorners1">
+                <h4>Upload a dataset:</h4>
+
+                <!--<label for="exampleAlgorithmFile"> Upload your dataset</label>-->
+                <input type="file" class="form-control-file" id="exampleAlgorithmFile">
+                <br>
+                <h4>Or choose one below:</h4>
+                <input type="image" src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg" alt="Submit" width="70" height="60">
+
+                <input type="image" src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png" alt="Submit" width="70" height="60">
+                <input type="image" src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png" alt="Submit" width="70" height="60">
+
+
+            </div>
+        </div>
+
+        <div class="column middle">
+            <!--<h3 style="color: #f4e600">algorithms</h3>-->
+
+            <h3>algorithms</h3>
+            <div id="rcorners2">
+                <!--<label for="exampleFormControlSelect2" class = "subheader">2. Select AI systems:</label>-->
+                <h4>Select AI systems:</h4>
+
+                <div class="checkbox">
+
+                    <!--<div class="checkbox"><label><input type="checkbox" value="" id ="DropConnect"><a href = "context.html?item=DropConnect" style ="color:black">DropConnect</a></label>-->
+                    <!--</div>-->
+                    <div class="checkbox">
+
+                        <label><input type="checkbox" value=""><a href = "context.html?item=Cloud Vision API" style ="color:black">Google Cloud Language API</a></label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value=""><a href = "context.html?item=Flow by Google" style ="color:black">Microsoft Text Analytics API</a></label>
+                    </div>
+                    <!--<div class="checkbox"><label><input type="checkbox" value="" id = "clarifai"><a href = "context.html?item=Clarifai" style ="color:black">Clarifai</a></label>-->
+                    <!--</div>-->
+                    <!--<div class="checkbox"><label><input type="checkbox" value="" id ="precog" ><a href = "context.html?item=PreCog" style ="color:black">PreCog</a></label>-->
+                    <!--</div>-->
+                    <!--<div class="checkbox"><label><input type="checkbox" value="" id ="precog" ><a href = "context.html?item=PreCog" style ="color:black">Amazon Pricing</a></label>-->
+                    <!--</div>-->
+                    <br>
+                    <h4>Or upload your own algorithm:</h4>
+
+                    <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
+
+                    <button type="button" class="btn btn-new dirtyMarg" onClick='submitBox()'>Launch</button>
+
+                    <!--or <a href>make a call</a> for new AI <br>systems to be uploaded.-->
+                    <!--<br>-->
+                </div>
+            </div>
+        </div>
+        <div class="column right">
+            <!--<h3 style="color: #29abe2">output</h3>-->
+            <h3>output</h3>
+
+
+            <div id="rcorners3">
+                <div class="section__container">
+                    <div class="output__controls">
+                        <div class="output__selector-wrapper">
+                            <div id="SoundOutput" class="output_selector__option">Data</div>
+                            <div id="SpeechOutput" class="output_selector__option">Summary</div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!--<div class = "splashImage"><img src="img/cv.png" width="100%"/> </div>
+   <div class = "splashSpacer"></div>-->
+<!--<form>-->
+<!--<div class="row">-->
+<!--<div class="col-sm-4">-->
+<!--<div class="form-group">-->
+<!--<label for="exampleAlgorithmFile"> or upload your own</label>-->
+<!--<input type="file" class="form-control-file" id="exampleAlgorithmFile">-->
+<!--</div></div>-->
+
+<!--</div>-->
+
+
+
+
+
+<!--</div>-->
+
+<!--<div class="col-sm-4">-->
+
+<!--<label for="exampleFormControlSelect2" class = "subheader">3. Select output metric:</label>-->
+<!--<div class="checkbox">-->
+<!--<label><input type="checkbox" value=""><a href = "context.html?item=Accuracy" style ="color:black">Accuracy</a></label>-->
+<!--</div>-->
+
+<!--<div class="checkbox">-->
+<!--<label><input type="checkbox" value=""><a href = "context.html?item=Disparate Treatment" style ="color:black">Disparate Treatment</a></label>-->
+<!--</div>-->
+<!--<div class="checkbox"><label><input type="checkbox" value="" ><a href = "context.html?item=Disparate Mistreatment" style ="color:black">Disparate Mistreatment</a></label>-->
+<!--</div>-->
+<!--<div class="checkbox">-->
+<!--<label><input type="checkbox" value=""><a href = "context.html?item=Accuracy" style ="color:black">Accuracy</a></label>-->
+
+<!--</div>-->
+<!--<div class="checkbox"><label><input type="checkbox" value="" ><a href = "context.html?item=Loyalty" style ="color:black">Loyalty</a></label>-->
+
+<!--</div>-->
+
+<!--<label for="exampleAlgName">or enter your own</label>-->
+<!--<input type="text" class="form-control" id="exampleAlgName" placeholder="..." style = "width:170px;">-->
+<!--</div>-->
+
+
+<!--</form>-->
+<!--</div>-->
+<!--<button type="button" class="btn btn-new dirtyMarg" onClick='submitBox()'>Launch</button>-->
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    function submitBox(){
+        if ($('#clarifai').is(":checked")){
+            location.href = 'box1.html';
+        } else if ($('#precog').is(":checked")){
+            location.href = 'box2.html';
+        } else if ($('#DropConnect').is(":checked")){
+            location.href = 'box3.html';
+        }
+    }
+</script>
 </body>
 </html>
