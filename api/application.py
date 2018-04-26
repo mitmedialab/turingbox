@@ -1,5 +1,6 @@
 import pandas as pd
 import psycopg2
+import json
 from flask import Flask, jsonify, request, abort
 from sqlalchemy import create_engine, text
 from creds import db_username, db_password, db_url
@@ -7,6 +8,8 @@ from creds import db_port, db_name
 from creds import rds_username, rds_password, rds_url
 from creds import rds_port, rds_name
 import controller
+from flask_cors import CORS
+
 # from OpenSSL import SSL
 local = True
 
@@ -40,6 +43,8 @@ conn = psycopg2.connect(
 
 
 app = Flask(__name__)
+CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 
@@ -82,6 +87,7 @@ def launch_box():
     """
     if not request.json:
         abort(400)
+    print(request)
     controller.launch_job(request.json["model_id"], request.json["data_id"], request.json["user_id"],request.json["job_id"], conn, engine)
     return(request.json["job_id"])
 
@@ -90,7 +96,9 @@ def access_data():
     if not request.json:
         abort(400)
     print(request.json["job_id"])
-    return("hello")
+    output = controller.get_output(request.json["job_id"], from_db = False)
+    print("model output is {}".format(output))
+    return(json.dumps({"out" :output}))
 
 
 if __name__ == '__main__':
