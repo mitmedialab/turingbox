@@ -74,15 +74,39 @@
             /*height: 300px;*/
         }
         .rcorners2 {
+                     border-radius: 15px;
+                     /*border: 6px solid #29abe2;*/
+                     border: 1px solid black;
+                     background-color: white;
+
+                     padding: 20px;
+                     width: 100%;
+
+                     /*height: 300px;*/
+                 }
+        .rcorners3 {
             border-radius: 15px;
             /*border: 6px solid #29abe2;*/
-            border: 1px solid black;
+            border: 1px dashed black;
             background-color: white;
 
             padding: 20px;
             width: 100%;
+            /*height:*/
 
             /*height: 300px;*/
+        }
+        .rcorners4 {
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            border: 1px dashed black;
+            background-color: white;
+
+            padding: 20px;
+            width: 100%;
+            align: center;
+            /*height:*/
+
         }
 
         #div1{
@@ -111,7 +135,7 @@
             background-color: white;
 
             padding: 20px;
-            height: 200px;
+            /*height: 200px;*/
 
         }
         .square {
@@ -213,7 +237,7 @@
 <body>
 
 <div class = "content">
-    <a href = "about.html"><img class = "banner" src="img/logo.png" width="80%"/> </a>
+    <a href = "about.html"><img class = "banner" src="img/for%20blakeley/logoWhite.png" width="80%"/> </a>
     <br>
     <br>
     <br>
@@ -224,7 +248,12 @@
             <h3>stimulus</h3>
             <div class="centerBlock">
 
-            <div class="square" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="square">
+                <div class="centerBlock">
+
+                <div class="rcorners4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
+
             </div>
 
         </div>
@@ -232,7 +261,18 @@
         <div class="column right">
             <h3>algorithms</h3>
 
-        <div id="div3"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="div3">
+
+            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <br>
+            <br>
+            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <br>
+            <br>
+            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+        </div>
+
 
         </div>
 
@@ -245,11 +285,11 @@
 
                 <br>
                 <div class="row">
-                    <div class="centerBlock">
+                    <div class="centerBlock" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" onclick="showRottenDiv()"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners1" width="70" height="60"></button></div>
-                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" onclick="showAmazonDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners1" width="70" height="60"></button></div>
-                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" onclick="showTwitterDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners1" width="70" height="60"></button></div>
+                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners1" width="70" height="60"></button></div>
+                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="drag2" class="rcorners1" width="70" height="60"></button></div>
+                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="drag3" class="rcorners1" width="70" height="60"></button></div>
                     </div>
                 </div>
                 <div class="row">
