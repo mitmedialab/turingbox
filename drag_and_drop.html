@@ -266,6 +266,8 @@
                     </div>
                     <div id="twitterDiv" style="display:none">
                         <h4>Sentiment Strength Twitter Dataset</h4>
+
+                        This dataset consists of 4,218 tweets taken from the larger SentiStrength 2 dataset. All tweets were in English. More information can be found at: <a>https://bit.ly/2JuWd98</a>.
                     </div>
                 </div>
 
@@ -309,8 +311,29 @@
             <div class="output__controls">
             <div class="output__selector-wrapper">
             <div class="output_selector__option"><h4 onclick="showDataTable()">Results</h4></div>
-            <div class="output_selector__option"><h4>Summary</h4></div>
+            <div class="output_selector__option"><h4 onclick="showSumTable()">Summary</h4></div>
             </div>
+            <div>
+                <table id="summary" style="display:none">
+                    <tr>
+                        <th>Statistic</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Mean</td>
+                        <td>0.572</td>
+                    </tr>
+                    <tr>
+                        <td>Standard Error on Mean</td>
+                        <td>0.0366</td>
+                    </tr>
+                    <tr>
+                        <td>Accuracy</td>
+                        <td>0.8</td>
+                    </tr>
+                </table>
+            </div>
+
             <div class="row"  id="dataTable" style="display:none">
             <br>
                 <table id="myTable">
@@ -436,6 +459,14 @@
         }
     }
 
+    function showSumTable() {
+        var x = document.getElementById("summary");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
 
     function submitBox(){
         if ($('#clarifai').is(":checked")){
