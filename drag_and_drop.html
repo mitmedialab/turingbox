@@ -45,6 +45,13 @@
         .right {
             width: 50%;
         }
+        .bank{
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            border: 1px dashed black;
+            padding: 20px;
+            width: 80%
+        }
 
         .first {
             float:left;
@@ -273,7 +280,6 @@
 
         </div>
 
-
         </div>
 
 
@@ -281,15 +287,14 @@
     </div>
         <div class="row">
             <div class="column left">
-
-
+                <h4>Dataset Library:</h4>
                 <br>
                 <div class="row">
-                    <div class="centerBlock" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners1" width="70" height="60"></button></div>
-                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="drag2" class="rcorners1" width="70" height="60"></button></div>
-                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="drag3" class="rcorners1" width="70" height="60"></button></div>
+                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="drag2" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="drag3" class="rcorners1" width="80" height="70"></button></div>
                     </div>
                 </div>
                 <div class="row">
@@ -314,11 +319,16 @@
             </div>
 
             <div class="column right" draggable="true" ondragstart="drag(event)">
+                <h4>Algorithms Library:</h4>
                 <br>
-                <div class="centerBlock">
+
+                <div class="row">
+
+                <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <div draggable="true" ondragstart="drag(event)" id="drag4" class="rcorners2" >Google Cloud Language API</div>
                 <br>
                 <div draggable="true" ondragstart="drag(event)" id="drag5" class="rcorners2">Microsoft Text Analytics API</div>
+                </div>
                 </div>
             </div>
 
@@ -354,6 +364,7 @@
             <div class="output_selector__option"><h4 onclick="showSumTable()">Summary</h4></div>
             </div>
             <div>
+                <div class="centerBlock">
                 <table id="summary" style="display:none">
                     <tr>
                         <th>Statistic</th>
@@ -372,6 +383,7 @@
                         <td>0.8</td>
                     </tr>
                 </table>
+                </div>
             </div>
 
             <div class="row"  id="dataTable" style="display:none">
