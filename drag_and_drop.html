@@ -19,6 +19,8 @@
     <style>
         body {
             background-color: #f4e600;
+            /*background-color: white;*/
+
         }
         .content{
             top:20vh;
@@ -223,6 +225,7 @@
 
         }
 
+
         tr:hover {background-color:#f5f5f5;}
 
         /* relevant styles */
@@ -239,13 +242,20 @@
             width: 100%;
 
         }
+        .banner {
+            position: absolute;
+            top: 0vh;
+            left: 0vw;
+            width: 200px;
+        }
+
     </style>
 
 </head>
 <body>
 
 <div class = "content">
-    <a href = "about.html"><img class = "banner" src="img/for%20blakeley/logoWhite.png" width="80%"/> </a>
+    <a href = "about.html"><img class = "banner" src="img/for%20blakeley/logoWhite.png"/> </a>
     <br>
     <br>
     <br>
@@ -390,53 +400,110 @@
                 </div>
             </div>
 
-            <div class="row"  id="dataTable" style="display:none">
+            <div class="row">
             <br>
-                <table id="myTable">
+                <table id="microsoftTable" style="display:none">
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
                         <th onclick="sortTable(0)">Sentence</th>
                         <th onclick="sortTable(1)">Microsoft Label</th>
-                        <th>Label</th>
+                        <th onclick="sortTable(2)">True Label</th>
                     </tr>
                     <tr>
                         <td>welcome to twitter xx</td>
-                        <td>0.9923532009124756</td>
+                        <td>0.992</td>
                         <td>1</td>
                     </tr>
                     <tr>
                         <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
-                        <td>0.9541682600975037</td>
+                        <td>0.954</td>
                         <td>1</td>
                     </tr>
                     <tr>
                         <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
-                        <td>0.7315756678581238</td>
+                        <td>0.731</td>
                         <td>0</td>
                     </tr>
                     <tr>
                         <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
-                        <td>0.12302327156066895</td>
+                        <td>0.123</td>
                         <td>0</td>
                     </tr>
                     <tr>
                         <td>free : star bucks gift card</td>
-                        <td>0.9403072595596313</td>
+                        <td>0.940</td>
                         <td>1</td>
                     </tr>
                     <tr>
                         <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
-                        <td>0.10102313756942749</td>
+                        <td>0.101</td>
                         <td>0</td>
                     </tr>
                     <tr>
                         <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
-                        <td>0.7972910404205322</td>
+                        <td>0.797</td>
                         <td>1</td>
                     </tr>
                     <tr>
                         <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
-                        <td>0.05237853527069092</td>
+                        <td>0.0523</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+                <table id="MSandGoogleTable" style="display:none">
+                    <tr>
+                        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+                        <th onclick="sortTable(0)">Sentence</th>
+                        <th onclick="sortTable(1)">Microsoft Label</th>
+                        <th onclick="sortTable(2)">Google Label</th>
+                        <th onclick="sortTable(3)">True Label</th>
+                    </tr>
+                    <tr>
+                        <td>welcome to twitter xx</td>
+                        <td>0.992</td>
+                        <td>0.400</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
+                        <td>0.954</td>
+                        <td>0.5</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
+                        <td>0.731</td>
+                        <td>-0.200</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
+                        <td>0.123</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>free : star bucks gift card</td>
+                        <td>0.940</td>
+                        <td>0.400</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
+                        <td>0.101</td>
+                        <td>0.100</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
+                        <td>0.797</td>
+                        <td>0.400</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
+                        <td>0.052</td>
+                        <td>-0.200</td>
                         <td>0</td>
                     </tr>
                 </table>
@@ -506,25 +573,55 @@
         }
     }
 
-    function showDataTable() {
-        var data = document.getElementById("dataTable");
+    function showRightDataTable() {
+        var ms_data = document.getElementById("microsoftTable");
+        var msg_data = document.getElementById("MSandGoogleTable");
         var sum = document.getElementById("summary");
+        var google = document.getElementById("drag4");
+        var ms = document.getElementById("drag5");
 
-        if(data.style.display === "none"){
+
+
+        var divMS = document.getElementById("div3").contains(drag5);
+        var divG = document.getElementById("div3").contains(drag4 && drag5);
+
+
+        if(document.getElementById("div3").contains(drag5) && !(document.getElementById("div3").contains(drag4))){
+            ms_data.style.display = "block"
+        }
+        else if(divG){
+            ms_data.style.display = "none"
+            msg_data.style.display = "block"
+        }
+
+
+
+    }
+
+    function showDataTable() {
+        var sum = document.getElementById("summary");
+        var ms_data = document.getElementById("microsoftTable");
+        var msg_data = document.getElementById("MSandGoogleTable");
+
+        if(ms_data.style.display === "none" && msg_data.style.display == "none"){
             sum.style.display = "none";
-            data.style.display = "block";
+            showRightDataTable();
         }
         else{
-            data.style.display = "none";
+            ms_data.style.display = "none";
+            msg_data.style.display = "none";
         }
+
     }
 
     function showSumTable() {
         var sum = document.getElementById("summary");
-        var data = document.getElementById("dataTable");
+        var ms_data = document.getElementById("microsoftTable");
+        var msg_data = document.getElementById("MSandGoogleTable");
 
         if(sum.style.display === "none"){
-            data.style.display = "none";
+            ms_data.style.display = "none";
+            msg_data.style.display = "none"
             sum.style.display = "block";
         }
         else{
@@ -545,7 +642,7 @@
 
     function sortTable(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("myTable");
+        table = document.getElementById("microsoftTable");
         switching = true;
         //Set the sorting direction to ascending:
         dir = "asc";
