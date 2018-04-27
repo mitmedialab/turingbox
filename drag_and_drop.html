@@ -38,12 +38,27 @@
             height: 200px;
         }
 
-        .left, .middle {
-            width: 30%;
+        .left {
+            width: 50%;
         }
 
         .right {
-            width: 40%;
+            width: 50%;
+        }
+        .bank{
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            border: 1px dashed black;
+            padding: 20px;
+            width: 80%
+        }
+
+        .first {
+            float:left;
+            width: 60%;
+        }
+        .second{
+            width:40%;
         }
         /* Clear floats after the columns */
         .row:after {
@@ -56,33 +71,49 @@
             margin: auto;
         }
 
-        #rcorners1 {
-            border-radius: 25px;
-            /*border: 6px solid #ff1d25;*/
-            border: 5px solid #b7b7b3;
-            padding: 20px;
-            /*width: 200px;*/
-            /*height: 300px;*/
-        }
-        #rcorners2 {
-            border-radius: 10px;
-            /*border: 6px solid #f4e600;*/
-            border: 1px solid black;
-
-            padding: 20px;
-            background-color: whitesmoke;
-            width: 200px;
-            height: 50px;
-        }
-        .rcorners3 {
+        .rcorners1 {
             border-radius: 15px;
             /*border: 6px solid #29abe2;*/
             border: 1px solid black;
             background-color: white;
 
             padding: 20px;
-            /*width: 200px;*/
             /*height: 300px;*/
+        }
+        .rcorners2 {
+                     border-radius: 15px;
+                     /*border: 6px solid #29abe2;*/
+                     border: 1px solid black;
+                     background-color: white;
+
+                     padding: 20px;
+                     width: 100%;
+
+                     /*height: 300px;*/
+                 }
+        .rcorners3 {
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            border: 1px dashed black;
+            background-color: white;
+
+            padding: 20px;
+            width: 100%;
+            /*height:*/
+
+            /*height: 300px;*/
+        }
+        .rcorners4 {
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            border: 1px dashed black;
+            background-color: white;
+
+            padding: 20px;
+            width: 100%;
+            align: center;
+            /*height:*/
+
         }
 
         #div1{
@@ -102,7 +133,28 @@
             background-color: white;
 
             padding: 20px;
-            height: 100px;
+        }
+
+        #div3{
+            margin: 10px;
+            border-radius: 25px;
+            border: 5px solid black;
+            background-color: white;
+
+            padding: 20px;
+            /*height: 200px;*/
+
+        }
+        .square {
+            margin: 10px;
+            border-radius: 25px;
+            border: 5px solid black;
+            background-color: white;
+
+
+            padding: 20px;
+            height: 20vh;
+            width: 20vh;
         }
         /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 600px) {
@@ -122,6 +174,10 @@
                 width: 100%;
             }
             .#div2 {
+                width: 100%;
+
+            }
+            .#div3 {
                 width: 100%;
 
             }
@@ -149,113 +205,261 @@
             border: 0;
         }
 
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+
+        }
+
+        tr:hover {background-color:#f5f5f5;}
+
         /* relevant styles */
 
         section__container{background:#123456;border-radius:5px;padding:15px}
 
         output__controls{height:40px;display:flex}.output__selector-wrapper{width:100%;position:relative;display:flex;justify-content:space-around;align-items:center;}.output_selector__option{flex:1 1 1;cursor:pointer;margin:0}.output_selector__option--selected,.output_selector__option:hover{color:#3e80f6;text-decoration:underline}.divider{display:flex;flex-direction:column;float:left;margin:10px 0;width:100%}
 
+        .footer {
+            position:relative;
+            float: left;
+            left: 0;
+            bottom: 0;
+            width: 100%;
 
+        }
     </style>
 
 </head>
 <body>
 
 <div class = "content">
-    <a href = "about.html"><img class = "banner" src="img/logo.png" width="80%"/> </a>
+    <a href = "about.html"><img class = "banner" src="img/for%20blakeley/logoWhite.png" width="80%"/> </a>
     <br>
     <br>
     <br>
 
+    <div class="column first">
     <div class="row">
         <div class="column left">
-            <h3>stimulus</h3>
+            <div class="centerBlock">
+                <h3>stimulus</h3>
 
-            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <br>
+                <br>
+
+                <div class="square">
+                <div class="centerBlock">
+
+                <div class="rcorners4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
+
+            </div>
 
         </div>
         </div>
-        <div class="column middle">
+        <div class="column right">
             <h3>algorithms</h3>
 
-        <div id="div2"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="div3">
+
+            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <br>
+            <br>
+            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <br>
+            <br>
+            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
         </div>
 
-        <div class="column right">
-            <!--<h3 style="color: #29abe2">output</h3>-->
-            <h3>output</h3>
+        </div>
 
 
-            <div id="div1">
-                <div class="section__container">
-                    <div class="output__controls">
-                        <div class="output__selector-wrapper">
-                            <div class="output_selector__option"><h4>Data</h4></div>
-                            <div class="output_selector__option"><h4>Summary</h4></div>
-                        </div>
+
+    </div>
+        <div class="row">
+            <div class="column left">
+                <h4>Dataset Library:</h4>
+                <br>
+                <div class="row">
+                    <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="drag2" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="drag3" class="rcorners1" width="80" height="70"></button></div>
                     </div>
                 </div>
+                <div class="row">
+                    <div id="rottenTomatoesDiv" style="display:none">
+                        <h4>Stanford Sentiment Treebank of Rotten Tomato Reviews</h4>
+
+                        This dataset includes 10,662 English sentences taken from film reviews on the website <a>rottentomatoes.com</a>. Half of which were considered positive and the other half negative. Each label is extracted from a longer movie review and reflects the writer's over-all intention for this review. More information can be found at: <a>https://stanford.io/2Kk0I7Q</a>.
+
+                    </div>
+                    <div id="amazonDiv" style="display:none">
+                        <h4>Amazon Customer Reviews</h4>
+                        This dataset consists of approximately 4 million Amazon customer reviews and star ratings. The reviews are mostly in English with a few reviews in other languages such as Spanish. More information can be found at: <a>https://bit.ly/2r48L0x</a>.
+
+                    </div>
+                    <div id="twitterDiv" style="display:none">
+                        <h4>Sentiment Strength Twitter Dataset</h4>
+
+                        This dataset consists of 4,218 tweets taken from the larger SentiStrength 2 dataset. All tweets were in English. More information can be found at: <a>https://bit.ly/2JuWd98</a>.
+                    </div>
+                </div>
+
             </div>
+
+            <div class="column right" draggable="true" ondragstart="drag(event)">
+                <h4>Algorithms Library:</h4>
+                <br>
+
+                <div class="row">
+
+                <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div draggable="true" ondragstart="drag(event)" id="drag4" class="rcorners2" >Google Cloud Language API</div>
+                <br>
+                <div draggable="true" ondragstart="drag(event)" id="drag5" class="rcorners2">Microsoft Text Analytics API</div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="column left">
+                <h4> Upload a new dataset:</h4>
+
+                <!--<label for="exampleAlgorithmFile"> Upload your dataset</label>-->
+                <input type="file" class="form-control-file" id="exampleAlgorithmFile">
+                <br>
+            </div>
+            <div class="column middle">
+                <h4> Upload a new algorithm:</h4>
+
+                <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
+            </div>
+            <!--<div class="column right">-->
+
+            <!--</div>-->
         </div>
     </div>
+    <div class="column second">
+        <h3>output</h3>
 
-    <div class="row">
-        <div class="column left">
 
+        <div id="div2" id="myTable">
+            <div class="section__container">
+            <div class="output__controls">
+            <div class="output__selector-wrapper">
+            <div class="output_selector__option"><h4 onclick="showDataTable()">Results</h4></div>
+            <div class="output_selector__option"><h4 onclick="showSumTable()">Summary</h4></div>
+            </div>
+            <div>
+                <div class="centerBlock">
+                <table id="summary" style="display:none">
+                    <tr>
+                        <th>Statistic</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Mean</td>
+                        <td>0.572</td>
+                    </tr>
+                    <tr>
+                        <td>Standard Error on Mean</td>
+                        <td>0.0366</td>
+                    </tr>
+                    <tr>
+                        <td>Accuracy</td>
+                        <td>0.8</td>
+                    </tr>
+                </table>
+                </div>
+            </div>
 
+            <div class="row"  id="dataTable" style="display:none">
             <br>
-            <div class="row">
-            <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" onclick="showRottenDiv()"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners3" width="70" height="60"></button></div>
-        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" onclick="showAmazonDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners3" width="70" height="60"></button></div>
-        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" onclick="showTwitterDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners3" width="70" height="60"></button></div>
-        </div>
-            <div class="row">
-            <div id="rottenTomatoesDiv">
-                This is my DIV element.
+                <table id="myTable">
+                    <tr>
+                        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+                        <th onclick="sortTable(0)">Sentence</th>
+                        <th onclick="sortTable(1)">Microsoft Label</th>
+                        <th>Label</th>
+                    </tr>
+                    <tr>
+                        <td>welcome to twitter xx</td>
+                        <td>0.9923532009124756</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
+                        <td>0.9541682600975037</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
+                        <td>0.7315756678581238</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
+                        <td>0.12302327156066895</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>free : star bucks gift card</td>
+                        <td>0.9403072595596313</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
+                        <td>0.10102313756942749</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
+                        <td>0.7972910404205322</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
+                        <td>0.05237853527069092</td>
+                        <td>0</td>
+                    </tr>
+                </table>
             </div>
-            <div id="amazonDiv">
-                This is my DIV element.
-            </div>
-            <div id="twitterDiv">
-                This is my DIV element.
+
             </div>
             </div>
-            <!--<button src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png" draggable="true" ondragstart="drag(event)" id="drag2" class="rcorners3" width="70" height="60"></button>-->
-            <!--<button src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png" draggable="true" ondragstart="drag(event)" id="drag3"  class="rcorners3" width="70" height="60"></button>-->
-
-
-
+            </div>
         </div>
 
-        <div class="column middle" draggable="true" ondragstart="drag(event)">
-            <br>
-            <div draggable="true" ondragstart="drag(event)" id="drag4" class="rcorners3" >Google Cloud Language API</div>
-            <br>
-            <div draggable="true" ondragstart="drag(event)" id="drag5" class="rcorners3">Microsoft Text Analytics API</div>
 
-        </div>
-        <div class="column right">
-        </div>
+
+    <div class="footer">
+
+    <a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/"><img class = "logoAbout" src="img/scalablecoop.png"></a>
+    <a class = "logoAbout" href="https://www.media.mit.edu"><img class = "logoAbout" style = "margin-right:0px;" src="img/Mit_medialab_logo.png"></a>
+    <a href = ""><img class = "logoAbout"  src="img/mit_logo_trans.png"></a><br>
+    Scalable Cooperation | MIT Media Lab
     </div>
-    <div class="row">
-        <div class="column left">
-            <h4> Upload a new dataset:</h4>
 
-            <!--<label for="exampleAlgorithmFile"> Upload your dataset</label>-->
-            <input type="file" class="form-control-file" id="exampleAlgorithmFile">
-            <br>
-    </div>
-        <div class="column middle">
-            <h4> Upload a new algorithm:</h4>
-
-            <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
-        </div>
-        <div class="column right">
-
-        </div>
-    </div>
 </div>
+
+
 
 
 
@@ -302,6 +506,32 @@
         }
     }
 
+    function showDataTable() {
+        var data = document.getElementById("dataTable");
+        var sum = document.getElementById("summary");
+
+        if(data.style.display === "none"){
+            sum.style.display = "none";
+            data.style.display = "block";
+        }
+        else{
+            data.style.display = "none";
+        }
+    }
+
+    function showSumTable() {
+        var sum = document.getElementById("summary");
+        var data = document.getElementById("dataTable");
+
+        if(sum.style.display === "none"){
+            data.style.display = "none";
+            sum.style.display = "block";
+        }
+        else{
+            sum.style.display = "none";
+        }
+
+    }
 
     function submitBox(){
         if ($('#clarifai').is(":checked")){
@@ -311,6 +541,61 @@
         } else if ($('#DropConnect').is(":checked")){
             location.href = 'box3.html';
         }t
+    }
+
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("myTable");
+        switching = true;
+        //Set the sorting direction to ascending:
+        dir = "asc";
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch= true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch= true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount ++;
+            } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
     }
 
 </script>
