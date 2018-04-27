@@ -254,13 +254,18 @@
                 </div>
                 <div class="row">
                     <div id="rottenTomatoesDiv" style="display:none">
-                        This is my DIV element.
+                        <h4>Stanford Sentiment Treebank of Rotten Tomato Reviews</h4>
+
+                        This dataset includes 10,662 English sentences taken from film reviews on the website <a>rottentomatoes.com</a>. Half of which were considered positive and the other half negative. Each label is extracted from a longer movie review and reflects the writer's over-all intention for this review. More information can be found at: <a>https://stanford.io/2Kk0I7Q</a>.
+
                     </div>
                     <div id="amazonDiv" style="display:none">
-                        This is my DIV element.
+                        <h4>Amazon Customer Reviews</h4>
+                        This dataset consists of approximately 4 million Amazon customer reviews and star ratings. The reviews are mostly in English with a few reviews in other languages such as Spanish. More information can be found at: <a>https://bit.ly/2r48L0x</a>.
+
                     </div>
                     <div id="twitterDiv" style="display:none">
-                        This is my DIV element.
+                        <h4>Sentiment Strength Twitter Dataset</h4>
                     </div>
                 </div>
 
@@ -306,45 +311,54 @@
             <div class="output_selector__option"><h4 onclick="showDataTable()">Results</h4></div>
             <div class="output_selector__option"><h4>Summary</h4></div>
             </div>
-            <div class="row"  id="dataTable">
+            <div class="row"  id="dataTable" style="display:none">
             <br>
                 <table id="myTable">
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                        <th onclick="sortTable(0)">Name</th>
-                        <th onclick="sortTable(1)">Country</th>
+                        <th onclick="sortTable(0)">Sentence</th>
+                        <th onclick="sortTable(1)">Microsoft Label</th>
+                        <th>Label</th>
                     </tr>
                     <tr>
-                        <td>Berglunds snabbkop</td>
-                        <td>Sweden</td>
+                        <td>welcome to twitter xx</td>
+                        <td>0.9923532009124756</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>North/South</td>
-                        <td>UK</td>
+                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
+                        <td>0.9541682600975037</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Germany</td>
+                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
+                        <td>0.7315756678581238</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td>Koniglich Essen</td>
-                        <td>Germany</td>
+                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
+                        <td>0.12302327156066895</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td>Magazzini Alimentari Riuniti</td>
-                        <td>Italy</td>
+                        <td>free : star bucks gift card</td>
+                        <td>0.9403072595596313</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>Paris specialites</td>
-                        <td>France</td>
+                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
+                        <td>0.10102313756942749</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td>Island Trading</td>
-                        <td>UK</td>
+                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
+                        <td>0.7972910404205322</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>Laughing Bacchus Winecellars</td>
-                        <td>Canada</td>
+                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
+                        <td>0.05237853527069092</td>
+                        <td>0</td>
                     </tr>
                 </table>
             </div>
