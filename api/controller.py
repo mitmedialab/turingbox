@@ -1,6 +1,7 @@
 import pandas as pd
 import subprocess
 import json
+import json
 import psycopg2
 from sqlalchemy import create_engine, text
 import hashlib
@@ -44,6 +45,14 @@ def launch_job(model_id, data_id, user_id, job_id, conn, engine):
 
 def hash_token(mystring):
 	return(hashlib.md5(mystring.encode()).hexdigest())
+
+def get_output(job_id, from_db):
+	if not from_db:
+		try:
+			data = json.load(open('assets/logs/{}.txt'.format(job_id)))
+		except:
+			data = {"model_reply": -47}
+	return(data['model_reply'])
 
 
     

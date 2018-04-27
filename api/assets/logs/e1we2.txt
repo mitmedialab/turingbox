@@ -1,0 +1,1 @@
+{"model_reply": 4898.979485566356, "data_url": "assets/data/data1.csv", "success": true, "time": "2018-04-25 18:24:14"}
