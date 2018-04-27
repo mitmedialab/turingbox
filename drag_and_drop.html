@@ -151,6 +151,7 @@
             border: 5px solid black;
             background-color: white;
 
+
             padding: 20px;
             height: 20vh;
             width: 20vh;
@@ -252,10 +253,13 @@
     <div class="column first">
     <div class="row">
         <div class="column left">
-            <h3>stimulus</h3>
             <div class="centerBlock">
+                <h3>stimulus</h3>
 
-            <div class="square">
+                <br>
+                <br>
+
+                <div class="square">
                 <div class="centerBlock">
 
                 <div class="rcorners4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
@@ -504,19 +508,29 @@
 
     function showDataTable() {
         var x = document.getElementById("dataTable");
+        var y = document.getElementById("summary");
+
         if (x.style.display === "none") {
             x.style.display = "block";
+            y.style.display = "none";
         } else {
             x.style.display = "none";
+            y.style.display = "block";
+
         }
     }
 
     function showSumTable() {
         var x = document.getElementById("summary");
+        var y = document.getElementById("dataTable");
+
         if (x.style.display === "none") {
             x.style.display = "block";
+            y.style.display = "none";
         } else {
             x.style.display = "none";
+            y.style.display = "block";
+
         }
     }
 
