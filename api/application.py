@@ -9,6 +9,11 @@ from creds import rds_username, rds_password, rds_url
 from creds import rds_port, rds_name
 import controller
 from flask_cors import CORS
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = '/assets/models'
+ALLOWED_EXTENSIONS = set(['py'])
+
 
 # from OpenSSL import SSL
 local = True
@@ -45,6 +50,7 @@ conn = psycopg2.connect(
 app = Flask(__name__)
 CORS(app)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 
