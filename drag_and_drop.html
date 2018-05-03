@@ -210,6 +210,8 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            overflow: auto;
+            height: 60vh
         }
 
         th {
@@ -224,6 +226,7 @@
             border-bottom: 1px solid #ddd;
 
         }
+
 
 
         tr:hover {background-color:#f5f5f5;}
@@ -248,6 +251,7 @@
             left: 0vw;
             width: 200px;
         }
+
 
     </style>
 
@@ -306,9 +310,9 @@
                 <div class="row">
                     <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="drag2" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="drag3" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="/Users/blakeley/Documents/MAS/TB/turingbox/img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
                     </div>
                 </div>
                 <div class="row">
@@ -339,9 +343,9 @@
                 <div class="row">
 
                 <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <div draggable="true" ondragstart="drag(event)" id="drag4" class="rcorners2" >Google Cloud Language API</div>
+                <div draggable="true" ondragstart="drag(event)" id="googleDrag" class="rcorners2" >Google Cloud Language API</div>
                 <br>
-                <div draggable="true" ondragstart="drag(event)" id="drag5" class="rcorners2">Microsoft Text Analytics API</div>
+                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners2">Microsoft Text Analytics API</div>
                 </div>
                 </div>
             </div>
@@ -369,36 +373,44 @@
     <div class="column second">
         <h3>output</h3>
 
-
         <div id="div2" id="myTable">
             <div class="section__container">
-            <div class="output__controls">
-            <div class="output__selector-wrapper">
-            <div class="output_selector__option"><h4 onclick="showDataTable()">Results</h4></div>
-            <div class="output_selector__option"><h4 onclick="showSumTable()">Summary</h4></div>
-            </div>
-            <div>
-                <div class="centerBlock">
-                <table id="summary" style="display:none">
-                    <tr>
-                        <th>Statistic</th>
-                        <th>Value</th>
-                    </tr>
-                    <tr>
-                        <td>Mean</td>
-                        <td>0.572</td>
-                    </tr>
-                    <tr>
-                        <td>Standard Error on Mean</td>
-                        <td>0.0366</td>
-                    </tr>
-                    <tr>
-                        <td>Accuracy</td>
-                        <td>0.8</td>
-                    </tr>
-                </table>
-                </div>
-            </div>
+                <div class="output__controls">
+                    <div class="output__selector-wrapper">
+                        <div class="output_selector__option"><h4 onclick="showResults()">Results</h4></div>
+                        <div class="output_selector__option"><h4 onclick="showSummary()">Summary</h4></div>
+                    </div>
+                    <div>
+                        <div class="centerBlock">
+                            <table id="summary" class="table" style="display:none">
+                                <!--<table id="summary">-->
+                                <thead>
+                                    <tr>
+                                        <th>Statistic</th>
+                                        <th scope="col" id="msSum">Microsoft</th>
+                                        <th scope="col" class="googleSum">Google</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>Mean</td>
+                                    <td id="msSum">0.572</td>
+                                    <td class="googleSum">-0.025</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Standard Error on Mean</td>
+                                    <td id="msSum">0.0366</td>
+                                    <td class="googleSum">0.060</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Accuracy</td>
+                                    <td id="msSum">0.80</td>
+                                    <td class="googleSum">0.81</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
 
             <div class="row">
             <br>
@@ -507,6 +519,55 @@
                         <td>0</td>
                     </tr>
                 </table>
+                <table id="googleTable" style="display:none">
+                    <tr>
+                        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+                        <th onclick="sortTable(0)">Sentence</th>
+                        <th onclick="sortTable(1)">Google Label</th>
+                        <th onclick="sortTable(2)">True Label</th>
+                    </tr>
+                    <tr>
+                        <td>welcome to twitter xx</td>
+                        <td>0.400</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
+                        <td>0.5</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
+                        <td>-0.200</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>free : star bucks gift card</td>
+                        <td>0.400</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
+                        <td>0.100</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
+                        <td>0.400</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
+                        <td>-0.200</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+
             </div>
 
             </div>
@@ -573,62 +634,105 @@
         }
     }
 
-    function showRightDataTable() {
-        var ms_data = document.getElementById("microsoftTable");
-        var msg_data = document.getElementById("MSandGoogleTable");
-        var sum = document.getElementById("summary");
-        var google = document.getElementById("drag4");
-        var ms = document.getElementById("drag5");
-
-
-
-        var divMS = document.getElementById("div3").contains(drag5);
-        var divG = document.getElementById("div3").contains(drag4 && drag5);
-
-
-        if(document.getElementById("div3").contains(drag5) && !(document.getElementById("div3").contains(drag4))){
-            ms_data.style.display = "block"
-        }
-        else if(divG){
-            ms_data.style.display = "none"
-            msg_data.style.display = "block"
-        }
-
-
-
+    function showResults(){
+        var ms_results = document.getElementById("microsoftTable")
     }
+    // function showRightDataTable() {
+    //     var ms_data = document.getElementById("microsoftTable");
+    //     var msg_data = document.getElementById("MSandGoogleTable");
+    //     var sum = document.getElementById("summary");
+    //     var google = document.getElementById("drag4");
+    //     var ms = document.getElementById("drag5");
+    //     var divMS = document.getElementById("div3").contains(drag5);
+    //     var divG = document.getElementById("div3").contains(drag4 && drag5);
+    //     if(document.getElementById("div3").contains(drag5) && !(document.getElementById("div3").contains(drag4))){
+    //         ms_data.style.display = "block"
+    //     }
+    //     else if(divG){
+    //         ms_data.style.display = "none"
+    //         msg_data.style.display = "block"
+    //     }
+    // }
+    // function showDataTable() {
+    //     var sum = document.getElementById("summary");
+    //     var ms_data = document.getElementById("microsoftTable");
+    //     var msg_data = document.getElementById("MSandGoogleTable");
+    //     if(ms_data.style.display === "none" && msg_data.style.display == "none"){
+    //         sum.style.display = "none";
+    //         showRightDataTable();
+    //     }
+    //     else{
+    //         ms_data.style.display = "none";
+    //         msg_data.style.display = "none";
+    //     }
+    // }
 
-    function showDataTable() {
+    // function showSummaryColumns(){
+    //     var sum = document.getElementById("summary");
+    //
+    //     var google_alg = document.getElementById("googleDrag");
+    //     var microsoft_alg = document.getElementById("msDrag");
+    //
+    //     var msSum = document.getElementById("msSum");
+    //     var msSum = document.getElementById("googleSum");
+    //
+    //     if(document.getElementById("div3").contains(msSum)){
+    //         msSum.style.display = "table-column";
+    //         googleSum.style.display = "none";
+    //     }
+    //     else if(document.getElementById("div3").contains(googleSum) && !(document.getElementById("div3").contains(msSum))){
+    //         googleSum.style.display = "table-column";
+    //         msSum.style.display = "none";
+    //
+    //     }
+    //     else if(document.getElementById("div3").contains(msSum) && document.getElementById("div3").contains(googleSum)){
+    //         googleSum.style.display = "table-column";
+    //         msSum.style.display = "table-column";
+    //     }
+    //     else{
+    //         sum.style.display = "none"
+    //     }
+    //
+    //
+    //
+    // }
+    //
+    function showSummary() {
         var sum = document.getElementById("summary");
-        var ms_data = document.getElementById("microsoftTable");
-        var msg_data = document.getElementById("MSandGoogleTable");
-
-        if(ms_data.style.display === "none" && msg_data.style.display == "none"){
-            sum.style.display = "none";
-            showRightDataTable();
-        }
-        else{
-            ms_data.style.display = "none";
-            msg_data.style.display = "none";
-        }
-
-    }
-
-    function showSumTable() {
-        var sum = document.getElementById("summary");
-        var ms_data = document.getElementById("microsoftTable");
-        var msg_data = document.getElementById("MSandGoogleTable");
-
+        // var ms_data = document.getElementById("microsoftTable");
+        // var msg_data = document.getElementById("MSandGoogleTable");
         if(sum.style.display === "none"){
-            ms_data.style.display = "none";
-            msg_data.style.display = "none"
+            // ms_data.style.display = "none";
+            // msg_data.style.display = "none";
             sum.style.display = "block";
+            if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
+                show_hide_column(1,false);
+            }
+            else{
+                show_hide_column(1,true);
+            }
+            if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
+                show_hide_column(2,false);
+            }
+            else{
+                show_hide_column(2,true);
+            }
         }
         else{
             sum.style.display = "none";
         }
+     }
 
+    function show_hide_column(col_no, do_show) {
+        var rows = document.getElementById('summary').rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
     }
+
 
     function submitBox(){
         if ($('#clarifai').is(":checked")){
@@ -637,7 +741,7 @@
             location.href = 'box2.html';
         } else if ($('#DropConnect').is(":checked")){
             location.href = 'box3.html';
-        }t
+        }
     }
 
     function sortTable(n) {
