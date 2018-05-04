@@ -310,9 +310,9 @@
                 <div class="row">
                     <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="{{ url_for('static',filename='img/rotten_tomatoes.jpg') }}"  draggable="true" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/amazon_customer_reviews.png') }}"  draggable="true" ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_sentiment.png') }}"  draggable="true" ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
                     </div>
                 </div>
                 <div class="row">
@@ -448,57 +448,20 @@
 
             <div class="row">
             <br>
-                <table id="microsoftTable">
+                <table id="microsoftTable" >
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
                         <th onclick="sortTable(0)">Sentence</th>
                         <th onclick="sortTable(1)">Microsoft Label</th>
                         <th onclick="sortTable(2)">True Label</th>
                     </tr>
-                    <div id = "twitter">
+                     {% for item in amazon %}
                     <tr>
-                        <td>welcome to twitter xx</td>
-                        <td>0.992</td>
-                        <td>1</td>
+                        <td>{{item['text']}}</td>
+                        <td>{{item['a_sent']}}</td>
+                        <td>{{item['label']}}</td>
                     </tr>
-                    <tr>
-                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
-                        <td>0.954</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
-                        <td>0.731</td>
-                        <td>0</td>
-                    </tr>
-                </div>
-                <div id = "yelp">
-                    <tr>
-                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
-                        <td>0.123</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>free : star bucks gift card</td>
-                        <td>0.940</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
-                        <td>0.101</td>
-                        <td>0</td>
-                    </tr>
-                </div>
-                    <tr>
-                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
-                        <td>0.797</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
-                        <td>0.0523</td>
-                        <td>0</td>
-                    </tr>
+                    {% endfor %}
                 </table>
                 <table id="MSandGoogleTable" style="display:none">
                     <tr>
@@ -617,10 +580,10 @@
 
     <div class="footer">
 
-    <a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/"><img class = "logoAbout" src="img/scalablecoop.png"></a>
-    <a class = "logoAbout" href="https://www.media.mit.edu"><img class = "logoAbout" style = "margin-right:0px;" src="img/Mit_medialab_logo.png"></a>
-    <a href = ""><img class = "logoAbout"  src="img/mit_logo_trans.png"></a><br>
-    Scalable Cooperation | MIT Media Lab
+    <a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/"><img class = "logoAbout" src="{{ url_for('static',filename='img/scalablecoop.png') }}"  width='100px'></a>
+    <a class = "logoAbout" href="https://www.media.mit.edu"><img class = "logoAbout" style = "margin-right:0px;" src="{{ url_for('static',filename='img/Mit_medialab_logo.png') }}"  width='85px'></a>
+    <a href = ""><img class = "logoAbout"  src="{{ url_for('static',filename='img/mit_logo_trans.png') }}" width='175px'></a><br>
+    Scalable Cooperation | MIT Media 
     </div>
 
 </div>
