@@ -51,8 +51,8 @@
             border-radius: 15px;
             /*border: 6px solid #29abe2;*/
             border: 1px dashed black;
-            padding: 20px;
-            width: 80%
+            padding: 10px;
+            width: 90%
         }
 
         .first {
@@ -97,9 +97,14 @@
             border: 1px dashed black;
             background-color: white;
 
+            position: absolute;
+            top: 50%;
+            /*left: 50%;*/
+            transform: translate(-50%,-50%);
+
             padding: 20px;
-            width: 100%;
-            /*height:*/
+            width: 50%;
+            height:50%;
 
             /*height: 300px;*/
         }
@@ -114,6 +119,18 @@
             align: center;
             /*height:*/
 
+        }
+        .rcorners5 {
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            border: 1px dashed black;
+            background-color: white;
+
+            padding: 20px;
+            width: 100%;
+            /*height:*/
+
+            /*height: 300px;*/
         }
 
         #div1{
@@ -151,6 +168,8 @@
             border-radius: 25px;
             border: 5px solid black;
             background-color: white;
+            position: relative;
+
 
 
             padding: 20px;
@@ -287,13 +306,13 @@
 
         <div id="div3">
 
-            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="rcorners5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             <br>
             <br>
-            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="rcorners5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             <br>
             <br>
-            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="rcorners5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
         </div>
 
@@ -314,6 +333,7 @@
                     <div class="column" ><button type="button" class="rcorners2" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_sentiment.png') }}"  draggable="true" ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div id="rottenTomatoesDiv" style="display:none">
                         <h4>Stanford Sentiment Treebank of Rotten Tomato Reviews</h4>
@@ -331,7 +351,9 @@
 
                         This dataset consists of 4,218 tweets taken from the larger SentiStrength 2 dataset. All tweets were in English. More information can be found at: <a>https://bit.ly/2JuWd98</a>.
                     </div>
+
                 </div>
+
 
             </div>
 
@@ -346,27 +368,37 @@
                 <br>
                 <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4">Microsoft Text Analytics API</div>
                 </div>
+                    <div class="column middle">
+                        <br>
+                        <h4> Upload a new algorithm:</h4>
+
+                        <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
+                    </div>
                 </div>
+
+
             </div>
 
         </div>
 
         <div class="row">
-            <div class="column left">
-                <h4> Upload a new dataset:</h4>
+            <!--<div class="column left">-->
+                <!--<br>-->
+                <!--<h4> Upload a new dataset:</h4>-->
 
-                <!--<label for="exampleAlgorithmFile"> Upload your dataset</label>-->
-                <input type="file" class="form-control-file" id="exampleAlgorithmFile">
-                <br>
-            </div>
-            <div class="column middle">
-                <h4> Upload a new algorithm:</h4>
-
-                <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
-            </div>
-            <!--<div class="column right">-->
-
+                <!--&lt;!&ndash;<label for="exampleAlgorithmFile"> Upload your dataset</label>&ndash;&gt;-->
+                <!--<input type="file" class="form-control-file" id="exampleAlgorithmFile">-->
+                <!--<br>-->
             <!--</div>-->
+            <!--<div class="column middle">-->
+                <!--<br>-->
+                <!--<h4> Upload a new algorithm:</h4>-->
+
+                <!--<input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>-->
+            <!--</div>-->
+            <div class="column right">
+
+            </div>
         </div>
     </div>
     <div class="column second">
