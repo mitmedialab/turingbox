@@ -14,13 +14,13 @@ def ingest_static_data(path):
 	data = pd.read_csv(path)
 	rows = []
 	for row in data.iterrows():
-	    row = {"text": row[1][0][0:50]+"...", "label": row[1][1], "a_sent": round(row[1][2],2), "g_sent": round(row[1][2],2)}
+	    row = {"text": row[1][0][0:50]+"...", "label": row[1][1], "a_sent": round(row[1][2],2), "g_sent": round(row[1][3],2)}
 	    rows.append(row)
 	return rows
 
 amazon = ingest_static_data('static/data/amazon_sentiment100_results.csv')
-sst = ingest_static_data('static/data/amazon_sentiment100_results.csv')
-twitter = ingest_static_data('static/data/amazon_sentiment100_results.csv')
+sst = ingest_static_data('static/data/sst_sentiment100_results.csv')
+twitter = ingest_static_data('static/data/twitter_sentiment100_results.csv')
 
 
 app = Flask(__name__)
