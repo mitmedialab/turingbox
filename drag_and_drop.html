@@ -276,7 +276,7 @@
                 <div class="square">
                 <div class="centerBlock">
 
-                <div class="rcorners4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="dataDrop" class="rcorners4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 </div>
 
             </div>
@@ -391,21 +391,55 @@
                                         <th scope="col" class="googleSum">Google</th>
                                     </tr>
                                 </thead>
-                                <tr>
+                                <tr class="twitterSum">
                                     <td>Mean</td>
                                     <td id="msSum">0.572</td>
                                     <td class="googleSum">-0.025</td>
 
                                 </tr>
-                                <tr>
+                                <tr class="twitterSum">
                                     <td>Standard Error on Mean</td>
                                     <td id="msSum">0.0366</td>
                                     <td class="googleSum">0.060</td>
 
                                 </tr>
-                                <tr>
+                                <tr class="twitterSum">
                                     <td>Accuracy</td>
                                     <td id="msSum">0.80</td>
+                                    <td class="googleSum">0.81</td>
+                                </tr>
+                                <tr class="amazonSum">
+                                    <td>Mean</td>
+                                    <td id="msSum">0.548</td>
+                                    <td class="googleSum">0.051</td>
+
+                                </tr>
+                                <tr class="amazonSum">
+                                    <td>Standard Error on Mean</td>
+                                    <td id="msSum">0.0384</td>
+                                    <td class="googleSum">0.047</td>
+
+                                </tr>
+                                <tr class="amazonSum">
+                                    <td>Accuracy</td>
+                                    <td id="msSum">0.84</td>
+                                    <td class="googleSum">0.91</td>
+                                </tr>
+                                <tr class="rtSum">
+                                    <td>Mean</td>
+                                    <td id="msSum">0.570 </td>
+                                    <td class="googleSum">-0.025</td>
+
+                                </tr>
+                                <tr class="rtSum">
+                                    <td>Standard Error on Mean</td>
+                                    <td id="msSum">0.0341</td>
+                                    <td class="googleSum">0.0602</td>
+
+                                </tr>
+                                <tr class="rtSum">
+                                    <td>Accuracy</td>
+                                    <td id="msSum">0.68</td>
                                     <td class="googleSum">0.81</td>
                                 </tr>
                             </table>
@@ -705,6 +739,7 @@
             // ms_data.style.display = "none";
             // msg_data.style.display = "none";
             sum.style.display = "block";
+            //showing correct columns by alg
             if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
                 show_hide_column(1,false);
             }
@@ -716,6 +751,40 @@
             }
             else{
                 show_hide_column(2,true);
+            }
+            //showing correct row by dataset
+            if(!(document.getElementById("dataDrop").contains(document.getElementById("twitterDrag")))){
+                // document.getElementsByClassName("rtSum")
+                show_hide_row(1,false);
+                show_hide_row(2,false);
+                show_hide_row(3,false);
+            }
+            else{
+                show_hide_row(1,true);
+                show_hide_row(2,true);
+                show_hide_row(3,true);
+            }
+            if(!(document.getElementById("dataDrop").contains(document.getElementById("amazonDrag")))){
+                show_hide_row(4,false);
+                show_hide_row(5,false);
+                show_hide_row(6,false);
+            }
+            else{
+                show_hide_row(4,true);
+                show_hide_row(5,true);
+                show_hide_row(6,true);
+
+            }
+            if(!(document.getElementById("dataDrop").contains(document.getElementById("rtDrag")))){
+                show_hide_row(7,false);
+                show_hide_row(8,false);
+                show_hide_row(9,false);
+            }
+            else{
+                show_hide_row(7,true);
+                show_hide_row(8,true);
+                show_hide_row(9,true);
+
             }
         }
         else{
@@ -731,6 +800,11 @@
                 cols[col_no].style.display = do_show ? '' : 'none';
             }
         }
+    }
+
+    function show_hide_row(row_no, do_show){
+        var rows = document.getElementById("summary").rows;
+        rows[row_no].style.display = do_show ? '' : 'none';
     }
 
 
