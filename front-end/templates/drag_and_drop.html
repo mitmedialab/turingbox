@@ -85,10 +85,8 @@
         .rcorners2 {
                      border-radius: 15px;
                      /*border: 6px solid #29abe2;*/
-                     border: 1px solid black;
                      background-color: white;
 
-                     padding: 20px;
                      width: 100%;
 
                      /*height: 300px;*/
@@ -311,9 +309,9 @@
                 <div class="row">
                     <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="{{ url_for('static',filename='img/rotten_tomatoes.jpg') }}"  draggable="true" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/amazon_customer_reviews.png') }}"  draggable="true" ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_sentiment.png') }}"  draggable="true" ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" class="rcorners2" onclick="showRottenDiv()"> <img src="{{ url_for('static',filename='img/rotten_tomatoes.jpg') }}"  draggable="true" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" class="rcorners2" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/amazon_customer_reviews.png') }}"  draggable="true" ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ><button type="button" class="rcorners2" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_sentiment.png') }}"  draggable="true" ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
                     </div>
                 </div>
                 <div class="row">
@@ -458,7 +456,15 @@
                         <th scope="col" onclick="sortTable(3)">Google Label</th>
 
                     </tr>
-                     {% for item in amazon %}
+                     <!--{% for item in amazon %}-->
+                    <!--<tr>-->
+                        <!--<td>{{item['text']}}</td>-->
+                        <!--<td>{{item['a_sent']}}</td>-->
+                        <!--<td>{{item['label']}}</td>-->
+                        <!--<td>{{item['g_sent']}}</td>-->
+                    <!--</tr>-->
+                    <!--{% endfor %}-->
+                    {% for item in twitter %}
                     <tr>
                         <td>{{item['text']}}</td>
                         <td>{{item['a_sent']}}</td>
@@ -534,38 +540,6 @@
         }
     }
 
-    function showResults(){
-        var ms_results = document.getElementById("microsoftTable")
-    }
-    function showRightDataTable() {
-        var ms_data = document.getElementById("microsoftTable");
-        var msg_data = document.getElementById("MSandGoogleTable");
-        var sum = document.getElementById("summary");
-        var google = document.getElementById("drag4");
-        var ms = document.getElementById("drag5");
-        var divMS = document.getElementById("div3").contains(drag5);
-        var divG = document.getElementById("div3").contains(drag4 && drag5);
-        if(document.getElementById("div3").contains(drag5) && !(document.getElementById("div3").contains(drag4))){
-            ms_data.style.display = "block"
-        }
-        else if(divG){
-            ms_data.style.display = "none"
-            msg_data.style.display = "block"
-        }
-    }
-    // function showDataTable() {
-    //     var sum = document.getElementById("summary");
-    //     var ms_data = document.getElementById("microsoftTable");
-    //     var msg_data = document.getElementById("MSandGoogleTable");
-    //     if(ms_data.style.display === "none" && msg_data.style.display == "none"){
-    //         sum.style.display = "none";
-    //         showRightDataTable();
-    //     }
-    //     else{
-    //         ms_data.style.display = "none";
-    //         msg_data.style.display = "none";
-    //     }
-    // }
 
 
 
