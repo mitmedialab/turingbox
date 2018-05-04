@@ -103,8 +103,8 @@
             transform: translate(-50%,-50%);
 
             padding: 20px;
-            width: 50%;
-            height:50%;
+            width: 75%;
+            height: 75%;
 
             /*height: 300px;*/
         }
@@ -152,6 +152,7 @@
             padding: 20px;
             /*height: 200px;*/
         }
+
 
         #div3{
             margin: 10px;
@@ -270,6 +271,19 @@
             width: 200px;
         }
 
+        #rtDrag{
+            cursor: pointer;
+        }
+        #twitterDrag{
+            cursor: pointer;
+        }
+        #amazonDrag{
+            cursor: pointer;
+        }
+
+
+
+
 
     </style>
 
@@ -295,6 +309,7 @@
                 <div class="centerBlock">
 
                 <div id="dataDrop" class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
                 </div>
 
             </div>
@@ -328,9 +343,14 @@
                 <div class="row">
                     <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-                    <div class="column" ><button type="button" class="rcorners2" onclick="showRottenDiv()"> <img src="{{ url_for('static',filename='img/rotten_tomatoes.jpg') }}"  draggable="true" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" class="rcorners2" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/amazon_customer_reviews.png') }}"  draggable="true" ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" class="rcorners2" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_sentiment.png') }}"  draggable="true" ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
+
+                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" class="rcorners2" onclick="showRottenDiv()"> <img src="{{ url_for('static',filename='img/rotten_tomatoes.jpg') }}" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
+                        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ><button type="button" class="rcorners2" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/amazon_customer_reviews.png') }}"  ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"><button type="button" class="rcorners2" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_sentiment.png') }}"  ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
+
+
+
+
                     </div>
                 </div>
 
@@ -408,7 +428,7 @@
             <div class="section__container">
                 <div class="output__controls">
                     <div class="output__selector-wrapper">
-                        <div class="output_selector__option"><h4 onclick="showResults()">Results</h4></div>
+                        <div class="output_selector__option"><h4 onclick="showCorrectResults()">Results</h4></div>
                         <div class="output_selector__option"><h4 onclick="showSummary()">Summary</h4></div>
                     </div>
                     <div>
@@ -479,29 +499,56 @@
 
             <div class="row">
             <br>
-                <table id="results" style="display:none">
+                <table id="amazonResults" style="display:none">
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                        <th scope="col" onclick="sortTable(0)">Text</th>
-                        <th scope="col" onclick="sortTable(1)">Microsoft Label</th>
-                        <th scope="col" onclick="sortTable(2)">True Label</th>
-                        <th scope="col" onclick="sortTable(3)">Google Label</th>
-
+                        <th onclick="sortTable(0)">Sentence</th>
+                        <th onclick="sortTable(1)">Microsoft Label</th>
+                        <th onclick="sortTable(2)">Google Label</th>
+                        <th onclick="sortTable(3)">True Label</th>
                     </tr>
-                     <!--{% for item in amazon %}-->
-                    <!--<tr>-->
-                        <!--<td>{{item['text']}}</td>-->
-                        <!--<td>{{item['a_sent']}}</td>-->
-                        <!--<td>{{item['label']}}</td>-->
-                        <!--<td>{{item['g_sent']}}</td>-->
-                    <!--</tr>-->
-                    <!--{% endfor %}-->
+                    {% for item in amazon %}
+                    <tr>
+                        <td>{{item['text']}}</td>
+                        <td>{{item['a_sent']}}</td>
+                        <td>{{item['g_sent']}}</td>
+                        <td>{{item['label']}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <table id="twitterResults" style="display:none">
+                    <tr>
+                        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+                        <th onclick="sortTable(0)">Sentence</th>
+                        <th onclick="sortTable(1)">Microsoft Label</th>
+                        <th onclick="sortTable(2)">Google Label</th>
+                        <th onclick="sortTable(3)">True Label</th>
+                    </tr>
                     {% for item in twitter %}
                     <tr>
                         <td>{{item['text']}}</td>
                         <td>{{item['a_sent']}}</td>
-                        <td>{{item['label']}}</td>
                         <td>{{item['g_sent']}}</td>
+                        <td>{{item['label']}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <table id="rtResults" style="display:none">
+                    <tr>
+                        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+                        <th onclick="sortTable(0)">Sentence</th>
+                        <th onclick="sortTable(1)">Microsoft Label</th>
+                        <th onclick="sortTable(2)">Google Label</th>
+                        <th onclick="sortTable(3)">True Label</th>
+                    </tr>
+                    {% for item in amazon %}
+                    <tr>
+                        <td>{{item['text']}}</td>
+                        <td>{{item['a_sent']}}</td>
+                        <td>{{item['g_sent']}}</td>
+                        <td>{{item['label']}}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -531,13 +578,18 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
+
+
+
     function allowDrop(ev) {
         ev.preventDefault();
     }
 
     function drag(ev) {
+
         ev.dataTransfer.setData("text", ev.target.id);
     }
+
 
     function drop(ev) {
         ev.preventDefault();
@@ -603,38 +655,44 @@
     }
 
 
+    function showCorrectResults(){
 
+        results = getCorrectResults();
 
-    function showResults(){
-        var results = document.getElementById("results");
-        var sum = document.getElementById("summary");
+        console.log("show correct");
+
+        var summary = document.getElementById("summary");
 
         if(summary.style.display === "block"){
             summary.style.display = "none";
         }
 
-        if(results.style.display ==="none"){
-            results.style.display = "block";
-            if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
-                show_hide_results_column(1,false);
-            }
-            else{
-                show_hide_results_column(1,true);
-            }
-            if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
-                show_hide_results_column(3,false);
-            }
-            else{
-                show_hide_results_column(3,true);
-            }
+
+        document.getElementById("amazonResults").style.display = "none";
+        document.getElementById("twitterResults").style.display = "none";
+        document.getElementById("rtResults").style.display = "none";
+
+        results.style.display = "block";
+
+        // showCorrectColumns(results);
+
+        if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
+            show_hide_results_column(1,false,results);
         }
         else{
-            results.style.display = "none";
+            show_hide_results_column(1,true,results);
         }
+        if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
+            show_hide_results_column(2,false,results);
+        }
+        else{
+            show_hide_results_column(2,true,results);
+        }
+
     }
 
-    function show_hide_results_column(col_no, do_show) {
-        var rows = document.getElementById('results').rows;
+    function show_hide_results_column(col_no, do_show, results) {
+        var rows = results.rows;
         for (var row = 0; row < rows.length; row++) {
             var cols = rows[row].cells;
             if (col_no >= 0 && col_no < cols.length) {
@@ -643,6 +701,62 @@
         }
     }
 
+    function getCorrectResults(){
+
+        console.log("getcorrectresults");
+        var results = document.getElementById("rtResults");
+
+        if(document.getElementById("dataDrop").contains(document.getElementById("twitterDrag"))){
+            // document.getElementsByClassName("rtSum")
+
+            results = document.getElementById("twitterResults");
+
+        }
+        else if(document.getElementById("dataDrop").contains(document.getElementById("amazonDrag"))){
+            results = document.getElementById("amazonResults");
+
+        }
+        else if(document.getElementById("dataDrop").contains(document.getElementById("rtDrag"))){
+            results = document.getElementById("rtResults");
+        }
+
+
+        console.log(results);
+        return results;
+    }
+
+    // function showCorrectColumns(results){
+    //     // var results = document.getElementById("results");
+    //     // results = getCorrectResults();
+    //
+    //     var summary = document.getElementById("summary");
+    //
+    //     if(summary.style.display === "block"){
+    //         summary.style.display = "none";
+    //     }
+    //
+    //     if(results.style.display ==="none"){
+    //         results.style.display = "block";
+    //         if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
+    //             show_hide_results_column(1,false);
+    //         }
+    //         else{
+    //             show_hide_results_column(1,true);
+    //         }
+    //         if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
+    //             show_hide_results_column(2,false);
+    //         }
+    //         else{
+    //             show_hide_results_column(2,true);
+    //         }
+    //     }
+    //     else{
+    //         results.style.display = "none";
+    //     }
+    // }
+
+
+
     // function show_hide_results_row(row_no, do_show){
     //     var rows = document.getElementById("results").rows;
     //     rows[row_no].style.display = do_show ? '' : 'none';
@@ -650,13 +764,22 @@
 
     function showSummary() {
         var sum = document.getElementById("summary");
-        var results = document.getElementById("results");
+        var twitterResults = document.getElementById("twitterResults");
+        var amazonResults = document.getElementById("amazonResults");
+        var rtResults = document.getElementById("rtResults");
+
 
         // var ms_data = document.getElementById("microsoftTable");
         // var msg_data = document.getElementById("MSandGoogleTable");
 
-        if(results.style.display === "block"){
-            results.style.display = "none";
+        if(twitterResults.style.display === "block"){
+            twitterResults.style.display = "none";
+        }
+        if(amazonResults.style.display === "block"){
+            amazonResults.style.display = "none";
+        }
+        if(rtResults.style.display === "block"){
+            rtResults.style.display = "none";
         }
         if(sum.style.display === "none"){
             // ms_data.style.display = "none";
@@ -731,19 +854,19 @@
     }
 
 
-    function submitBox(){
-        if ($('#clarifai').is(":checked")){
-            location.href = 'box1.html';
-        } else if ($('#precog').is(":checked")){
-            location.href = 'box2.html';
-        } else if ($('#DropConnect').is(":checked")){
-            location.href = 'box3.html';
-        }
-    }
+    // function submitBox(){
+    //     if ($('#clarifai').is(":checked")){
+    //         location.href = 'box1.html';
+    //     } else if ($('#precog').is(":checked")){
+    //         location.href = 'box2.html';
+    //     } else if ($('#DropConnect').is(":checked")){
+    //         location.href = 'box3.html';
+    //     }
+    // }
 
     function sortTable(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("microsoftTable");
+        table = document.getElementById(results);
         switching = true;
         //Set the sorting direction to ascending:
         dir = "asc";
@@ -795,6 +918,173 @@
             }
         }
     }
+
+    //maybe making drag and drop better
+
+    // let currentDroppable = null;
+    //
+    // rtDrag.onmousedown = function(event) {
+    //
+    //     let shiftX = event.clientX - rtDrag.getBoundingClientRect().left;
+    //     let shiftY = event.clientY - rtDrag.getBoundingClientRect().top;
+    //
+    //     rtDrag.style.position = 'absolute';
+    //     rtDrag.style.zIndex = 1000;
+    //     document.body.append(rtDrag);
+    //
+    //     moveAt(event.pageX, event.pageY);
+    //
+    //     function moveAt(pageX, pageY) {
+    //         rtDrag.style.left = pageX - shiftX + 'px';
+    //         rtDrag.style.top = pageY - shiftY + 'px';
+    //     }
+    //
+    //     function onMouseMove(event) {
+    //         moveAt(event.pageX, event.pageY);
+    //
+    //         rtDrag.hidden = true;
+    //         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    //         rtDrag.hidden = false;
+    //
+    //         if (!elemBelow) return;
+    //
+    //         let droppableBelow = elemBelow.closest('.droppable');
+    //         if (currentDroppable != droppableBelow) {
+    //             if (currentDroppable) { // null when we were not over a droppable before this event
+    //                 leaveDroppable(currentDroppable);
+    //             }
+    //             currentDroppable = droppableBelow;
+    //             if (currentDroppable) { // null if we're not coming over a droppable now
+    //                 // (maybe just left the droppable)
+    //                 enterDroppable(currentDroppable);
+    //             }
+    //         }
+    //     }
+    //
+    //     document.addEventListener('mousemove', onMouseMove);
+    //
+    //     rtDrag.onmouseup = function() {
+    //         document.removeEventListener('mousemove', onMouseMove);
+    //         rtDrag.onmouseup = null;
+    //     };
+    //
+    // };
+    //
+    // twitterDrag.onmousedown = function(event) {
+    //
+    //     let shiftX = event.clientX - twitterDrag.getBoundingClientRect().left;
+    //     let shiftY = event.clientY - twitterDrag.getBoundingClientRect().top;
+    //
+    //     twitterDrag.style.position = 'absolute';
+    //     twitterDrag.style.zIndex = 1000;
+    //     document.body.append(twitterDrag);
+    //
+    //     moveAt(event.pageX, event.pageY);
+    //
+    //     function moveAt(pageX, pageY) {
+    //         twitterDrag.style.left = pageX - shiftX + 'px';
+    //         twitterDrag.style.top = pageY - shiftY + 'px';
+    //     }
+    //
+    //     function onMouseMove(event) {
+    //         moveAt(event.pageX, event.pageY);
+    //
+    //         twitterDrag.hidden = true;
+    //         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    //         twitterDrag.hidden = false;
+    //
+    //         if (!elemBelow) return;
+    //
+    //         let droppableBelow = elemBelow.closest('.droppable');
+    //         if (currentDroppable != droppableBelow) {
+    //             if (currentDroppable) { // null when we were not over a droppable before this event
+    //                 leaveDroppable(currentDroppable);
+    //             }
+    //             currentDroppable = droppableBelow;
+    //             if (currentDroppable) { // null if we're not coming over a droppable now
+    //                 // (maybe just left the droppable)
+    //                 enterDroppable(currentDroppable);
+    //             }
+    //         }
+    //     }
+    //
+    //     document.addEventListener('mousemove', onMouseMove);
+    //
+    //     twitterDrag.onmouseup = function() {
+    //         document.removeEventListener('mousemove', onMouseMove);
+    //         twitterDrag.onmouseup = null;
+    //     };
+    //
+    // };
+    //
+    // amazonDrag.onmousedown = function(event) {
+    //
+    //     let shiftX = event.clientX - amazonDrag.getBoundingClientRect().left;
+    //     let shiftY = event.clientY - amazonDrag.getBoundingClientRect().top;
+    //
+    //     amazonDrag.style.position = 'absolute';
+    //     amazonDrag.style.zIndex = 1000;
+    //     document.body.append(amazonDrag);
+    //
+    //     moveAt(event.pageX, event.pageY);
+    //
+    //     function moveAt(pageX, pageY) {
+    //         amazonDrag.style.left = pageX - shiftX + 'px';
+    //         amazonDrag.style.top = pageY - shiftY + 'px';
+    //     }
+    //
+    //     function onMouseMove(event) {
+    //         moveAt(event.pageX, event.pageY);
+    //
+    //         amazonDrag.hidden = true;
+    //         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    //         amazonDrag.hidden = false;
+    //
+    //         if (!elemBelow) return;
+    //
+    //         // let droppableBelow = elemBelow.closest('.droppable');
+    //         if (currentDroppable != droppableBelow) {
+    //             if (currentDroppable) { // null when we were not over a droppable before this event
+    //                 leaveDroppable(currentDroppable);
+    //             }
+    //             currentDroppable = droppableBelow;
+    //             if (currentDroppable) { // null if we're not coming over a droppable now
+    //                 // (maybe just left the droppable)
+    //                 enterDroppable(currentDroppable);
+    //             }
+    //         }
+    //     }
+    //
+    //     document.addEventListener('mousemove', onMouseMove);
+    //
+    //     amazonDrag.onmouseup = function() {
+    //         document.removeEventListener('mousemove', onMouseMove);
+    //         amazonDrag.onmouseup = null;
+    //     };
+    //
+    // };
+    //
+    //
+    //
+    // function enterDroppable(elem) {
+    //     elem.style.background = 'lightgrey';
+    // }
+    //
+    // function leaveDroppable(elem) {
+    //     elem.style.background = '';
+    // }
+    //
+    // twitterDrag.ondragstart = function() {
+    //     return false;
+    // };
+    //
+    // amazonDrag.ondragstart = function() {
+    //     return false;
+    // };
+    //
+    // rtDrag.ondragstart = function() {
+    //     return false;
+    // };
 
 </script>
 </body>
