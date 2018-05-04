@@ -452,15 +452,18 @@
                 <table id="results" style="display:none">
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                        <th scope="col" onclick="sortTable(0)">Sentence</th>
+                        <th scope="col" onclick="sortTable(0)">Text</th>
                         <th scope="col" onclick="sortTable(1)">Microsoft Label</th>
                         <th scope="col" onclick="sortTable(2)">True Label</th>
+                        <th scope="col" onclick="sortTable(3)">Google Label</th>
+
                     </tr>
                      {% for item in amazon %}
                     <tr>
                         <td>{{item['text']}}</td>
                         <td>{{item['a_sent']}}</td>
                         <td>{{item['label']}}</td>
+                        <td>{{item['g_sent']}}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -565,21 +568,60 @@
     // }
 
 
+
     function showResults(){
-        var results = document.getElementById("results")
+        var results = document.getElementById("results");
+        var sum = document.getElementById("summary");
+
+        if(summary.style.display === "block"){
+            summary.style.display = "none";
+        }
 
         if(results.style.display ==="none"){
             results.style.display = "block";
+            if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
+                show_hide_results_column(1,false);
+            }
+            else{
+                show_hide_results_column(1,true);
+            }
+            if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
+                show_hide_results_column(3,false);
+            }
+            else{
+                show_hide_results_column(3,true);
+            }
         }
         else{
             results.style.display = "none";
         }
     }
 
+    function show_hide_results_column(col_no, do_show) {
+        var rows = document.getElementById('results').rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
+        }
+    }
+
+    // function show_hide_results_row(row_no, do_show){
+    //     var rows = document.getElementById("results").rows;
+    //     rows[row_no].style.display = do_show ? '' : 'none';
+    // }
+
     function showSummary() {
         var sum = document.getElementById("summary");
+        var results = document.getElementById("results");
+
         // var ms_data = document.getElementById("microsoftTable");
         // var msg_data = document.getElementById("MSandGoogleTable");
+
+        if(results.style.display === "block"){
+            results.style.display = "none";
+        }
         if(sum.style.display === "none"){
             // ms_data.style.display = "none";
             // msg_data.style.display = "none";
