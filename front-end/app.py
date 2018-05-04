@@ -4,11 +4,11 @@ import json
 import pandas as pd
 from flask import render_template
 
-url = 'http://0.0.0.0:5000/api/v1/refresh/'
-payload = {'user_id': 'test47'}
-headers = {'content-type': 'application/json'}
-r = requests.get(url)
-data  = json.loads(r.text)
+# url = 'http://0.0.0.0:5000/api/v1/refresh/'
+# payload = {'user_id': 'test47'}
+# headers = {'content-type': 'application/json'}
+# r = requests.get(url)
+# data  = json.loads(r.text)
 
 def ingest_static_data(path):
 	data = pd.read_csv(path)
