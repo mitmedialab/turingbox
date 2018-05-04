@@ -135,6 +135,7 @@
             background-color: white;
 
             padding: 20px;
+            /*height: 200px;*/
         }
 
         #div3{
@@ -448,12 +449,12 @@
 
             <div class="row">
             <br>
-                <table id="microsoftTable" >
+                <table id="results" style="display:none">
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                        <th onclick="sortTable(0)">Sentence</th>
-                        <th onclick="sortTable(1)">Microsoft Label</th>
-                        <th onclick="sortTable(2)">True Label</th>
+                        <th scope="col" onclick="sortTable(0)">Sentence</th>
+                        <th scope="col" onclick="sortTable(1)">Microsoft Label</th>
+                        <th scope="col" onclick="sortTable(2)">True Label</th>
                     </tr>
                      {% for item in amazon %}
                     <tr>
@@ -462,111 +463,6 @@
                         <td>{{item['label']}}</td>
                     </tr>
                     {% endfor %}
-                </table>
-                <table id="MSandGoogleTable" style="display:none">
-                    <tr>
-                        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                        <th onclick="sortTable(0)">Sentence</th>
-                        <th onclick="sortTable(1)">Microsoft Label</th>
-                        <th onclick="sortTable(2)">Google Label</th>
-                        <th onclick="sortTable(3)">True Label</th>
-                    </tr>
-                    <tr>
-                        <td>welcome to twitter xx</td>
-                        <td>0.992</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
-                        <td>0.954</td>
-                        <td>0.5</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
-                        <td>0.731</td>
-                        <td>-0.200</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
-                        <td>0.123</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>free : star bucks gift card</td>
-                        <td>0.940</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
-                        <td>0.101</td>
-                        <td>0.100</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
-                        <td>0.797</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
-                        <td>0.052</td>
-                        <td>-0.200</td>
-                        <td>0</td>
-                    </tr>
-                </table>
-                <table id="googleTable" style="display:none">
-                    <tr>
-                        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                        <th onclick="sortTable(0)">Sentence</th>
-                        <th onclick="sortTable(1)">Google Label</th>
-                        <th onclick="sortTable(2)">True Label</th>
-                    </tr>
-                    <tr>
-                        <td>welcome to twitter xx</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
-                        <td>0.5</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
-                        <td>-0.200</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>free : star bucks gift card</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
-                        <td>0.100</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
-                        <td>-0.200</td>
-                        <td>0</td>
-                    </tr>
                 </table>
 
             </div>
@@ -668,6 +564,17 @@
     //     }
     // }
 
+
+    function showResults(){
+        var results = document.getElementById("results")
+
+        if(results.style.display ==="none"){
+            results.style.display = "block";
+        }
+        else{
+            results.style.display = "none";
+        }
+    }
 
     function showSummary() {
         var sum = document.getElementById("summary");
