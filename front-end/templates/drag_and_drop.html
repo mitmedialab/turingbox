@@ -275,7 +275,7 @@
                 <div class="square">
                 <div class="centerBlock">
 
-                <div id="dataDrop" class="rcorners4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="dataDrop" class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 </div>
 
             </div>
@@ -514,29 +514,59 @@
     }
 
     function showRottenDiv() {
-        var x = document.getElementById("rottenTomatoesDiv");
-        if (x.style.display === "none") {
-            x.style.display = "block";
+        var amazon = document.getElementById("amazonDiv");
+        var rt = document.getElementById("rottenTomatoesDiv");
+        var twitter = document.getElementById("twitterDiv");
+
+        if(amazon.style.display === "block"){
+            amazon.style.display = "none"
+        }
+        if(twitter.style.display === "block"){
+            twitter.style.display = "none"
+        }
+        if (rt.style.display === "none") {
+            rt.style.display = "block";
         } else {
-            x.style.display = "none";
+            rt.style.display = "none";
         }
     }
 
     function showAmazonDiv() {
-        var x = document.getElementById("amazonDiv");
-        if (x.style.display === "none") {
-            x.style.display = "block";
+        var amazon = document.getElementById("amazonDiv");
+        var rt = document.getElementById("rottenTomatoesDiv");
+        var twitter = document.getElementById("twitterDiv");
+
+        if(rt.style.display === "block"){
+            rt.style.display = "none"
+        }
+        if(twitter.style.display === "block"){
+            twitter.style.display = "none"
+        }
+
+
+        if (amazon.style.display === "none") {
+            amazon.style.display = "block";
         } else {
-            x.style.display = "none";
+            amazon.style.display = "none";
         }
     }
 
     function showTwitterDiv() {
-        var x = document.getElementById("twitterDiv");
-        if (x.style.display === "none") {
-            x.style.display = "block";
+        var amazon = document.getElementById("amazonDiv");
+        var rt = document.getElementById("rottenTomatoesDiv");
+        var twitter = document.getElementById("twitterDiv");
+
+        if(rt.style.display === "block"){
+            rt.style.display = "none"
+        }
+        if(amazon.style.display === "block"){
+            amazon.style.display = "none"
+        }
+
+        if (twitter.style.display === "none") {
+            twitter.style.display = "block";
         } else {
-            x.style.display = "none";
+            twitter.style.display = "none";
         }
     }
 
