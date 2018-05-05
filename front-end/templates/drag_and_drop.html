@@ -51,8 +51,8 @@
             border-radius: 15px;
             /*border: 6px solid #29abe2;*/
             border: 1px dashed black;
-            padding: 20px;
-            width: 80%
+            padding: 10px;
+            width: 90%
         }
 
         .first {
@@ -85,10 +85,8 @@
         .rcorners2 {
                      border-radius: 15px;
                      /*border: 6px solid #29abe2;*/
-                     border: 1px solid black;
                      background-color: white;
 
-                     padding: 20px;
                      width: 100%;
 
                      /*height: 300px;*/
@@ -99,16 +97,21 @@
             border: 1px dashed black;
             background-color: white;
 
+            position: absolute;
+            top: 50%;
+            /*left: 50%;*/
+            transform: translate(-50%,-50%);
+
             padding: 20px;
-            width: 100%;
-            /*height:*/
+            width: 75%;
+            height: 75%;
 
             /*height: 300px;*/
         }
         .rcorners4 {
             border-radius: 15px;
             /*border: 6px solid #29abe2;*/
-            border: 1px dashed black;
+            border: 1px solid black;
             background-color: white;
 
             padding: 20px;
@@ -116,6 +119,18 @@
             align: center;
             /*height:*/
 
+        }
+        .rcorners5 {
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            border: 1px dashed black;
+            background-color: white;
+
+            padding: 20px;
+            width: 100%;
+            /*height:*/
+
+            /*height: 300px;*/
         }
 
         #div1{
@@ -135,7 +150,9 @@
             background-color: white;
 
             padding: 20px;
+            /*height: 200px;*/
         }
+
 
         #div3{
             margin: 10px;
@@ -152,6 +169,8 @@
             border-radius: 25px;
             border: 5px solid black;
             background-color: white;
+            position: relative;
+
 
 
             padding: 20px;
@@ -252,6 +271,19 @@
             width: 200px;
         }
 
+        #rtDrag{
+            cursor: pointer;
+        }
+        #twitterDrag{
+            cursor: pointer;
+        }
+        #amazonDrag{
+            cursor: pointer;
+        }
+
+
+
+
 
     </style>
 
@@ -276,7 +308,8 @@
                 <div class="square">
                 <div class="centerBlock">
 
-                <div id="dataDrop" class="rcorners4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="dataDrop" class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
                 </div>
 
             </div>
@@ -288,13 +321,13 @@
 
         <div id="div3">
 
-            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="rcorners5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             <br>
             <br>
-            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="rcorners5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             <br>
             <br>
-            <div class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="rcorners5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
         </div>
 
@@ -310,11 +343,17 @@
                 <div class="row">
                     <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-                    <div class="column" ><button type="button" onclick="showRottenDiv()"> <img src="img/rotten_tomatoes.jpg"  draggable="true" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" onclick="showAmazonDiv()"><img src="img/amazon_customer_reviews.png"  draggable="true" ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ><button type="button" onclick="showTwitterDiv()"><img src="img/twitter_sentiment.png"  draggable="true" ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
+
+                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" class="rcorners2" onclick="showRottenDiv()"> <img src="{{ url_for('static',filename='img/rotten_tomatoes.jpg') }}" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
+                        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ><button type="button" class="rcorners2" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/amazon_customer_reviews.png') }}"  ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"><button type="button" class="rcorners2" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_sentiment.png') }}"  ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
+
+
+
+
                     </div>
                 </div>
+
                 <div class="row">
                     <div id="rottenTomatoesDiv" style="display:none">
                         <h4>Stanford Sentiment Treebank of Rotten Tomato Reviews</h4>
@@ -332,7 +371,9 @@
 
                         This dataset consists of 4,218 tweets taken from the larger SentiStrength 2 dataset. All tweets were in English. More information can be found at: <a>https://bit.ly/2JuWd98</a>.
                     </div>
+
                 </div>
+
 
             </div>
 
@@ -343,31 +384,41 @@
                 <div class="row">
 
                 <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <div draggable="true" ondragstart="drag(event)" id="googleDrag" class="rcorners2" >Google Cloud Language API</div>
+                <div draggable="true" ondragstart="drag(event)" id="googleDrag" class="rcorners4" >Google Cloud Language API</div>
                 <br>
-                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners2">Microsoft Text Analytics API</div>
+                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4">Microsoft Text Analytics API</div>
                 </div>
+                    <div class="column middle">
+                        <br>
+                        <h4> Upload a new algorithm:</h4>
+
+                        <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
+                    </div>
                 </div>
+
+
             </div>
 
         </div>
 
         <div class="row">
-            <div class="column left">
-                <h4> Upload a new dataset:</h4>
+            <!--<div class="column left">-->
+                <!--<br>-->
+                <!--<h4> Upload a new dataset:</h4>-->
 
-                <!--<label for="exampleAlgorithmFile"> Upload your dataset</label>-->
-                <input type="file" class="form-control-file" id="exampleAlgorithmFile">
-                <br>
-            </div>
-            <div class="column middle">
-                <h4> Upload a new algorithm:</h4>
-
-                <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
-            </div>
-            <!--<div class="column right">-->
-
+                <!--&lt;!&ndash;<label for="exampleAlgorithmFile"> Upload your dataset</label>&ndash;&gt;-->
+                <!--<input type="file" class="form-control-file" id="exampleAlgorithmFile">-->
+                <!--<br>-->
             <!--</div>-->
+            <!--<div class="column middle">-->
+                <!--<br>-->
+                <!--<h4> Upload a new algorithm:</h4>-->
+
+                <!--<input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>-->
+            <!--</div>-->
+            <div class="column right">
+
+            </div>
         </div>
     </div>
     <div class="column second">
@@ -377,7 +428,7 @@
             <div class="section__container">
                 <div class="output__controls">
                     <div class="output__selector-wrapper">
-                        <div class="output_selector__option"><h4 onclick="showResults()">Results</h4></div>
+                        <div class="output_selector__option"><h4 onclick="showCorrectResults()">Results</h4></div>
                         <div class="output_selector__option"><h4 onclick="showSummary()">Summary</h4></div>
                     </div>
                     <div>
@@ -448,59 +499,7 @@
 
             <div class="row">
             <br>
-                <table id="microsoftTable">
-                    <tr>
-                        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                        <th onclick="sortTable(0)">Sentence</th>
-                        <th onclick="sortTable(1)">Microsoft Label</th>
-                        <th onclick="sortTable(2)">True Label</th>
-                    </tr>
-                    <div id = "twitter">
-                    <tr>
-                        <td>welcome to twitter xx</td>
-                        <td>0.992</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
-                        <td>0.954</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
-                        <td>0.731</td>
-                        <td>0</td>
-                    </tr>
-                </div>
-                <div id = "yelp">
-                    <tr>
-                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
-                        <td>0.123</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>free : star bucks gift card</td>
-                        <td>0.940</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
-                        <td>0.101</td>
-                        <td>0</td>
-                    </tr>
-                </div>
-                    <tr>
-                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
-                        <td>0.797</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
-                        <td>0.0523</td>
-                        <td>0</td>
-                    </tr>
-                </table>
-                <table id="MSandGoogleTable" style="display:none">
+                <table id="amazonResults" style="display:none">
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
                         <th onclick="sortTable(0)">Sentence</th>
@@ -508,102 +507,50 @@
                         <th onclick="sortTable(2)">Google Label</th>
                         <th onclick="sortTable(3)">True Label</th>
                     </tr>
+                    {% for item in amazon %}
                     <tr>
-                        <td>welcome to twitter xx</td>
-                        <td>0.992</td>
-                        <td>0.400</td>
-                        <td>1</td>
+                        <td>{{item['text']}}</td>
+                        <td>{{item['a_sent']}}</td>
+                        <td>{{item['g_sent']}}</td>
+                        <td>{{item['label']}}</td>
                     </tr>
-                    <tr>
-                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
-                        <td>0.954</td>
-                        <td>0.5</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
-                        <td>0.731</td>
-                        <td>-0.200</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
-                        <td>0.123</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>free : star bucks gift card</td>
-                        <td>0.940</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
-                        <td>0.101</td>
-                        <td>0.100</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
-                        <td>0.797</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
-                        <td>0.052</td>
-                        <td>-0.200</td>
-                        <td>0</td>
-                    </tr>
+                    {% endfor %}
                 </table>
-                <table id="googleTable" style="display:none">
+
+                <table id="twitterResults" style="display:none">
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
                         <th onclick="sortTable(0)">Sentence</th>
-                        <th onclick="sortTable(1)">Google Label</th>
-                        <th onclick="sortTable(2)">True Label</th>
+                        <th onclick="sortTable(1)">Microsoft Label</th>
+                        <th onclick="sortTable(2)">Google Label</th>
+                        <th onclick="sortTable(3)">True Label</th>
                     </tr>
+                    {% for item in twitter %}
                     <tr>
-                        <td>welcome to twitter xx</td>
-                        <td>0.400</td>
-                        <td>1</td>
+                        <td>{{item['text']}}</td>
+                        <td>{{item['a_sent']}}</td>
+                        <td>{{item['g_sent']}}</td>
+                        <td>{{item['label']}}</td>
                     </tr>
+                    {% endfor %}
+                </table>
+
+                <table id="rtResults" style="display:none">
                     <tr>
-                        <td>rt happy birthday to carole king b . 1942 , carmen miranda 1909 </td>
-                        <td>0.5</td>
-                        <td>1</td>
+                        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+                        <th onclick="sortTable(0)">Sentence</th>
+                        <th onclick="sortTable(1)">Microsoft Label</th>
+                        <th onclick="sortTable(2)">Google Label</th>
+                        <th onclick="sortTable(3)">True Label</th>
                     </tr>
+                    {% for item in sst %}
                     <tr>
-                        <td>he's been ranting about this for years rt "finally blogged business is conducted by people, not users" </td>
-                        <td>-0.200</td>
-                        <td>0</td>
+                        <td>{{item['text']}}</td>
+                        <td>{{item['a_sent']}}</td>
+                        <td>{{item['g_sent']}}</td>
+                        <td>{{item['label']}}</td>
                     </tr>
-                    <tr>
-                        <td>after these shows i'm callin it a early nite , been up early and already gettin sleepy !!</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>free : star bucks gift card</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>urgh i'm soo bored and tired. text. call, anything. hmm i must find things to multi task on now!</td>
-                        <td>0.100</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>and simon peter answered and said, thou art the christ, the son of the living god. matthew 16:16 jesus loves you</td>
-                        <td>0.400</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>finally off work. gonna go home and try to sleep whatever this is off so i can go to my other job. i hate to miss work</td>
-                        <td>-0.200</td>
-                        <td>0</td>
-                    </tr>
+                    {% endfor %}
                 </table>
 
             </div>
@@ -617,10 +564,10 @@
 
     <div class="footer">
 
-    <a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/"><img class = "logoAbout" src="img/scalablecoop.png"></a>
-    <a class = "logoAbout" href="https://www.media.mit.edu"><img class = "logoAbout" style = "margin-right:0px;" src="img/Mit_medialab_logo.png"></a>
-    <a href = ""><img class = "logoAbout"  src="img/mit_logo_trans.png"></a><br>
-    Scalable Cooperation | MIT Media Lab
+    <a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/"><img class = "logoAbout" src="{{ url_for('static',filename='img/scalablecoop.png') }}"  width='100px'></a>
+    <a class = "logoAbout" href="https://www.media.mit.edu"><img class = "logoAbout" style = "margin-right:0px;" src="{{ url_for('static',filename='img/Mit_medialab_logo.png') }}"  width='85px'></a>
+    <a href = ""><img class = "logoAbout"  src="{{ url_for('static',filename='img/mit_logo_trans.png') }}" width='175px'></a><br>
+    Scalable Cooperation | MIT Media 
     </div>
 
 </div>
@@ -631,13 +578,18 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
+
+
+
     function allowDrop(ev) {
         ev.preventDefault();
     }
 
     function drag(ev) {
+
         ev.dataTransfer.setData("text", ev.target.id);
     }
+
 
     function drop(ev) {
         ev.preventDefault();
@@ -646,70 +598,189 @@
     }
 
     function showRottenDiv() {
-        var x = document.getElementById("rottenTomatoesDiv");
-        if (x.style.display === "none") {
-            x.style.display = "block";
+        var amazon = document.getElementById("amazonDiv");
+        var rt = document.getElementById("rottenTomatoesDiv");
+        var twitter = document.getElementById("twitterDiv");
+
+        if(amazon.style.display === "block"){
+            amazon.style.display = "none"
+        }
+        if(twitter.style.display === "block"){
+            twitter.style.display = "none"
+        }
+        if (rt.style.display === "none") {
+            rt.style.display = "block";
         } else {
-            x.style.display = "none";
+            rt.style.display = "none";
         }
     }
 
     function showAmazonDiv() {
-        var x = document.getElementById("amazonDiv");
-        if (x.style.display === "none") {
-            x.style.display = "block";
+        var amazon = document.getElementById("amazonDiv");
+        var rt = document.getElementById("rottenTomatoesDiv");
+        var twitter = document.getElementById("twitterDiv");
+
+        if(rt.style.display === "block"){
+            rt.style.display = "none"
+        }
+        if(twitter.style.display === "block"){
+            twitter.style.display = "none"
+        }
+
+
+        if (amazon.style.display === "none") {
+            amazon.style.display = "block";
         } else {
-            x.style.display = "none";
+            amazon.style.display = "none";
         }
     }
 
     function showTwitterDiv() {
-        var x = document.getElementById("twitterDiv");
-        if (x.style.display === "none") {
-            x.style.display = "block";
+        var amazon = document.getElementById("amazonDiv");
+        var rt = document.getElementById("rottenTomatoesDiv");
+        var twitter = document.getElementById("twitterDiv");
+
+        if(rt.style.display === "block"){
+            rt.style.display = "none"
+        }
+        if(amazon.style.display === "block"){
+            amazon.style.display = "none"
+        }
+
+        if (twitter.style.display === "none") {
+            twitter.style.display = "block";
         } else {
-            x.style.display = "none";
+            twitter.style.display = "none";
         }
     }
 
-    function showResults(){
-        var ms_results = document.getElementById("microsoftTable")
-    }
-    function showRightDataTable() {
-        var ms_data = document.getElementById("microsoftTable");
-        var msg_data = document.getElementById("MSandGoogleTable");
-        var sum = document.getElementById("summary");
-        var google = document.getElementById("drag4");
-        var ms = document.getElementById("drag5");
-        var divMS = document.getElementById("div3").contains(drag5);
-        var divG = document.getElementById("div3").contains(drag4 && drag5);
-        if(document.getElementById("div3").contains(drag5) && !(document.getElementById("div3").contains(drag4))){
-            ms_data.style.display = "block"
+
+    function showCorrectResults(){
+
+        results = getCorrectResults();
+
+        console.log("show correct");
+
+        var summary = document.getElementById("summary");
+
+        if(summary.style.display === "block"){
+            summary.style.display = "none";
         }
-        else if(divG){
-            ms_data.style.display = "none"
-            msg_data.style.display = "block"
+
+
+        document.getElementById("amazonResults").style.display = "none";
+        document.getElementById("twitterResults").style.display = "none";
+        document.getElementById("rtResults").style.display = "none";
+
+        results.style.display = "block";
+
+        // showCorrectColumns(results);
+
+        if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
+            show_hide_results_column(1,false,results);
+        }
+        else{
+            show_hide_results_column(1,true,results);
+        }
+        if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
+            show_hide_results_column(2,false,results);
+        }
+        else{
+            show_hide_results_column(2,true,results);
+        }
+
+    }
+
+    function show_hide_results_column(col_no, do_show, results) {
+        var rows = results.rows;
+        for (var row = 0; row < rows.length; row++) {
+            var cols = rows[row].cells;
+            if (col_no >= 0 && col_no < cols.length) {
+                cols[col_no].style.display = do_show ? '' : 'none';
+            }
         }
     }
-    // function showDataTable() {
-    //     var sum = document.getElementById("summary");
-    //     var ms_data = document.getElementById("microsoftTable");
-    //     var msg_data = document.getElementById("MSandGoogleTable");
-    //     if(ms_data.style.display === "none" && msg_data.style.display == "none"){
-    //         sum.style.display = "none";
-    //         showRightDataTable();
+
+    function getCorrectResults(){
+
+        console.log("getcorrectresults");
+        var results = document.getElementById("rtResults");
+
+        if(document.getElementById("dataDrop").contains(document.getElementById("twitterDrag"))){
+            // document.getElementsByClassName("rtSum")
+
+            results = document.getElementById("twitterResults");
+
+        }
+        else if(document.getElementById("dataDrop").contains(document.getElementById("amazonDrag"))){
+            results = document.getElementById("amazonResults");
+
+        }
+        else if(document.getElementById("dataDrop").contains(document.getElementById("rtDrag"))){
+            results = document.getElementById("rtResults");
+        }
+
+
+        console.log(results);
+        return results;
+    }
+
+    // function showCorrectColumns(results){
+    //     // var results = document.getElementById("results");
+    //     // results = getCorrectResults();
+    //
+    //     var summary = document.getElementById("summary");
+    //
+    //     if(summary.style.display === "block"){
+    //         summary.style.display = "none";
+    //     }
+    //
+    //     if(results.style.display ==="none"){
+    //         results.style.display = "block";
+    //         if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
+    //             show_hide_results_column(1,false);
+    //         }
+    //         else{
+    //             show_hide_results_column(1,true);
+    //         }
+    //         if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
+    //             show_hide_results_column(2,false);
+    //         }
+    //         else{
+    //             show_hide_results_column(2,true);
+    //         }
     //     }
     //     else{
-    //         ms_data.style.display = "none";
-    //         msg_data.style.display = "none";
+    //         results.style.display = "none";
     //     }
     // }
 
 
+
+    // function show_hide_results_row(row_no, do_show){
+    //     var rows = document.getElementById("results").rows;
+    //     rows[row_no].style.display = do_show ? '' : 'none';
+    // }
+
     function showSummary() {
         var sum = document.getElementById("summary");
+        var twitterResults = document.getElementById("twitterResults");
+        var amazonResults = document.getElementById("amazonResults");
+        var rtResults = document.getElementById("rtResults");
+
+
         // var ms_data = document.getElementById("microsoftTable");
         // var msg_data = document.getElementById("MSandGoogleTable");
+
+        if(twitterResults.style.display === "block"){
+            twitterResults.style.display = "none";
+        }
+        if(amazonResults.style.display === "block"){
+            amazonResults.style.display = "none";
+        }
+        if(rtResults.style.display === "block"){
+            rtResults.style.display = "none";
+        }
         if(sum.style.display === "none"){
             // ms_data.style.display = "none";
             // msg_data.style.display = "none";
@@ -783,19 +854,19 @@
     }
 
 
-    function submitBox(){
-        if ($('#clarifai').is(":checked")){
-            location.href = 'box1.html';
-        } else if ($('#precog').is(":checked")){
-            location.href = 'box2.html';
-        } else if ($('#DropConnect').is(":checked")){
-            location.href = 'box3.html';
-        }
-    }
+    // function submitBox(){
+    //     if ($('#clarifai').is(":checked")){
+    //         location.href = 'box1.html';
+    //     } else if ($('#precog').is(":checked")){
+    //         location.href = 'box2.html';
+    //     } else if ($('#DropConnect').is(":checked")){
+    //         location.href = 'box3.html';
+    //     }
+    // }
 
     function sortTable(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("microsoftTable");
+        table = document.getElementById(results);
         switching = true;
         //Set the sorting direction to ascending:
         dir = "asc";
@@ -847,6 +918,173 @@
             }
         }
     }
+
+    //maybe making drag and drop better
+
+    // let currentDroppable = null;
+    //
+    // rtDrag.onmousedown = function(event) {
+    //
+    //     let shiftX = event.clientX - rtDrag.getBoundingClientRect().left;
+    //     let shiftY = event.clientY - rtDrag.getBoundingClientRect().top;
+    //
+    //     rtDrag.style.position = 'absolute';
+    //     rtDrag.style.zIndex = 1000;
+    //     document.body.append(rtDrag);
+    //
+    //     moveAt(event.pageX, event.pageY);
+    //
+    //     function moveAt(pageX, pageY) {
+    //         rtDrag.style.left = pageX - shiftX + 'px';
+    //         rtDrag.style.top = pageY - shiftY + 'px';
+    //     }
+    //
+    //     function onMouseMove(event) {
+    //         moveAt(event.pageX, event.pageY);
+    //
+    //         rtDrag.hidden = true;
+    //         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    //         rtDrag.hidden = false;
+    //
+    //         if (!elemBelow) return;
+    //
+    //         let droppableBelow = elemBelow.closest('.droppable');
+    //         if (currentDroppable != droppableBelow) {
+    //             if (currentDroppable) { // null when we were not over a droppable before this event
+    //                 leaveDroppable(currentDroppable);
+    //             }
+    //             currentDroppable = droppableBelow;
+    //             if (currentDroppable) { // null if we're not coming over a droppable now
+    //                 // (maybe just left the droppable)
+    //                 enterDroppable(currentDroppable);
+    //             }
+    //         }
+    //     }
+    //
+    //     document.addEventListener('mousemove', onMouseMove);
+    //
+    //     rtDrag.onmouseup = function() {
+    //         document.removeEventListener('mousemove', onMouseMove);
+    //         rtDrag.onmouseup = null;
+    //     };
+    //
+    // };
+    //
+    // twitterDrag.onmousedown = function(event) {
+    //
+    //     let shiftX = event.clientX - twitterDrag.getBoundingClientRect().left;
+    //     let shiftY = event.clientY - twitterDrag.getBoundingClientRect().top;
+    //
+    //     twitterDrag.style.position = 'absolute';
+    //     twitterDrag.style.zIndex = 1000;
+    //     document.body.append(twitterDrag);
+    //
+    //     moveAt(event.pageX, event.pageY);
+    //
+    //     function moveAt(pageX, pageY) {
+    //         twitterDrag.style.left = pageX - shiftX + 'px';
+    //         twitterDrag.style.top = pageY - shiftY + 'px';
+    //     }
+    //
+    //     function onMouseMove(event) {
+    //         moveAt(event.pageX, event.pageY);
+    //
+    //         twitterDrag.hidden = true;
+    //         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    //         twitterDrag.hidden = false;
+    //
+    //         if (!elemBelow) return;
+    //
+    //         let droppableBelow = elemBelow.closest('.droppable');
+    //         if (currentDroppable != droppableBelow) {
+    //             if (currentDroppable) { // null when we were not over a droppable before this event
+    //                 leaveDroppable(currentDroppable);
+    //             }
+    //             currentDroppable = droppableBelow;
+    //             if (currentDroppable) { // null if we're not coming over a droppable now
+    //                 // (maybe just left the droppable)
+    //                 enterDroppable(currentDroppable);
+    //             }
+    //         }
+    //     }
+    //
+    //     document.addEventListener('mousemove', onMouseMove);
+    //
+    //     twitterDrag.onmouseup = function() {
+    //         document.removeEventListener('mousemove', onMouseMove);
+    //         twitterDrag.onmouseup = null;
+    //     };
+    //
+    // };
+    //
+    // amazonDrag.onmousedown = function(event) {
+    //
+    //     let shiftX = event.clientX - amazonDrag.getBoundingClientRect().left;
+    //     let shiftY = event.clientY - amazonDrag.getBoundingClientRect().top;
+    //
+    //     amazonDrag.style.position = 'absolute';
+    //     amazonDrag.style.zIndex = 1000;
+    //     document.body.append(amazonDrag);
+    //
+    //     moveAt(event.pageX, event.pageY);
+    //
+    //     function moveAt(pageX, pageY) {
+    //         amazonDrag.style.left = pageX - shiftX + 'px';
+    //         amazonDrag.style.top = pageY - shiftY + 'px';
+    //     }
+    //
+    //     function onMouseMove(event) {
+    //         moveAt(event.pageX, event.pageY);
+    //
+    //         amazonDrag.hidden = true;
+    //         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    //         amazonDrag.hidden = false;
+    //
+    //         if (!elemBelow) return;
+    //
+    //         // let droppableBelow = elemBelow.closest('.droppable');
+    //         if (currentDroppable != droppableBelow) {
+    //             if (currentDroppable) { // null when we were not over a droppable before this event
+    //                 leaveDroppable(currentDroppable);
+    //             }
+    //             currentDroppable = droppableBelow;
+    //             if (currentDroppable) { // null if we're not coming over a droppable now
+    //                 // (maybe just left the droppable)
+    //                 enterDroppable(currentDroppable);
+    //             }
+    //         }
+    //     }
+    //
+    //     document.addEventListener('mousemove', onMouseMove);
+    //
+    //     amazonDrag.onmouseup = function() {
+    //         document.removeEventListener('mousemove', onMouseMove);
+    //         amazonDrag.onmouseup = null;
+    //     };
+    //
+    // };
+    //
+    //
+    //
+    // function enterDroppable(elem) {
+    //     elem.style.background = 'lightgrey';
+    // }
+    //
+    // function leaveDroppable(elem) {
+    //     elem.style.background = '';
+    // }
+    //
+    // twitterDrag.ondragstart = function() {
+    //     return false;
+    // };
+    //
+    // amazonDrag.ondragstart = function() {
+    //     return false;
+    // };
+    //
+    // rtDrag.ondragstart = function() {
+    //     return false;
+    // };
 
 </script>
 </body>
