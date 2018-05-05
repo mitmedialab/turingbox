@@ -2,6 +2,9 @@ import requests
 import numpy as np
 import csv
 import os
+import pandas as pd
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.feature_extraction.text import CountVectorizer
 
 AZURE_SUBSCRIPTION_KEY = ""
 AZURE_ENDPOINT = ""
@@ -38,7 +41,7 @@ def write_results(tweet_list, label_list, api_func, save_file, score_label):
         sentiment = api_func(np.array(tweet_list))
         for i, twt in enumerate(tweet_list): 
             if len(sentiment[i]) == 1: 
-                csv_writer.writerow([twt, label_list[i], sentiment[i]])
+                csv_writer.writerow([twt, label_list[i], sentiment[i][0]])
             else: 
                 csv_writer.writerow([twt, label_list[i]] + sentiment[i])
 
@@ -65,6 +68,28 @@ def run_google_sentiment(input_array):
 
     return result_arr
 
+
+def run_custom_sentiment(input_array): 
+    df = pd.read_csv('datasets/amazon_sentiment.csv')
+    texts = df['text'].tolist() 
+    labels = df['label'].tolist()
+    vectorizer = CountVectorizer(stop_words='english', max_features=10000)
+    train_features = vectorizer.fit_transform(texts[1000:9000])
+    nb_model = MultinomialNB()
+    nb_model.fit(train_features, labels[1000:9000])
+
+    vocab = vectorizer.vocabulary_
+
+    vectorizer = CountVectorizer(stop_words='english', vocabulary=vocab)
+    test_features = vectorizer.fit_transform(input_array)
+    predictions = nb_model.predict(test_features)
+    prob = nb_model.predict_proba(test_features)
+    predictions = nb_model.predict(test_features)
+
+    class_prob = [[p[1]] for p in prob]
+    return class_prob
+
+
 if __name__ == "__main__": 
 
     tweets = [] 
@@ -77,5 +102,5 @@ if __name__ == "__main__":
             tweets.append(row[0])
             labels.append(row[1])
     # write_results(tweets, labels, run_azure, 'results/twitter_sentiment100_results.csv')
-    write_results(tweets, labels, run_google_sentiment, 'results/amazon_sentiment100_google_results.csv', ['g_sentiment', 'g_magnitude'])
+    write_results(tweets, labels, run_custom_sentiment, 'results/amazon_sentiment100_custom_results.csv', ['NB_prob'])
 
