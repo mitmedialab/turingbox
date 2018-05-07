@@ -371,10 +371,13 @@ console.log(47)
 
 
     function drop(ev) {
+
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
-        showCorrectResults()
+        console.log("dropped");
+
+        showCorrectResults();
     }
 
     function showRottenDiv() {
@@ -435,69 +438,95 @@ console.log(47)
     }
 
 
-    function showCorrectResults(){
-         document.getElementById("investigate").setAttribute("class", "inactive")
-        document.getElementById("tabulate").setAttribute("class", "active")
-        var results = document.getElementById("rtResults");
-        var data = []
-        var models = []
+function showCorrectResults(){
+    document.getElementById("investigate").setAttribute("class", "inactive")
+    document.getElementById("tabulate").setAttribute("class", "active")
+    var results = document.getElementById("rtResults");
+    var data = []
+    var models = []
+    if(document.getElementById("dataDrop1").contains(document.getElementById("twitterDrag"))){
+        // document.getElementsByClassName("rtSum")
+        results1 = document.getElementById("twitterResults");
+        data = data.concat("twitter")
+    }
+    if(document.getElementById("dataDrop1").contains(document.getElementById("amazonDrag"))){
+        results1 = document.getElementById("amazonResults");
+        data = data.concat("amazon")
+    }
+    if(document.getElementById("dataDrop1").contains(document.getElementById("rtDrag"))){
+        results1 = document.getElementById("rtResults");
+        data = data.concat("sst")
+    }
 
-        if(document.getElementById("dataDrop").contains(document.getElementById("twitterDrag"))){
-            // document.getElementsByClassName("rtSum")
+    if(document.getElementById("dataDrop2").contains(document.getElementById("twitterDrag"))){
+        // document.getElementsByClassName("rtSum")
+        results2 = document.getElementById("twitterResults");
+        data = data.concat("twitter")
+    }
+    if(document.getElementById("dataDrop2").contains(document.getElementById("amazonDrag"))){
+        results2 = document.getElementById("amazonResults");
+        data = data.concat("amazon")
+    }
+    if(document.getElementById("dataDrop2").contains(document.getElementById("rtDrag"))){
+        results2 = document.getElementById("rtResults");
+        data = data.concat("sst")
+    }
+    console.log("show correct");
+    var summary = document.getElementById("summary");
+    var ipython = document.getElementById("ipython");
+    if(summary.style.display === "block"){
+        summary.style.display = "none";
+    }
 
-            results = document.getElementById("twitterResults");
-            data = data.concat("twitter")
+    document.getElementById("amazonResults").style.display = "none";
+    document.getElementById("twitterResults").style.display = "none";
+    document.getElementById("rtResults").style.display = "none";
 
-        }
-        if(document.getElementById("dataDrop").contains(document.getElementById("amazonDrag"))){
-            results = document.getElementById("amazonResults");
-            data = data.concat("amazon")
-
-        }
-        if(document.getElementById("dataDrop").contains(document.getElementById("rtDrag"))){
-            results = document.getElementById("rtResults");
-            data = data.concat("sst")
-        }
-
-
-        console.log("show correct");
-
-        var summary = document.getElementById("summary");
-
-        var ipython = document.getElementById("ipython");
-
-        if(summary.style.display === "block"){
-            summary.style.display = "none";
-        }
-        
-
-        document.getElementById("amazonResults").style.display = "none";
-        document.getElementById("twitterResults").style.display = "none";
-        document.getElementById("rtResults").style.display = "none";
-
-        results.style.display = "block";
-
-        // showCorrectColumns(results);
-
-
+    if(!(document.getElementById("dataDrop1").innerHTML === "")){
+        results1.style.display = "block";
 
         if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
-            show_hide_results_column(1,false,results);
+            show_hide_results_column(1,false,results1);
         }
         else{
-            show_hide_results_column(1,true,results);
+            show_hide_results_column(1,true,results1);
             models = models.concat("microsoft")
-
         }
         if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
-            show_hide_results_column(2,false,results);
+            show_hide_results_column(2,false,results1);
         }
         else{
-            show_hide_results_column(2,true,results);
+            show_hide_results_column(2,true,results1);
             models = models.concat("google")
         }
-        ipython.src = "http://localhost:8889/notebooks/explore.ipynb?data=".concat(data.join(",")).concat("&model=").concat(models.join(","))
+
     }
+    if(!(document.getElementById("dataDrop2").innerHTML === "")){
+        results2.style.display = "block";
+
+        if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
+            show_hide_results_column(1,false,results2);
+        }
+        else{
+            show_hide_results_column(1,true,results2);
+            models = models.concat("microsoft")
+        }
+        if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
+            show_hide_results_column(2,false,results2);
+        }
+        else{
+            show_hide_results_column(2,true,results2);
+            models = models.concat("google")
+        }
+
+    }
+    // showCorrectColumns(results);
+
+
+
+    ipython.src = "http://localhost:8889/notebooks/explore.ipynb?data=".concat(data.join(",")).concat("&model=").concat(models.join(","))
+}
+
 
     function show_hide_results_column(col_no, do_show, results) {
         var rows = results.rows;
@@ -541,10 +570,9 @@ console.log(47)
      }
 
 
-
-    function sortTable(n) {
+    function sortAmazonTable(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById(results);
+        table = document.getElementById("amazonResults");
         switching = true;
         //Set the sorting direction to ascending:
         dir = "asc";
@@ -619,11 +647,13 @@ console.log(47)
                 <h3>stimulus</h3>
 
 
+                <!--<div class="square" id="dataDrop" ondrop="drop(event)" ondragover="allowDrop(event)">-->
                 <div class="square">
+
                 <div class="centerBlock">
 
-                <div id="dataDrop" class="rcorners3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
+                    <div id="dataDrop1" class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="dataDrop2" class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 </div>
 
             </div>
@@ -739,12 +769,12 @@ console.log(47)
                 <div class="output__controls">
                     <div class="output__selector-wrapper">
                         <div class="output_selector__option"><h4 onclick="showCorrectResults()" class ="active" id = "tabulate">tabulate</h4></div>
-                        <div class="output_selector__option"><h4 onclick="showSummary()" id = "investigate" class = "inactive" >investigate</h4></div>
+                        <div class="output_selector__option"><h4 onclick="showSummary()" id = "investigate" class = "inactive" show>investigate</h4></div>
                     </div>
                     <div>
                         <div class="centerBlock">
                             <div id = "summary" style="display:none" >
-                                 <iframe id = "ipython" width = "600px" height = "800px" src = "http://localhost:8889/notebooks/explore.ipynb?data=amazon&model=google"></iframe>
+                                 <!--<iframe id = "ipython" width = "600px" height = "800px" src = "http://localhost:8889/notebooks/explore.ipynb?data=amazon&model=google"></iframe>-->
                             </div>
                         </div>
                     </div>
