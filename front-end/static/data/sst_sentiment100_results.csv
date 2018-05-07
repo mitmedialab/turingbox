@@ -1,4 +1,4 @@
-text,label,Azure Sentiment,g_sentiment,g_magnitude
+text,label,microsoft,google,g_magnitude
 The movie understands like few others how the depth and breadth of emotional intimacy give the physical act all of its meaning and most of its pleasure .,1,0.843128204,0.899999976,0.899999976
 What distinguishes Time of Favor from countless other thrillers is its underlying concern with the consequences of words and with the complicated emotions fueling terrorist acts .,1,0.718177497,-0.300000012,0.300000012
 "Smart , provocative and blisteringly funny .",1,0.994904876,0.699999988,0.699999988
@@ -40,7 +40,7 @@ The minor figures surrounding -LRB- Bobby -RRB- ... form a gritty urban mosaic .
 "All-in-all , the film is an enjoyable and frankly told tale of a people who live among us , but not necessarily with us .",1,0.833654523,0.400000006,0.400000006
 "An interesting story with a pertinent -LRB- cinematically unique -RRB- message , told fairly well and scored to perfection , I found myself struggling to put my finger on that elusive `` missing thing . ''",1,0.185383707,0.5,1
 A movie with a real anarchic flair .,1,0.79589045,0.5,0.5
-"Without non-stop techno or the existential overtones of a Kieslowski morality tale , Maelström is just another Winter Sleepers .",0,0.5,0.100000001,0.100000001
+"Without non-stop techno or the existential overtones of a Kieslowski morality tale , Maelstr̦m is just another Winter Sleepers .",0,0.5,0.100000001,0.100000001
 "Nicks , seemingly uncertain what 's going to make people laugh , runs the gamut from stale parody to raunchy sex gags to formula romantic comedy .",0,0.180364311,-0.800000012,0.800000012
 "If there 's one thing this world needs less of , it 's movies about college that are written and directed by people who could n't pass an entrance exam .",0,0.5,0.100000001,0.100000001
 "The script kicks in , and Mr. Hartley 's distended pace and foot-dragging rhythms follow .",0,0.5,-0.300000012,0.300000012

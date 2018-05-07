@@ -144,7 +144,7 @@
 
         }
         #div2 {
-            margin: 10px;
+            margin-left: 15%;
             border-radius: 25px;
             border: 5px solid black;
             background-color: white;
@@ -200,6 +200,7 @@
             }
             .#div3 {
                 width: 100%;
+                z-index: 3
 
             }
         }
@@ -271,6 +272,36 @@
             width: 200px;
         }
 
+         .examine_icon {
+            position: absolute;
+            top: 13.5vh;
+            left: 25.5vw;
+            width: 350px;
+            z-index: -1;
+        }
+
+        .examine_circ {
+            position: absolute;
+            top: 12.75vh;
+            left: 25.75vw;
+            width: 350px;
+            z-index: 10000;
+        }
+        .output_icon {
+            position: absolute;
+            top: 13.5vh;
+            left: 52.5vw;
+            width: 350px;
+            z-index: -1;
+        }
+
+        .output_circ {
+            position: absolute;
+            top: 12.75vh;
+            left: 61.75vw;
+            width: 65px;
+            z-index: 10000;
+        }
         #rtDrag{
             cursor: pointer;
         }
@@ -292,18 +323,18 @@
 
 <div class = "content">
     <a href = "about.html"><img class = "banner" src="{{ url_for('static',filename='img/logoWhite.png') }}"/> </a>
-    <br>
-    <br>
-    <br>
-
+  <img class = "examine_circ" src="{{ url_for('static',filename='img/exam_circ.svg') }}"/> 
+   <img class = "examine_icon" src="{{ url_for('static',filename='img/exam_tube.svg') }}"/> 
+    <img class = "output_circ" src="{{ url_for('static',filename='img/output_circ.svg') }}"/> 
+   <img class = "output_icon" src="{{ url_for('static',filename='img/output_tube.svg') }}"/> 
     <div class="column first">
     <div class="row">
         <div class="column left">
+          
             <div class="centerBlock">
+                 
                 <h3>stimulus</h3>
 
-                <br>
-                <br>
 
                 <div class="square">
                 <div class="centerBlock">
@@ -315,11 +346,12 @@
             </div>
 
         </div>
+       
         </div>
         <div class="column right">
             <h3>algorithms</h3>
 
-        <div id="div3">
+        <div id="div3" style = "z-index: 3">
 
             <div class="rcorners5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             <br>
@@ -338,15 +370,15 @@
     </div>
         <div class="row">
             <div class="column left">
-                <h4>Dataset Library:</h4>
+                <h3>stimulus library:</h3>
                 <br>
                 <div class="row">
                     <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
 
 
-                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" class="rcorners2" onclick="showRottenDiv()"> <img src="{{ url_for('static',filename='img/rotten_tomatoes.jpg') }}" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="80" height="70"></button></div>
-                        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ><button type="button" class="rcorners2" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/amazon_customer_reviews.png') }}"  ondragstart="drag(event)" id="amazonDrag" class="rcorners1" width="80" height="70"></button></div>
-                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"><button type="button" class="rcorners2" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_sentiment.png') }}"  ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="80" height="70"></button></div>
+                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" class="rcorners2" onclick="showRottenDiv()"  > <img src="{{ url_for('static',filename='img/rt_stim.png') }}" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="150"></button></div>
+                        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ><button type="button" class="rcorners2" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/amazon_stim.png') }}"  ondragstart="drag(event)" id="amazonDrag" class="rcorners1"  width="150"></button></div>
+                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"><button type="button" class="rcorners2" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_stim.png') }}"  ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="150"></button></div>
 
 
 
@@ -371,6 +403,12 @@
 
                         This dataset consists of 4,218 tweets taken from the larger SentiStrength 2 dataset. All tweets were in English. More information can be found at: <a>https://bit.ly/2JuWd98</a>.
                     </div>
+                    <div class="column middle">
+                        <br>
+                        <h4> upload a new stimulus:</h4>
+
+                        <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
+                    </div>
 
                 </div>
 
@@ -378,19 +416,22 @@
             </div>
 
             <div class="column right" draggable="true" ondragstart="drag(event)">
-                <h4>Algorithms Library:</h4>
+                <h3>algorithms library:</h3>
                 <br>
 
                 <div class="row">
 
                 <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <div draggable="true" ondragstart="drag(event)" id="googleDrag" class="rcorners4" >Google Cloud Language API</div>
+                <div draggable="true" ondragstart="drag(event)" id="googleDrag" class="rcorners4">
+                    <img src="{{ url_for('static',filename='img/google.png') }}"   ondragstart="drag(event)"/> Google Cloud Language API</div>
                 <br>
-                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4">Microsoft Text Analytics API</div>
+                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/microsoft.png') }}"   ondragstart="drag(event)"/> Microsoft Text Analytics API</div>
+                <br>
+                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/MLalg.png') }}"   ondragstart="drag(event)"/> Minsky++ Deep Neural Network</div>
                 </div>
                     <div class="column middle">
                         <br>
-                        <h4> Upload a new algorithm:</h4>
+                        <h4> upload a new algorithm:</h4>
 
                         <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
                     </div>
@@ -428,8 +469,8 @@
             <div class="section__container">
                 <div class="output__controls">
                     <div class="output__selector-wrapper">
-                        <div class="output_selector__option"><h4 onclick="showCorrectResults()">Results</h4></div>
-                        <div class="output_selector__option"><h4 onclick="showSummary()">Summary</h4></div>
+                        <div class="output_selector__option"><h4 onclick="showCorrectResults()">Tabulate</h4></div>
+                        <div class="output_selector__option"><h4 onclick="showSummary()">Investigate</h4></div>
                     </div>
                     <div>
                         <div class="centerBlock">
@@ -494,6 +535,9 @@
                                     <td class="googleSum">0.81</td>
                                 </tr>
                             </table>
+                            <div id = "analyze">
+                                
+                            </div>
                         </div>
                     </div>
 
@@ -562,13 +606,7 @@
 
 
 
-    <div class="footer">
-
-    <a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/"><img class = "logoAbout" src="{{ url_for('static',filename='img/scalablecoop.png') }}"  width='100px'></a>
-    <a class = "logoAbout" href="https://www.media.mit.edu"><img class = "logoAbout" style = "margin-right:0px;" src="{{ url_for('static',filename='img/Mit_medialab_logo.png') }}"  width='85px'></a>
-    <a href = ""><img class = "logoAbout"  src="{{ url_for('static',filename='img/mit_logo_trans.png') }}" width='175px'></a><br>
-    Scalable Cooperation | MIT Media 
-    </div>
+    
 
 </div>
 
@@ -578,7 +616,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-
 
 
     function allowDrop(ev) {
@@ -595,6 +632,7 @@
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
+        showCorrectResults()
     }
 
     function showRottenDiv() {
