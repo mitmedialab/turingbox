@@ -30,8 +30,12 @@ app = Flask(__name__)
 def land():
     return render_template('land.html', data=data)
 
-@app.route('/examine')
-def examine():
+@app.route('/nlp')
+def nlp_domain():
+    return render_template('drag_and_drop.html', amazon=amazon, sst=sst, twitter = twitter)
+
+@app.route('/cv')
+def cv_domain():
     return render_template('drag_and_drop.html', amazon=amazon, sst=sst, twitter = twitter)
 
 @app.route('/launchBox', methods = ['POST'])

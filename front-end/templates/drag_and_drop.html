@@ -272,6 +272,15 @@
             width: 200px;
         }
 
+        .navBanner {
+            position: absolute;
+            top: 0vh;
+            left: 10vw;
+            width: 200px;
+            margin-top: 20px
+        }
+
+
          .examine_icon {
             position: absolute;
             top: 13.5vh;
@@ -330,9 +339,18 @@
     border-radius:3px;
     background:white;
     border: 1px solid black;
-
-
     }
+
+     .activeDomain{
+               width:120px;
+    color:white;
+    text-align:center;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    background:#ED1C24;    
+    border: 1px solid black;    
+}
 
 
     </style>
@@ -581,7 +599,13 @@ console.log(47)
 </script>
 
 <div class = "content">
-    <a href = "about.html"><img class = "banner" src="{{ url_for('static',filename='img/logoWhite.png') }}"/> </a>
+    <a href = "about.html"><img class = "banner" src="{{ url_for('static',filename='img/logoWhite.png') }}"/></a>
+    <div class = "navBanner">
+        <a href = "http://localhost:8080/nlp"><div class = 'activeDomain' style = "margin-bottom: 5px;">Language</div></a>
+        <a href = "http://localhost:8080/cv"><div class = 'inactive' style = "margin-bottom: 5px;">Vision</div></a>
+        <div class = 'inactive' style = "margin-bottom: 5px;">Newsfeeds</div></a>
+        <div class = 'inactive' >Cooperation Bots</div></a>
+    </div>
   <img class = "examine_circ" src="{{ url_for('static',filename='img/exam_circ.svg') }}"/> 
    <img class = "examine_icon" src="{{ url_for('static',filename='img/exam_tube.svg') }}"/> 
     <img class = "output_circ" src="{{ url_for('static',filename='img/output_circ.svg') }}"/> 
