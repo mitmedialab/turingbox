@@ -18,9 +18,21 @@ def ingest_static_data(path):
 	    rows.append(row)
 	return rows
 
+
+def ingest_static_swim_data(path,t):
+    data = pd.read_csv(path)
+    rows = []
+    for row in data.iterrows():
+        row = {"path": "static/swim/{}".format(row[1][4]), "type": t, "google": row[1][1], "microsoft": row[1][2], "clarifai" : row[1][3]}
+        rows.append(row)
+    return rows
+
 amazon = ingest_static_data('static/data/amazon_sentiment100_results.csv')
 sst = ingest_static_data('static/data/sst_sentiment100_results.csv')
 twitter = ingest_static_data('static/data/twitter_sentiment100_results.csv')
+
+swim_thin = ingest_static_swim_data('static/data/swim_thin.csv', "thin")
+swim_plus = ingest_static_swim_data('static/data/swim_plus.csv', "plus") 
 
 
 app = Flask(__name__)
@@ -36,7 +48,7 @@ def nlp_domain():
 
 @app.route('/cv')
 def cv_domain():
-    return render_template('drag_and_drop.html', amazon=amazon, sst=sst, twitter = twitter)
+    return render_template('cv.html', swim_thin = swim_thin)
 
 @app.route('/launchBox', methods = ['POST'])
 def launch_box():
