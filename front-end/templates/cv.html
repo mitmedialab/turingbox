@@ -322,7 +322,7 @@
         }
 
         .active{
-               width:120px;
+               width:180px;
     color:black;
     text-align:center;
     -webkit-border-radius:3px;
@@ -452,32 +452,23 @@ function showCorrectResults(){
     var results = document.getElementById("rtResults");
     var data = []
     var models = []
-    if(document.getElementById("dataDrop1").contains(document.getElementById("twitterDrag"))){
-        // document.getElementsByClassName("rtSum")
-        results1 = document.getElementById("twitterResults");
-        data = data.concat("twitter")
-    }
+
     if(document.getElementById("dataDrop1").contains(document.getElementById("amazonDrag"))){
         results1 = document.getElementById("amazonResults");
-        data = data.concat("amazon")
+        data = data.concat("plus")
     }
     if(document.getElementById("dataDrop1").contains(document.getElementById("rtDrag"))){
         results1 = document.getElementById("rtResults");
-        data = data.concat("sst")
+        data = data.concat("standard")
     }
 
-    if(document.getElementById("dataDrop2").contains(document.getElementById("twitterDrag"))){
-        // document.getElementsByClassName("rtSum")
-        results2 = document.getElementById("twitterResults");
-        data = data.concat("twitter")
-    }
     if(document.getElementById("dataDrop2").contains(document.getElementById("amazonDrag"))){
         results2 = document.getElementById("amazonResults");
-        data = data.concat("amazon")
+        data = data.concat("plus")
     }
     if(document.getElementById("dataDrop2").contains(document.getElementById("rtDrag"))){
         results2 = document.getElementById("rtResults");
-        data = data.concat("sst")
+        data = data.concat("standard")
     }
     console.log("show correct");
     var summary = document.getElementById("summary");
