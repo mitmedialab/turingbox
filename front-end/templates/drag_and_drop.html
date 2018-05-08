@@ -174,7 +174,7 @@
 
 
             padding: 20px;
-            height: 20vh;
+            height: 30vh;
             width: 20vh;
         }
         /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
@@ -205,7 +205,7 @@
             }
         }
 
-        h3 {
+        h3, h2, h1 {
             text-align: center;
         }
         ul.a{
@@ -283,7 +283,7 @@
 
          .examine_icon {
             position: absolute;
-            top: 13.5vh;
+            top: 20vh;
             left: 25.5vw;
             width: 350px;
             z-index: -1;
@@ -291,14 +291,14 @@
 
         .examine_circ {
             position: absolute;
-            top: 12.75vh;
-            left: 25.75vw;
+            top: 19vh;
+            left: 25.25vw;
             width: 350px;
             z-index: 10000;
         }
         .output_icon {
             position: absolute;
-            top: 13.5vh;
+            top: 20.25vh;
             left: 52.5vw;
             width: 350px;
             z-index: -1;
@@ -306,7 +306,7 @@
 
         .output_circ {
             position: absolute;
-            top: 12.75vh;
+            top: 18.75vh;
             left: 61.75vw;
             width: 65px;
             z-index: 10000;
@@ -352,6 +352,20 @@
     border: 1px solid black;    
 }
 
+    .domain{
+        margin-left: 50px;
+        font-size: 170%;
+        width: 200px;
+    }
+    .inner{
+       width: 200px;
+       right: 5px;
+       height: 160px;
+         border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            border: 1px dashed black;
+            background-color: white;
+    }
 
     </style>
 
@@ -629,11 +643,12 @@ function showCorrectResults(){
 <div class = "content">
     <a href = "about.html"><img class = "banner" src="{{ url_for('static',filename='img/logoWhite.png') }}"/></a>
     <div class = "navBanner">
-        <a href = "http://localhost:8080/nlp"><div class = 'activeDomain' style = "margin-bottom: 5px;">Language</div></a>
-        <a href = "http://localhost:8080/cv"><div class = 'inactive' style = "margin-bottom: 5px;">Vision</div></a>
-        <div class = 'inactive' style = "margin-bottom: 5px;">Newsfeeds</div></a>
-        <div class = 'inactive' >Cooperation Bots</div></a>
+        <a href = "http://localhost:8080/nlp"><div class = 'activeDomain domain' style = "margin-bottom: 5px;">Language</div></a>
+        <a href = "http://localhost:8080/cv"><div class = 'inactive domain' style = "margin-bottom: 5px; color: black">Vision</div></a>
+        <div class = 'inactive domain' style = "margin-bottom: 5px;">Newsfeeds</div></a>
+        <div class = 'inactive domain' >Cooperation</div></a>
     </div>
+    <br><br><br>
   <img class = "examine_circ" src="{{ url_for('static',filename='img/exam_circ.svg') }}"/> 
    <img class = "examine_icon" src="{{ url_for('static',filename='img/exam_tube.svg') }}"/> 
     <img class = "output_circ" src="{{ url_for('static',filename='img/output_circ.svg') }}"/> 
@@ -644,7 +659,7 @@ function showCorrectResults(){
           
             <div class="centerBlock">
                  
-                <h3>stimulus</h3>
+                <h1>stimulus</h1>
 
 
                 <!--<div class="square" id="dataDrop" ondrop="drop(event)" ondragover="allowDrop(event)">-->
@@ -652,8 +667,8 @@ function showCorrectResults(){
 
                 <div class="centerBlock">
 
-                    <div id="dataDrop1" class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    <div id="dataDrop2" class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="dataDrop1" class="square inner" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="dataDrop2" class="square inner" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 </div>
 
             </div>
@@ -662,7 +677,7 @@ function showCorrectResults(){
        
         </div>
         <div class="column right">
-            <h3>algorithms</h3>
+            <h1>algorithms</h1>
 
         <div id="div3" style = "z-index: 3">
 
@@ -683,7 +698,7 @@ function showCorrectResults(){
     </div>
         <div class="row">
             <div class="column left">
-                <h3>stimulus library:</h3>
+                <h2>stimulus library:</h1>
                 <br>
                 <div class="row">
                     <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
@@ -729,14 +744,14 @@ function showCorrectResults(){
             </div>
 
             <div class="column right" draggable="true" ondragstart="drag(event)">
-                <h3>algorithms library:</h3>
+                <h2>algorithms library:</h2>
                 <br>
 
                 <div class="row">
 
                 <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <div draggable="true" ondragstart="drag(event)" id="googleDrag" class="rcorners4">
-                    <img src="{{ url_for('static',filename='img/google.png') }}"   ondragstart="drag(event)"/> Google Cloud Language API</div>
+                    <img src="{{ url_for('static',filename='img/google.png') }}"   draggable = "false" droppable = "true"/> Google Cloud Language API</div>
                 <br>
                 <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/microsoft.png') }}"   ondragstart="drag(event)"/> Microsoft Text Analytics API</div>
                 <br>
@@ -762,7 +777,7 @@ function showCorrectResults(){
         </div>
     </div>
     <div class="column second">
-        <h3>output</h3>
+        <h1>output</h1>
 
         <div id="div2" id="myTable">
             <div class="section__container">
@@ -774,7 +789,7 @@ function showCorrectResults(){
                     <div>
                         <div class="centerBlock">
                             <div id = "summary" style="display:none" >
-                                 <!--<iframe id = "ipython" width = "600px" height = "800px" src = "http://localhost:8889/notebooks/explore.ipynb?data=amazon&model=google"></iframe>-->
+                                 <iframe id = "ipython" width = "600px" height = "800px" src = "http://localhost:8889/notebooks/explore.ipynb?data=amazon&model=google"></iframe>
                             </div>
                         </div>
                     </div>
