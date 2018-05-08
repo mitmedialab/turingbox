@@ -757,13 +757,13 @@ function showCorrectResults(){
 
                 <div class="row">
 
-                <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)" droppable = "true">
                 <div draggable="true" ondragstart="drag(event)" id="googleDrag" class="rcorners4" droppable = "true">
-                    <img src="{{ url_for('static',filename='img/google.png') }}"   draggable = "false" droppable = "true"/> Google Cloud Image API</div>
+                    <img src="{{ url_for('static',filename='img/google.png') }}"   draggable = "false"/> Google Cloud Image API</div>
                 <br>
-                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/microsoft.png') }}"   ondragstart="drag(event)"/> Microsoft Image Classifcation API</div>
+                <div  droppable = "true" draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/microsoft.png') }}"   draggable="false"/> Microsoft Image Classifcation API</div>
                 <br>
-                <div draggable="true" ondragstart="drag(event)" id="clarifaiDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/clarifai.png') }}"   ondragstart="drag(event)"/> Clarifai Image Classification API</div>
+                <div  droppable = "true" draggable="true" ondragstart="drag(event)" id="clarifaiDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/clarifai.png') }}"   draggable="false"/> Clarifai Image Classification API</div>
                 </div>
                     <div class="column middle">
                         <br>
