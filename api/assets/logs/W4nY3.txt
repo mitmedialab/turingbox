@@ -1,0 +1,1 @@
+{"model_reply": 0.0087486, "data_url": "assets/data/swim/swim10_front_non.jpg", "success": true, "time": "2018-04-27 19:30:12"}
