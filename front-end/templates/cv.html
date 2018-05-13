@@ -322,7 +322,7 @@
         }
 
         .active{
-               width:120px;
+               width:180px;
     color:black;
     text-align:center;
     -webkit-border-radius:3px;
@@ -332,17 +332,18 @@
     border: 1px solid black;    
 }
     .inactive{
-            width:120px;
+            width:180px;
     text-align:center;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:3px;
     background:white;
     border: 1px solid black;
+    color: black;
     }
 
      .activeDomain{
-               width:120px;
+               width:180px;
     color:white;
     text-align:center;
     -webkit-border-radius:3px;
@@ -402,9 +403,6 @@ console.log(47)
         if(amazon.style.display === "block"){
             amazon.style.display = "none"
         }
-        if(twitter.style.display === "block"){
-            twitter.style.display = "none"
-        }
         if (rt.style.display === "none") {
             rt.style.display = "block";
         } else {
@@ -420,11 +418,7 @@ console.log(47)
         if(rt.style.display === "block"){
             rt.style.display = "none"
         }
-        if(twitter.style.display === "block"){
-            twitter.style.display = "none"
-        }
-
-
+        
         if (amazon.style.display === "none") {
             amazon.style.display = "block";
         } else {
@@ -458,32 +452,23 @@ function showCorrectResults(){
     var results = document.getElementById("rtResults");
     var data = []
     var models = []
-    if(document.getElementById("dataDrop1").contains(document.getElementById("twitterDrag"))){
-        // document.getElementsByClassName("rtSum")
-        results1 = document.getElementById("twitterResults");
-        data = data.concat("twitter")
-    }
+
     if(document.getElementById("dataDrop1").contains(document.getElementById("amazonDrag"))){
         results1 = document.getElementById("amazonResults");
-        data = data.concat("amazon")
+        data = data.concat("plus")
     }
     if(document.getElementById("dataDrop1").contains(document.getElementById("rtDrag"))){
         results1 = document.getElementById("rtResults");
-        data = data.concat("sst")
+        data = data.concat("standard")
     }
 
-    if(document.getElementById("dataDrop2").contains(document.getElementById("twitterDrag"))){
-        // document.getElementsByClassName("rtSum")
-        results2 = document.getElementById("twitterResults");
-        data = data.concat("twitter")
-    }
     if(document.getElementById("dataDrop2").contains(document.getElementById("amazonDrag"))){
         results2 = document.getElementById("amazonResults");
-        data = data.concat("amazon")
+        data = data.concat("plus")
     }
     if(document.getElementById("dataDrop2").contains(document.getElementById("rtDrag"))){
         results2 = document.getElementById("rtResults");
-        data = data.concat("sst")
+        data = data.concat("standard")
     }
     console.log("show correct");
     var summary = document.getElementById("summary");
@@ -500,38 +485,54 @@ function showCorrectResults(){
         results1.style.display = "block";
 
         if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
-            show_hide_results_column(1,false,results1);
-        }
-        else{
-            show_hide_results_column(1,true,results1);
-            models = models.concat("microsoft")
-        }
-        if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
             show_hide_results_column(2,false,results1);
         }
         else{
             show_hide_results_column(2,true,results1);
+            models = models.concat("microsoft")
+        }
+        if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
+            show_hide_results_column(3,false,results1);
+        }
+        else{
+            show_hide_results_column(3,true,results1);
             models = models.concat("google")
         }
+        if(!(document.getElementById("div3").contains(document.getElementById("clarifaiDrag")))){
+            show_hide_results_column(4,false,results1);
+        }
+        else{
+            show_hide_results_column(4,true,results1);
+            models = models.concat("clarifai")
+        }
+
 
     }
     if(!(document.getElementById("dataDrop2").innerHTML === "")){
         results2.style.display = "block";
 
         if(!(document.getElementById("div3").contains(document.getElementById("msDrag")))){
-            show_hide_results_column(1,false,results2);
-        }
-        else{
-            show_hide_results_column(1,true,results2);
-            models = models.concat("microsoft")
-        }
-        if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
             show_hide_results_column(2,false,results2);
         }
         else{
             show_hide_results_column(2,true,results2);
+            models = models.concat("microsoft")
+        }
+        if(!(document.getElementById("div3").contains(document.getElementById("googleDrag")))){
+            show_hide_results_column(3,false,results2);
+        }
+        else{
+            show_hide_results_column(3,true,results2);
             models = models.concat("google")
         }
+        if(!(document.getElementById("div3").contains(document.getElementById("clarifaiDrag")))){
+            show_hide_results_column(4,false,results2);
+        }
+        else{
+            show_hide_results_column(4,true,results2);
+            models = models.concat("clarifai")
+        }
+
 
     }
     // showCorrectColumns(results);
@@ -641,10 +642,10 @@ function showCorrectResults(){
 </script>
 
 <div class = "content">
-    <a href = "about.html"><img class = "banner" src="{{ url_for('static',filename='img/logoWhite.png') }}"/></a>
+    <a href = "#"><img class = "banner" src="{{ url_for('static',filename='img/logoWhite.png') }}"/></a>
     <div class = "navBanner">
-        <a href = "http://localhost:8080/nlp"><div class = 'activeDomain domain' style = "margin-bottom: 5px;">Language</div></a>
-        <a href = "http://localhost:8080/cv"><div class = 'inactive domain' style = "margin-bottom: 5px; color: black">Vision</div></a>
+        <a href = "http://localhost:8080/nlp"><div class = 'inactive domain' style = "margin-bottom: 5px;">Language</div></a>
+        <a href = "http://localhost:8080/cv"><div class = 'activeDomain domain' style = "margin-bottom: 5px;">Vision</div></a>
         <div class = 'inactive domain' style = "margin-bottom: 5px;">Newsfeeds</div></a>
         <div class = 'inactive domain' >Cooperation</div></a>
     </div>
@@ -704,9 +705,9 @@ function showCorrectResults(){
                     <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
 
 
-                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" class="rcorners2" onclick="showRottenDiv()"  > <img src="{{ url_for('static',filename='img/rt_stim.png') }}" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="150"></button></div>
-                        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ><button type="button" class="rcorners2" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/amazon_stim.png') }}"  ondragstart="drag(event)" id="amazonDrag" class="rcorners1"  width="150"></button></div>
-                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"><button type="button" class="rcorners2" onclick="showTwitterDiv()"><img src="{{ url_for('static',filename='img/twitter_stim.png') }}"  ondragstart="drag(event)" id="twitterDrag" class="rcorners1" width="150"></button></div>
+                    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)"><button type="button" class="rcorners2" onclick="showRottenDiv()"  > <img src="{{ url_for('static',filename='img/thin_stim.png') }}" ondragstart="drag(event)" id="rtDrag" class="rcorners1" width="150"></button></div>
+                        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ><button type="button" class="rcorners2" onclick="showAmazonDiv()"><img src="{{ url_for('static',filename='img/plus_stim.png') }}"  ondragstart="drag(event)" id="amazonDrag" class="rcorners1"  width="150"></button></div>
+                 
 
 
 
@@ -716,24 +717,22 @@ function showCorrectResults(){
 
                 <div class="row">
                     <div id="rottenTomatoesDiv" style="display:none">
-                        <h4>Stanford Sentiment Treebank of Rotten Tomato Reviews</h4>
+                        <h4>Thw Swimwear Model Dataset</h4>
 
-                        This dataset includes 10,662 English sentences taken from film reviews on the website <a>rottentomatoes.com</a>. Half of which were considered positive and the other half negative. Each label is extracted from a longer movie review and reflects the writer's over-all intention for this review. More information can be found at: <a>https://stanford.io/2Kk0I7Q</a>.
+                        The Swimwear Model Dataset consists of over 200 matched pairs of images were scraped from online fashion swimwear catalogs such as Nordstrom, Dillards, Target, and more. Matched pairs consist of two images: one image of a standard-size model and one image of a plus-size model wearing the same swimsuit with similar lighting and poses.
 
                     </div>
                     <div id="amazonDiv" style="display:none">
-                        <h4>Amazon Customer Reviews</h4>
-                        This dataset consists of approximately 4 million Amazon customer reviews and star ratings. The reviews are mostly in English with a few reviews in other languages such as Spanish. More information can be found at: <a>https://bit.ly/2r48L0x</a>.
+                        <h4>Thw Swimwear Model Dataset</h4>
+
+                        The Swimwear Model Dataset consists of over 200 matched pairs of images were scraped from online fashion swimwear catalogs such as Nordstrom, Dillards, Target, and more. Matched pairs consist of two images: one image of a standard-size model and one image of a plus-size model wearing the same swimsuit with similar lighting and poses.
+
 
                     </div>
-                    <div id="twitterDiv" style="display:none">
-                        <h4>Sentiment Strength Twitter Dataset</h4>
-
-                        This dataset consists of 4,218 tweets taken from the larger SentiStrength 2 dataset. All tweets were in English. More information can be found at: <a>https://bit.ly/2JuWd98</a>.
-                    </div>
+                   
                     <div class="column middle">
                         <br>
-                        <h4> upload a new stimulus:</h4>
+                        <h3 style = "text-align:left"> upload a new stimulus:</h3>
 
                         <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
                     </div>
@@ -750,16 +749,16 @@ function showCorrectResults(){
                 <div class="row">
 
                 <div class="centerBlock bank" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <div draggable="true" ondragstart="drag(event)" id="googleDrag" class="rcorners4">
-                    <img src="{{ url_for('static',filename='img/google.png') }}"   draggable = "false" droppable = "true"/> Google Cloud Language API</div>
+                <div draggable="true" ondragstart="drag(event)" id="googleDrag" class="rcorners4" droppable = "true">
+                    <img src="{{ url_for('static',filename='img/google.png') }}"   draggable = "false" droppable = "true"/> Google Cloud Image API</div>
                 <br>
-                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/microsoft.png') }}"   ondragstart="drag(event)"/> Microsoft Text Analytics API</div>
+                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/microsoft.png') }}"   ondragstart="drag(event)"/> Microsoft Image Classifcation API</div>
                 <br>
-                <div draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/MLalg.png') }}"   ondragstart="drag(event)"/> Minsky++ Deep Neural Network</div>
+                <div draggable="true" ondragstart="drag(event)" id="clarifaiDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/clarifai.png') }}"   ondragstart="drag(event)"/> Clarifai Image Classification API</div>
                 </div>
                     <div class="column middle">
                         <br>
-                        <h4> upload a new algorithm:</h4>
+                        <h3 style = "text-align:left"> upload a new algorithm:</h3>
 
                         <input type="file" class="form-control-file" id="exampleAlgorithmFile"><br>
                     </div>
@@ -783,8 +782,8 @@ function showCorrectResults(){
             <div class="section__container">
                 <div class="output__controls">
                     <div class="output__selector-wrapper">
-                        <div class="output_selector__option"><h4 onclick="showCorrectResults()" class ="active" id = "tabulate">tabulate</h4></div>
-                        <div class="output_selector__option"><h4 onclick="showSummary()" id = "investigate" class = "inactive" show>investigate</h4></div>
+                        <div class="output_selector__option"><h3 onclick="showCorrectResults()" class ="active" id = "tabulate">tabulate</h3></div>
+                        <div class="output_selector__option"><h3 onclick="showSummary()" id = "investigate" class = "inactive" show>investigate</h3></div>
                     </div>
                     <div>
                         <div class="centerBlock">
@@ -799,17 +798,19 @@ function showCorrectResults(){
                 <table id="amazonResults" style="display:none" >
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                        <th onclick="sortTable(0)">Sentence</th>
-                        <th onclick="sortTable(1)">Microsoft Label</th>
+                         <th onclick="sortTable(0)">Image</th>
+                        <th onclick="sortTable(1)">Type</th>
+                        <th onclick="sortTable(2)">Microsoft Label</th>
                         <th onclick="sortTable(2)">Google Label</th>
-                        <th onclick="sortTable(3)">True Label</th>
+                        <th onclick="sortTable(3)">Clarifai Label</th>
                     </tr>
-                    {% for item in amazon %}
+                    {% for item in swim_plus %}
                     <tr>
-                        <td>{{item['text']}}</td>
-                        <td>{{item['a_sent']}}</td>
-                        <td>{{item['g_sent']}}</td>
-                        <td>{{item['label']}}</td>
+                                               <td><img src = "{{item['path']}}" width = "50px" height = "50px"></td>
+                        <td>{{item['type']}}</td>
+                        <td>{{item['microsoft']}}</td>
+                        <td>{{item['google']}}</td>
+                        <td>{{item['clarifai']}}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -818,8 +819,8 @@ function showCorrectResults(){
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
                         <th onclick="sortTable(0)">Sentence</th>
-                        <th onclick="sortTable(1)">Microsoft Label</th>
-                        <th onclick="sortTable(2)">Google Label</th>
+                        <th onclick="sortTable(1)">Google Label</th>
+                        <th onclick="sortTable(2)">Microsoft Label</th>
                         <th onclick="sortTable(3)">True Label</th>
                     </tr>
                     {% for item in twitter %}
@@ -835,17 +836,19 @@ function showCorrectResults(){
                 <table id="rtResults" style="display:none">
                     <tr>
                         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-                        <th onclick="sortTable(0)">Sentence</th>
-                        <th onclick="sortTable(1)">Microsoft Label</th>
+                        <th onclick="sortTable(0)">Image</th>
+                        <th onclick="sortTable(1)">Type</th>
+                        <th onclick="sortTable(2)">Microsoft Label</th>
                         <th onclick="sortTable(2)">Google Label</th>
-                        <th onclick="sortTable(3)">True Label</th>
+                        <th onclick="sortTable(3)">Clarifai Label</th>
                     </tr>
-                    {% for item in sst %}
+                    {% for item in swim_thin %}
                     <tr>
-                        <td>{{item['text']}}</td>
-                        <td>{{item['a_sent']}}</td>
-                        <td>{{item['g_sent']}}</td>
-                        <td>{{item['label']}}</td>
+                        <td><img src = "{{item['path']}}" width = "50px" height = "50px"></td>
+                        <td>{{item['type']}}</td>
+                        <td>{{item['microsoft']}}</td>
+                        <td>{{item['google']}}</td>
+                        <td>{{item['clarifai']}}</td>
                     </tr>
                     {% endfor %}
                 </table>

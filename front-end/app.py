@@ -14,13 +14,25 @@ def ingest_static_data(path):
 	data = pd.read_csv(path)
 	rows = []
 	for row in data.iterrows():
-	    row = {"text": row[1][0][0:50]+"...", "label": row[1][1], "a_sent": round(row[1][2],2), "g_sent": round(row[1][3],2)}
+	    row = {"text": row[1][0][0:50]+"...", "label": row[1][1], "a_sent": round(row[1][2],2), "g_sent": round(row[1][3],2),"minsky": row[1][4]}
 	    rows.append(row)
 	return rows
+
+
+def ingest_static_swim_data(path,t):
+    data = pd.read_csv(path)
+    rows = []
+    for row in data.iterrows():
+        row = {"path": "static/swim/{}".format(row[1][4]), "type": t, "google": row[1][1], "microsoft": row[1][2], "clarifai" : row[1][3]}
+        rows.append(row)
+    return rows
 
 amazon = ingest_static_data('static/data/amazon_sentiment100_results.csv')
 sst = ingest_static_data('static/data/sst_sentiment100_results.csv')
 twitter = ingest_static_data('static/data/twitter_sentiment100_results.csv')
+
+swim_thin = ingest_static_swim_data('static/data/swim_thin.csv', "thin")
+swim_plus = ingest_static_swim_data('static/data/swim_plus.csv', "plus") 
 
 
 app = Flask(__name__)
@@ -30,9 +42,15 @@ app = Flask(__name__)
 def land():
     return render_template('land.html', data=data)
 
-@app.route('/examine')
-def examine():
-    return render_template('drag_and_drop.html', amazon=amazon, sst=sst, twitter = twitter)
+@app.route('/nlp')
+def nlp_domain():
+    print(amazon)
+    return render_template('nlp.html', amazon=amazon, sst=sst, twitter = twitter)
+
+@app.route('/cv')
+def cv_domain():
+    print(swim_thin)
+    return render_template('cv.html', swim_thin = swim_thin,swim_plus = swim_plus)
 
 @app.route('/launchBox', methods = ['POST'])
 def launch_box():
