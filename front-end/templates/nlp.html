@@ -525,7 +525,7 @@ function showCorrectResults(){
         }
         else{
             show_hide_results_column(4,true,results1);
-            models = models.concat("minksy")
+            models = models.concat("minsky")
         }
 
     }
@@ -554,7 +554,7 @@ function showCorrectResults(){
         }
         else{
             show_hide_results_column(4,true,results2);
-            models = models.concat("minksy")
+            models = models.concat("minsky")
         }
 
     }
@@ -789,7 +789,7 @@ function showCorrectResults(){
                 <br>
                 <div droppable="true" draggable="true" ondragstart="drag(event)" id="msDrag" class="rcorners4"> <img src="{{ url_for('static',filename='img/microsoft.png') }}"   draggable="false" /> Microsoft Text Analytics API</div>
                 <br>
-                <div droppable="true" draggable="true" ondragstart="drag(event)" id="judyDrag" class="rcorners4" style = "display:none"> <img src="{{ url_for('static',filename='img/MLalg.png') }}"   draggable="false" /> Minsky++ Deep Neural Network</div>
+                <div draggable="true" ondragstart="drag(event)" id="judyDrag" class="rcorners4" style = "display:none"> <img src="{{ url_for('static',filename='img/MLalg.png') }}"   ondragstart="drag(event)"/> Minsky++ Probabilistic Bayesian Classifier </div>
                 </div>
                     <div class="column middle">
                         <br>
@@ -846,7 +846,7 @@ function showCorrectResults(){
                         <td>{{item['label']}}</td>
                         <td>{{item['a_sent']}}</td>
                         <td>{{item['g_sent']}}</td>
-                        <td>{{item['g_sent']}}</td>
+                        <td>{{item['minsky']}}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -866,7 +866,7 @@ function showCorrectResults(){
                         <td>{{item['label']}}</td>
                         <td>{{item['a_sent']}}</td>
                         <td>{{item['g_sent']}}</td>
-                        <td>{{item['g_sent']}}</td>
+                        <td>{{item['minsky']}}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -887,7 +887,7 @@ function showCorrectResults(){
                         <td>{{item['label']}}</td>
                         <td>{{item['a_sent']}}</td>
                         <td>{{item['g_sent']}}</td>
-                        <td>{{item['g_sent']}}</td>
+                        <td>{{item['minsky']}}</td>
                         
                     </tr>
                     {% endfor %}
