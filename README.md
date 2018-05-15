@@ -1,7 +1,7 @@
 #turingbox
 
 ~turingbox~
-
+TURINGBOX
 This represents the verticals (case studies) used for the Turing Box platform, and the visual interface that allows users to interact with them. We have organized these verticals into three tiers of complexity and speculativeness. 
 
 ##Tier 1: Most actionable
