@@ -1,22 +1,20 @@
-#turingbox
+![alt text](https://github.com/mitmedialab/turingbox/blob/master/front-end/static/img/logo.png "Logo Title Text 1")
 
-~turingbox~
-TURINGBOX
-This represents the verticals (case studies) used for the Turing Box platform, and the visual interface that allows users to interact with them. We have organized these verticals into three tiers of complexity and speculativeness. 
+This is the development repository for the Turing Box platform. It is broken into several components.
 
-##Tier 1: Most actionable
-1. Body Type Adult Maturity Score (Blakeley)
-2. [Robot hiring decisions](https://www.theguardian.com/technology/2018/mar/04/robots-screen-candidates-for-jobs-artificial-intelligence?CMP=twt_gu) 
-3. Bias in Word2Vec
-  
+## concept
+concept contains functional specs to be implemented and past identities. 
 
-##Tier 2: Reasonably actionable
-1. Cooperation</b> (Ziv)
-2. Twitter Bots</b> (???)
-3. [Human trafficing alg](https://womenintheworld.com/2018/02/13/mother-of-invention-created-ingenious-way-to-track-down-human-trafficking-victims/)
-4. Walking Behavior of RL Agents (Abhi)
-5. Amazon Price Descrimination (Alan)
-6. Bias in hirint CV (Sendhil)
+## front end
+the `front-end` folder contains the code used for the front end of the platform (visualized in the wireframes in `concept/functional_specs.pdf`). It contains a file `app.py` that is used to run the flask server that serves the front end. 
+The `templates` folder contains the HTML templates for the different pages enumerated in the wireframes. `static` contains all the static images and graphics for the front end. (`front-end/static/img` contains all the assets for the turing box project thus far). The front end can be accessed by `cd`ing into the `front-end` folder and running
 
-##Tier 3: Highly Speculative
-1.Cortico Flavored Newsfeed Studies
+```python app.py```
+
+then going to `http://localhost:8888/` in the browser.
+
+## api
+the `api` folder contains the code for the api, backend and databases. It is also a flask server called `applicaiton.py`.
+
+## tasks
+`tasks` is a general folder containing the stimuli, algorithms and intermediary work for the specific tasks.
