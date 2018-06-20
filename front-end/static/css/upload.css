@@ -1,0 +1,12 @@
+  .unclicked{
+  	 display:inline;
+  	 border-radius: 5px;
+    border: 2px solid;
+  }
+  .clicked{
+  	color:white;
+  	background: #29abe2;
+       border-radius: 5px;
+  	border: 2px solid black;
+  	 display:inline;
+  }

@@ -1,0 +1,165 @@
+<html lang="en">
+   <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+      <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='navbar-fixed-side.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+ <script>
+ 	function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+
+     	function submitBox(){
+         $("#loader").show();
+      		var id = makeid();
+      		var xhr = new XMLHttpRequest();
+			xhr.open("POST", 'http://0.0.0.0:5000/api/v1/launch/', true);
+			xhr.setRequestHeader('Content-Type', 'application/json');
+     
+			xhr.send(JSON.stringify({
+	            "user_id": "47",
+	            "data_id": $("#dataSelector").val()[0],
+	            "model_id": $("#modelSelector").val()[0],
+	            "job_id": id,
+        }));
+			console.log(id);
+      console.log(xhr);
+
+        new Promise(function(){
+        
+        console.log(477)
+        return 47
+        }).then(function(val){
+        console.log(val)
+        });
+
+        new Promise(function(resolve, reject) {
+           var data = new XMLHttpRequest();
+        data.open("POST", 'http://0.0.0.0:5000/api/v1/access_data/', true);
+        data.setRequestHeader('Content-Type', 'application/json');
+        data.send(JSON.stringify({
+                "job_id": id,
+          }))
+
+          setTimeout(() => resolve(data), 5000); // (*)
+
+        }).then(function(result) { // (**)
+
+          console.log(result); // 1
+          $("#loader").hide();
+           $("#results").show();
+          var toShow = JSON.parse(result.response).out;
+        $("#output").text(toShow);
+          return result;
+
+        });
+      }
+      </script>
+   </head>
+   <body>
+          <div class="container-fluid content">
+          	 <div class="row">
+          	 	<div class="col-md-2">
+<img src="{{ url_for('static',filename='img/logo.png') }}" width= "100px"/>
+</div>
+<div class="col-md-8">
+	  <p>TuringBox allows anyone, no matter your area of expertise or programming skill, to examine the behavior of artificial intelligence systems. </p><br>
+</div>
+</div>
+ 
+      <div>
+        <a href = "about.html"><img class = "banner" src="{{ url_for('static',filename='img/banner.png') }}" width="100%"/> </a>
+         <!--<div class = "splashImage"><img src="img/cv.png" width="100%"/> </div>
+            <div class = "splashSpacer"></div>-->
+<div class = "content">
+<!--<div class = "splashImage"><img src="img/cv.png" width="100%"/> </div>
+<div class = "splashSpacer"></div>-->
+      <h3>Launch a box</h3>
+      <form action = "/launchBox/" method = "post">
+      <div class="row">
+     <div class="col-sm-4">
+        <label for="exampleFormControlSelect2">Provide input dataset...</label>
+    <select name = "data" multiple class="form-control" id="dataSelector">
+      {% for item in data['data'] %}
+<TR>
+   <option value = "{{item.id}}">{{item.title}}</option>
+</TR>
+{% endfor %}
+    </select>
+     <div class="form-group">
+            <label for="exampleAlgorithmFile"> or upload your own</label>
+            <input type="file" class="form-control-file" id="exampleAlgorithmFile">
+        </div>
+    </div>
+    <div class="col-sm-4">
+      <label for="exampleFormControlSelect2">...and the algorithms inside the box...</label>
+    <select name = "algs" multiple class="form-control" id="modelSelector">
+     
+      {% for item in data['models'] %}
+   <option value = "{{item.id}}">{{item.title}} </option>
+{% endfor %}
+    </select>
+<label for="exampleAlgorithmFile"> or upload your own</label>                <input type="file" class="form-control-file" id="exampleAlgorithmFile">
+</div>
+     <div class="col-sm-4">
+       <label for="exampleFormControlSelect2">...and a benchmark for the output</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>Accuracy</option>
+      <option selected="True">NSFW</option>
+    </select>
+      <label for="exampleAlgName">or enter your own</label>
+            <input type="text" class="form-control" id="exampleAlgName" placeholder="...">
+    </div>
+  </div>
+   <button type="button" class="btn btn-new" onClick='submitBox()'>Submit</button>
+</form>
+<div class = "row">
+ <div class="col-sm-4">
+
+<img style = "display:none" id = "loader" src="{{ url_for('static',filename='img/load.gif') }}" width= "100px" />
+ </div>
+ <div class="col-sm-4">
+  <div id = "results" style = "display:none">
+  <h3>Results</h3>
+Output: <div id = "output"></div>
+</div>
+ </div>
+</div>
+
+</div>
+
+
+ 
+
+</div>
+
+      </div>
+
+   </body>
+</html>

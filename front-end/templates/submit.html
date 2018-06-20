@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% from "_formhelpers.html" import render_field %}
+{% block title %}Launch a box{% endblock %}
+{% block head %}
+  {{ super() }}
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css')}}">
+
+{% endblock %}
+{% block nav %}
+ <ul class="nav navbar-nav">
+          <li><a href="{{url_for('about')}}" style = "color:black" >learn more</a></li>
+          <li><a href="{{url_for('launchBox')}}" style = "color:black">examine</a></li>
+        <li class = "devButton"><a href="{{url_for('contribute')}}" style = "color:white" >contribute</a></li>     
+         </ul>
+{% endblock %}
+{% block content %}
+<img src="{{ url_for('static', filename='img/contributor.png')}}" width = "300px"/>
+<h1>contribute an <div class = "clicked">&nbsp;{{asset_type}}&nbsp;</div> to the <div class = "clicked">&nbsp;{{task}}&nbsp;</div> task</h1>
+ <div class="row">
+ 	<div class="col-md-6">
+ 		<h2>how to contribute</h2>
+ 		<p>on turing box, an algorithm is a .py file run from the commandline with arguments for the data.<p>
+<p>for example, a valid algorithm for the twitter sentiment task be run as<p>
+<p>python main.py twitter_dummy.csv</p>
+<p>where main.py has a core() function that has as input a 28x28 .png file as input and as output a sentiment score (float) between [0.0,1.0]</p>
+<p>click here to download the right dummy data for your task!</p>
+ 	</div>
+    <div class="col-md-6">
+    	<h2>upload</h2>
+    	<form method=post>
+  <dl>
+    {{ render_field(form.name) }}
+    {{ render_field(form.description) }}
+    {{ render_field(form.tags) }}
+    {{ render_field(form.alg) }}
+  </dl>
+  <p><input type=submit value=Contribute>
+</form>
+    </div>
+</div>
+
+{% endblock %}
+
+

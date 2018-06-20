@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Launch a box{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block nav %}
+ <ul class="nav navbar-nav">
+          <li><a href="about.html" style = "color:black" >learn more</a></li>
+          <li class = "evalButton"><a href="launchBox.html" style = "color:white">examine</a></li>
+        <li><a href="upload.html" class = "inactive">contribute</a></li>      </ul>
+{% endblock %}
+{% block content %}
+<h1>{{box_id}}</h1>
+{% endblock %}
