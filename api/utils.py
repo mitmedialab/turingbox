@@ -1,13 +1,14 @@
 import json
+import pandas as pd
 from time import gmtime, strftime
 
 def turing_box(algorithm, args):
-	print(args[2])
 	y = ""
 	success = True 
-	
 	try:
-		y = algorithm(args[1])
+		comcon = algorithm(args[1])
+		y = "worked"
+		comcon.to_csv("assets/comcon/{}.csv".format(args[2]))
 	except Exception as e:
 		y = str(e)
 		success = False

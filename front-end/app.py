@@ -6,11 +6,21 @@ from flask import render_template
 from wtforms import Form, BooleanField, StringField, FileField, validators
 
 
-# url = 'http://0.0.0.0:5000/api/v1/refresh/'
-# payload = {'user_id': 'test47'}
-# headers = {'content-type': 'application/json'}
-# r = requests.get(url)
-# data  = json.loads(r.text)
+def get_assets():
+    url = 'http://0.0.0.0:5000/api/v2/refresh/'
+    payload = {'user_id': 'test47'}
+    headers = {'content-type': 'application/json'}
+    r = requests.get(url)
+    data  = json.loads(r.text)
+    return data
+
+def get_box(box_id):
+    url = 'http://0.0.0.0:5000/api/v2/get_box/'
+    payload = {'box_id': box_id}
+    headers = {'content-type': 'application/json'}
+    r = requests.post(url, json = payload)
+    data  = json.loads(r.text)
+    return data
 
 def ingest_static_data(path):
     data = pd.read_csv(path)
@@ -62,7 +72,11 @@ def about():
 
 @app.route('/launchBox.html')
 def launchBox():
-    return render_template('launchBox.html')
+    payload = get_assets()
+    stimuli = payload['data']
+    algorithms = payload['models']
+    metrics = payload['metrics']
+    return render_template('launchBox.html', stimuli = stimuli, algorithms = algorithms, metrics = metrics)
 
 @app.route('/upload.html')
 def contribute():
@@ -72,10 +86,16 @@ def contribute():
 def report(box_id):
     if box_id in static_pages:
         return render_template(box_id)
-    return render_template('report.html', box_id = box_id)
+    payload = get_box(box_id)
+    if payload['success']:
+        box = payload['box_details']
+        box['success'] = True
+    else:
+        box = {"success" : False}
+    return render_template('report.html', box_id = box_id, box = box)
 
 @app.route('/context/<asset_type>/<asset_id>')
-def algorithm(asset_type, asset_id):
+def context(asset_type, asset_id):
     if asset_id in static_pages:
         return render_template(asset_id)
     return render_template('context.html', asset_type = asset_type, asset_id = asset_id)

@@ -5,9 +5,9 @@
 {% endblock %}
 {% block nav %}
  <ul class="nav navbar-nav">
-          <li class = "aboutUsButton"><a href="about.html" style = "color:black">learn more</a></li>
-          <li class = "evalButton"><a href="launchBox.html" style = "color:white">examine</a></li>
-           <li class = "devButton"><a href="upload.html" style = "color:white">contribute</a></li>
+          <li class = "aboutUsButton"><a href="{{url_for('about')}}" style = "color:black">learn more</a></li>
+          <li class = "evalButton"><a href="{{url_for('launchBox')}}" style = "color:white">examine</a></li>
+           <li class = "devButton"><a href="{{url_for('contribute')}}" style = "color:white">contribute</a></li>
       </ul>
 {% endblock %}
 {% block content %}

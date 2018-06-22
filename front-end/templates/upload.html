@@ -13,18 +13,23 @@ $(document).ready(function(){
 	    $('#metricType').removeClass("clicked")
 	    $('.taskSelector').show();
 	    $("#submitNLP").attr("href", "submit/algorithm/NLP");
+	    $("#submitCV").attr("href", "submit/algorithm/CV");
 	});
 	  $('#stimType').on('click',function(){
 	    $('#stimType').addClass("clicked")
 	    $('#algType').removeClass("clicked")
 	    $('#metricType').removeClass("clicked")
 	    $('.taskSelector').show();
+	    $("#submitNLP").attr("href", "submit/stimulus/NLP");
+	    $("#submitCV").attr("href", "submit/stimulus/CV");
 	})
     $('#metricType').on('click',function(){
 	    $('#metricType').addClass("clicked")
 	    $('#stimType').removeClass("clicked")
 	    $('#algType').removeClass("clicked")
 	    $('.taskSelector').show();
+	    $("#submitNLP").attr("href", "submit/metric/NLP");
+	    $("#submitCV").attr("href", "submit/metric/CV");
 	})
 
 });
@@ -44,6 +49,7 @@ $(document).ready(function(){
 	<h1> select a task</h1>
 	<ul>
 		<li><a id = "submitNLP" href = "submit/">NLP</a></li>
+		<li><a id = "submitCV" href = "submit/">Computer Vision</a></li>
 	</ul>
 </div>
 {% endblock %}

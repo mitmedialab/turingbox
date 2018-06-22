@@ -5,7 +5,7 @@
   }
   .clicked{
   	color:white;
-  	background: #29abe2;
+  	background: #ff1d25;
        border-radius: 5px;
   	border: 2px solid black;
   	 display:inline;
@@ -27,4 +27,9 @@
     background: #29abe2;
      
 
+  }
+
+  .button{
+    padding-top: 10px;
+    font-size: 150%;
   }

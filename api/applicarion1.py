@@ -54,8 +54,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 
-@app.route('/api/v2/refresh/', methods=['GET'])
-def get_assets():
+@app.route('/api/v1/refresh/', methods=['GET'])
+def get_state():
     """
     Input:
         {
@@ -63,15 +63,19 @@ def get_assets():
         }
     Returns JSON of data/models available
         {
-            "assets": [
+            "data": [
+                {
+                    "title": str,
+                    "desc" : "str"
+                }],
+            "models": [
                 {
                     "title": str,
                     "desc" : "str"
                 }]
         }
     """
-    print(47)
-    state = controller.get_assets("47", engine)
+    state = controller.get_current_state("47", engine)
     return(jsonify(state))
 
 
@@ -93,27 +97,14 @@ def launch_box():
     controller.launch_job(request.json["model_id"], request.json["data_id"], request.json["user_id"],request.json["job_id"], conn, engine)
     return(request.json["job_id"])
 
-@app.route('/api/v2/get_box/', methods = ['POST'])
-def get_box():
-    """
-    Input:
-        {
-            "box_id": str,
-        }
-    Returns JSON of data/models available
-        {
-            "box": {
-                    "title": str,
-                    "desc" : "str"
-                }
-        }
-    """
-    
+@app.route('/api/v1/access_data/', methods = ['POST'])
+def access_data():
     if not request.json:
         abort(400)
-    output = controller.get_box(request.json["box_id"], engine, from_db = False)
-    print(output)
-    return(json.dumps(output))
+    print(request.json["job_id"])
+    output = controller.get_output(request.json["job_id"], from_db = False)
+    print("model output is {}".format(output))
+    return(json.dumps({"out" :output}))
 
 
 if __name__ == '__main__':

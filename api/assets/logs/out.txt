@@ -1,0 +1,1 @@
+{"model_reply": "File b'assets/data/data1.py' does not exist", "data_url": "assets/data/data1.py", "success": false, "time": "2018-06-21 16:50:28"}

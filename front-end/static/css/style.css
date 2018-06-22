@@ -381,3 +381,8 @@ h3{
 .formWrapper{
 	margin-left: 00%;
 }
+
+.reportContent{
+	 border-radius: 5px;
+	border: 2px solid;
+}
