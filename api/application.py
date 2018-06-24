@@ -115,6 +115,27 @@ def get_box():
     print(output)
     return(json.dumps(output))
 
+@app.route('/api/v2/get_asset/', methods = ['POST'])
+def get_asset():
+    """
+    Input:
+        {
+            "asset_id": str,
+        }
+    Returns JSON of data/models available
+        {
+            "box": {
+                    "title": str,
+                    "desc" : "str"
+                }
+        }
+    """
+    
+    if not request.json:
+        abort(400)
+    output = controller.get_asset_context(request.json["asset_id"], engine, from_db = False)
+    return(json.dumps(output))
+
 
 if __name__ == '__main__':
     context = ('server.crt', 'server.key')

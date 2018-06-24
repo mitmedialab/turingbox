@@ -22,6 +22,14 @@ def get_box(box_id):
     data  = json.loads(r.text)
     return data
 
+def get_asset_context(asset_id):
+    url = 'http://0.0.0.0:5000/api/v2/get_asset/'
+    payload = {'asset_id': asset_id}
+    headers = {'content-type': 'application/json'}
+    r = requests.post(url, json = payload)
+    data  = json.loads(r.text)
+    return data
+
 def ingest_static_data(path):
     data = pd.read_csv(path)
     rows = []
@@ -98,7 +106,8 @@ def report(box_id):
 def context(asset_type, asset_id):
     if asset_id in static_pages:
         return render_template(asset_id)
-    return render_template('context.html', asset_type = asset_type, asset_id = asset_id)
+    payload = get_asset_context(asset_id)
+    return render_template('context.html', asset_type = asset_type, payload = payload)
 
 @app.route('/submit/<asset_type>/<task>',  methods=['GET', 'POST'])
 def submit(asset_type, task):

@@ -51,6 +51,25 @@ def get_box(box_id,engine, from_db):
 			return({"success" : False})
 	return({"success" : True, 'box_details' : box})
 
+def get_asset_context(asset_id,engine, from_db):
+
+	if not from_db:
+		try:
+			query = """ SELECT * from assets where asset_id = '{}' """.format(asset_id)
+			asset_context = query2json(query, engine)
+			print(asset_context)
+			if len(asset_context) == 0:
+				return({"success" : False})
+
+			asset_context = asset_context[0]
+
+			comcon_query = """ SELECT * from comcon where alg1 = '{}' or alg2 = '{}' or stim1 = '{}' or stim2 = '{}' """.format(asset_id,asset_id,asset_id,asset_id)
+			boxes = query2json(comcon_query, engine)
+		except:
+			print(474)
+			return({"success" : False})
+	return({"success" : True, 'asset_context' : asset_context, "boxes" : boxes})
+
 
 def launch_job(model_id, data_id, user_id, job_id, conn, engine):
 	print("launching job {}".format(job_id))
