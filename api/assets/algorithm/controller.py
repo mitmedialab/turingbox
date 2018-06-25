@@ -6,8 +6,6 @@ import psycopg2
 from sqlalchemy import create_engine, text
 import hashlib
 
-add_asset = """ INSERT INTO assets VALUES  (%s, %s, %s, %s, %s,%s, %s, %s)"""
-
 def query2json(query,engine):
 	pd_data = pd.read_sql_query(text(query), engine)
 	json_data = json.loads(pd_data.to_json(orient="records"))
@@ -71,20 +69,9 @@ def get_asset_context(asset_id,engine, from_db):
 			return({"success" : False})
 	return({"success" : True, 'asset_context' : asset_context, "boxes" : boxes})
 
-def ingest_asset(form_data, engine, conn, from_db):
+def ingest_asset(form_data,engine, from_db):
 	if not from_db:
-		cur = conn.cursor()
-		cur.execute(add_asset, (
-	        form_data['asset_type'] + hash_token(form_data['filename']),
-	        form_data['asset_type'],
-	        form_data['asset_type'] + "/" + form_data['filename'],
-	        "img/MLalg.png",
-	        form_data['name'],
-	        form_data['description'],
-	        form_data['tags'],
-	        form_data['task']))
-		conn.commit()
-		cur.close()
+		print(form_data)
 	return({"success" : True})
 
 

@@ -28,7 +28,7 @@
     <div class="col-md-2"></div>
     	<div class="col-md-4">
     	<h2>upload</h2>
-    	<form method=post>
+    	<form method=post enctype="multipart/form-data">
   <dl>
     {{ render_field(form.name) }}
     {{ render_field(form.description) }}

@@ -136,6 +136,27 @@ def get_asset():
     output = controller.get_asset_context(request.json["asset_id"], engine, from_db = False)
     return(json.dumps(output))
 
+@app.route('/api/v2/ingest_asset/', methods = ['POST'])
+def ingest_asset():
+    """
+    Input:
+        {
+            "asset_id": str,
+        }
+    Returns JSON of data/models available
+        {
+            "box": {
+                    "title": str,
+                    "desc" : "str"
+                }
+        }
+    """
+    
+    if not request.json:
+        abort(400)
+    output = controller.ingest_asset(request.json["form_data"], engine, conn,  from_db = False)
+    return(json.dumps(output))
+
 
 if __name__ == '__main__':
     context = ('server.crt', 'server.key')
