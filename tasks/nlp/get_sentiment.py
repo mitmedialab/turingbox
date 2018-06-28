@@ -92,15 +92,21 @@ def run_custom_sentiment(input_array):
 
 if __name__ == "__main__": 
 
-    tweets = [] 
+    reviews = [] 
+    sensitive_attr = [] 
     labels = [] 
 
-    with open('datasets/amazon_sentiment100.csv', 'r') as f: 
+    with open('datasets/movies1000.csv', 'r') as f: 
         csv_reader = csv.reader(f)
         row = next(csv_reader)
         for row in csv_reader: 
-            tweets.append(row[0])
-            labels.append(row[1])
+            reviews.append(row[0])
+            sensitive_attr.append(row[1])
+            labels.append(row[2])
+
+    print(reviews[:10])
+    print(labels[:10])
+    print(sensitive_attr[:10])
     # write_results(tweets, labels, run_azure, 'results/twitter_sentiment100_results.csv')
-    write_results(tweets, labels, run_custom_sentiment, 'results/amazon_sentiment100_custom_results.csv', ['NB_prob'])
+    #write_results(tweets, labels, run_custom_sentiment, 'results/amazon_sentiment100_custom_results.csv', ['NB_prob'])
 
