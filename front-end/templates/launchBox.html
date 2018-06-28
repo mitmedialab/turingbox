@@ -2,6 +2,19 @@
 {% block title %}Launch a box{% endblock %}
 {% block head %}
   {{ super() }}
+  <script>
+$(document).ready(function(){
+    $('.selectStim').on('click',function(event){
+	  $('input[name="stim"]').val(event.target.id);
+	  $('input[name="task"]').val(event.target.task);
+	})
+
+	$('.selectAlg').on('click',function(event){
+	  $('input[name="alg"]').val(event.target.id);
+	})
+
+});
+  </script>
 {% endblock %}
 {% block nav %}
  <ul class="nav navbar-nav">
@@ -23,7 +36,7 @@
 		    </tr>
 		    {% for stimulus in stimuli %}
 		    <tr>
-		        <td>{{stimulus['name']}}</td>
+		        <td class = "selectStim" id = "{{stimulus['asset_id']}}" task = "{{stimulus['task']}}">{{stimulus['name']}}</td>
 		        <td>{{stimulus['description']}}</td>
 		        <td>{{stimulus['imgpath']}}</td>
 		        <td>{{stimulus['task']}}</td>
@@ -43,7 +56,7 @@
 		    </tr>
 		    {% for algorithm in algorithms %}
 		    <tr>
-		        <td>{{algorithm['name']}}</td>
+		        <td class = "selectAlg" id = "{{algorithm['asset_id']}}" >{{algorithm['name']}}</td>
 		        <td>{{algorithm['description']}}</td>
 		        <td>{{algorithm['imgpath']}}</td>
 		        <td>{{algorithm['task']}}</td>
@@ -72,6 +85,12 @@
 		</table>
 	</div>
 </div>
+  <form action="{{ url_for('launchBox') }}" method="post">
+            <input type="Stim" name="stim" style = "display:none"/>
+            <input type="Alg" name="alg" style = "display:none"/>
+            <input type="Task" name="task" style = "display:none"/>
+            <input type=submit value="Launch Box" id = "submit">
+        </form>
 <h1>Reports</h1>
 <ul>
 	<li><a href = "report/0"/>Dummy</li>

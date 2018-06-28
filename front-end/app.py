@@ -43,35 +43,21 @@ def push_form(form, task, filename, asset_type):
     data  = json.loads(r.text)
     print(data)
 
-def ingest_static_data(path):
-    data = pd.read_csv(path)
-    rows = []
-    for row in data.iterrows():
-        row = {"text": row[1][0][0:50]+"...", "label": row[1][1], "a_sent": round(row[1][2],2), "g_sent": round(row[1][3],2),"minsky": row[1][4]}
-        rows.append(row)
-    return rows
+def push_job(stimulus, algorithm, task):
+    url = 'http://0.0.0.0:5000/api/v2/launch/'
+    payload = {"stimulus" : stimulus , "algorithm" : algorithm, "task" : task}
+    headers = {'content-type': 'application/json'}
+    r = requests.post(url, json = payload)
+    data  = json.loads(r.text)
+    print(data)
+    return data
 
-
-def ingest_static_swim_data(path,t):
-    data = pd.read_csv(path)
-    rows = []
-    for row in data.iterrows():
-        row = {"path": "static/swim/{}".format(row[1][4]), "type": t, "google": row[1][1], "microsoft": row[1][2], "clarifai" : row[1][3]}
-        rows.append(row)
-    return rows
 
 class AlgForm(Form):
     name = StringField('name', [validators.Length(min=4, max=25)])
     description = StringField('description', [validators.Length(min=6, max=35)])
     tags = StringField('tags', [validators.Length(min=6, max=35)])
     alg = FileField(u'algorithm file')
-
-amazon = ingest_static_data('static/data/amazon_sentiment100_results.csv')
-sst = ingest_static_data('static/data/sst_sentiment100_results.csv')
-twitter = ingest_static_data('static/data/twitter_sentiment100_results.csv')
-
-swim_thin = ingest_static_swim_data('static/data/swim_thin.csv', "thin")
-swim_plus = ingest_static_swim_data('static/data/swim_plus.csv', "plus") 
 
 app = Flask(__name__)
 app.secret_key = 'skinner'
@@ -91,8 +77,16 @@ def landRoute():
 def about():
     return render_template('about.html')
 
-@app.route('/launchBox.html')
+@app.route('/launchBox.html',  methods=['GET', 'POST'])
 def launchBox():
+    if request.method == 'POST':
+        stimulus = request.form['stim']
+        algorithm = request.form['alg']
+        task =  47
+        print("pushing job")
+        payload = push_job(stimulus, algorithm, task)
+        return redirect(url_for('report', box_id = payload['box_id']))
+        print(payload['box_id'])
     payload = get_assets()
     stimuli = payload['stimuli']
     algorithms = payload['algorithms']

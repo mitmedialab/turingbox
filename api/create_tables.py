@@ -96,7 +96,7 @@ if __name__ == '__main__':
     cur.execute(add_asset, (
         "stimulus3",
         "stimulus",
-        "data/swim.csv",
+        "stimulus/swim.csv",
         "img/MLalg.png",
         "MIT Swimsuite dataset",
         "curated images of swimsite model with sensitive feature z = plus or not",

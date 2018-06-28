@@ -70,28 +70,9 @@ def get_assets():
                 }]
         }
     """
-    print(47)
     state = controller.get_assets("47", engine)
     return(jsonify(state))
 
-
-@app.route('/api/v1/launch/', methods=['POST'])
-def launch_box():
-    """
-    Input:
-        {
-            "user_id": text,
-            "data_id": text,
-            "model_id": text,
-            "job_id": text,
-        }
-    performs core computation
-    """
-    if not request.json:
-        abort(400)
-    print(request)
-    controller.launch_job(request.json["model_id"], request.json["data_id"], request.json["user_id"],request.json["job_id"], conn, engine)
-    return(request.json["job_id"])
 
 @app.route('/api/v2/get_box/', methods = ['POST'])
 def get_box():
@@ -112,8 +93,8 @@ def get_box():
     if not request.json:
         abort(400)
     output = controller.get_box(request.json["box_id"], engine, from_db = False)
-    print(output)
     return(json.dumps(output))
+
 
 @app.route('/api/v2/get_asset/', methods = ['POST'])
 def get_asset():
@@ -155,6 +136,24 @@ def ingest_asset():
     if not request.json:
         abort(400)
     output = controller.ingest_asset(request.json["form_data"], engine, conn,  from_db = False)
+    return(json.dumps(output))
+
+
+@app.route('/api/v2/launch/', methods=['POST'])
+def launch_box():
+    """
+    Input:
+        {
+            "user_id": text,
+            "data_id": text,
+            "model_id": text,
+            "job_id": text,
+        }
+    performs core computation
+    """
+    if not request.json:
+        abort(400)
+    output = controller.launch_job(request.json["stimulus"],request.json["algorithm"],request.json["task"], conn, engine)
     return(json.dumps(output))
 
 
