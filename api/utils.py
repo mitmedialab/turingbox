@@ -16,3 +16,10 @@ def turing_box(algorithm, args):
 	output = {"model_reply" : y, "data_url" : args[1], "success" : success, "time" : strftime("%Y-%m-%d %H:%M:%S", gmtime())}
 	with open('assets/logs/{}.txt'.format(args[2]), 'w') as outfile:
 		json.dump(output, outfile)
+
+def evaluate_metric(metric, args):
+	# try:
+	output = metric(args[1])
+	print(output,True)
+	# except Exception as e:
+	# 	print(-1, False)

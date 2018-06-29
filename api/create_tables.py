@@ -55,6 +55,15 @@ comcon = """
         completed       integer
     );
     """
+metrics = """
+    CREATE TABLE comcon (
+        id              varchar(256),
+        metric          varchar(256),
+        comcon          varchar(256),
+        output1         varchar(256),
+        output2         varchar(256)
+    );
+    """
 
 drop_assets = """
     DROP TABLE assets;
@@ -62,6 +71,10 @@ drop_assets = """
 
 drop_comcon = """
     DROP TABLE comcon;
+    """
+
+drop_comcon = """
+    DROP TABLE metrics;
     """
 
 add_asset = """ INSERT INTO assets VALUES  (%s, %s, %s, %s, %s,%s, %s, %s)"""
@@ -163,6 +176,8 @@ if __name__ == '__main__':
         "swim",
         "comcon/swim.csv",
         1))
+
+    cur.execute(metrics)
 
     conn.commit()
     cur.close()
