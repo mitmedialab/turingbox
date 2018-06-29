@@ -1,0 +1,47 @@
+Twitter
+Microsoft Azure
+mean = 0.572
+sem = 0.0366
+acc = 0.80 
+
+Google Cloud Natural Language
+mean = -0.025
+sem = 0.060
+acc = 0.81 
+
+Custom 
+Mean = 0.47 
+sem = 0.0312 
+Acc = 0.55 
+
+Amazon 
+Microsoft Azure
+mean = 0.548
+sem = 0.0384
+acc = 0.84 
+
+Google Cloud Natural Language
+mean = 0.051
+sem = 0.047
+acc = 0.91 
+
+Custom 
+Mean = 0.4998 
+sem = 0.0464
+Acc = 0.90 
+
+SST 
+Microsoft Azure
+mean = 0.570 
+sem = 0.0341
+acc = 0.68 
+
+Google Cloud Natural Language
+mean = -0.025
+sem = 0.0602
+acc = 0.81 
+
+Custom 
+Mean = 0.488 
+sem = 0.0334 
+Acc = 0.75 

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block title %}Launch a box{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css')}}">
+
+<script>
+
+$(document).ready(function(){
+    $('#algType').on('click',function(){
+	    $('#algType').addClass("clicked")
+	    $('#stimType').removeClass("clicked")
+	    $('#metricType').removeClass("clicked")
+	    $('.taskSelector').show();
+	    $("#submitNLP").attr("href", "submit/algorithm/NLP");
+	    $("#submitCV").attr("href", "submit/algorithm/CV");
+	});
+	  $('#stimType').on('click',function(){
+	    $('#stimType').addClass("clicked")
+	    $('#algType').removeClass("clicked")
+	    $('#metricType').removeClass("clicked")
+	    $('.taskSelector').show();
+	    $("#submitNLP").attr("href", "submit/stimulus/NLP");
+	    $("#submitCV").attr("href", "submit/stimulus/CV");
+	})
+    $('#metricType').on('click',function(){
+	    $('#metricType').addClass("clicked")
+	    $('#stimType').removeClass("clicked")
+	    $('#algType').removeClass("clicked")
+	    $('.taskSelector').show();
+	    $("#submitNLP").attr("href", "submit/metric/NLP");
+	    $("#submitCV").attr("href", "submit/metric/CV");
+	})
+
+});
+</script>
+{% endblock %}
+{% block nav %}
+  <ul class="nav navbar-nav">
+          <li><a href="{{url_for('about')}}" style = "color:black" >learn more</a></li>
+          <li><a href="{{url_for('launchBox')}}" style = "color:black">examine</a></li>
+        <li class = "devButton"><a href="{{url_for('contribute')}}" style = "color:white" >contribute</a></li>     
+         </ul>
+{% endblock %}
+{% block content %}
+<img src="{{ url_for('static', filename='img/contributor.png')}}" width = "300px"/>
+<h1>contribute an <div id = "algType" class = "unclicked">&nbsp;algorithm&nbsp;</div>, a <div id = "stimType" class = "unclicked">&nbsp;stimulus&nbsp;</div>, or a <div id = "metricType" class = "unclicked">&nbsp;metric&nbsp;</div></h1>
+<div class = "taskSelector" style = "display: none;">
+	<h1> select a task</h1>
+	<ul>
+		<li><a id = "submitNLP" href = "submit/">NLP</a></li>
+		<li><a id = "submitCV" href = "submit/">Computer Vision</a></li>
+	</ul>
+</div>
+{% endblock %}

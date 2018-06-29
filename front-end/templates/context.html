@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Launch a box{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block nav %}
+ <ul class="nav navbar-nav">
+           <li class = "aboutUsButton"><a href="{{url_for('about')}}" style = "color:black">learn more</a></li>
+          <li class = "evalButton"><a href="{{url_for('launchBox')}}" style = "color:white">examine</a></li>
+           <li class = "devButton"><a href="{{url_for('contribute')}}" style = "color:white">contribute</a></li>
+{% endblock %}
+{% block content %}
+ {% if payload['success'] %}
+ <h1>{{payload['asset_context']['name']}}</h1>
+ <h2>description: {{payload['asset_context']['description']}}</h2>
+ <h2>tags: {{payload['asset_context']['tags']}}</h2>
+ <h2>task : {{payload['asset_context']['task']}}</h2>
+ <h2>type: {{payload['asset_context']['type']}}</h2>
+ <h2>boxes:</h2>
+ {% for box in payload['boxes']%} 
+ <div class = "relatedBox">
+ 	<a href="{{ url_for('report', box_id = box['id']) }}"><img  width = "100px" src="{{ url_for('static', filename='img/logoSansText.png')}}" /><br>&nbsp;&nbsp;&nbsp;box # {{box['id']}}</a>
+	
+</div>
+ {% endfor %}
+ <h2> comments: </h2>
+ {% else %}
+ <h1>Asset not loaded correctly. Please try again later.
+ {% endif %}
+{% endblock %}

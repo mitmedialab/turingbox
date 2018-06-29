@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block title %}Launch a box{% endblock %}
+{% block head %}
+  {{ super() }}
+  <script>
+$(document).ready(function(){
+    $('.selectStim').on('click',function(event){
+	  $('input[name="stim"]').val(event.target.id);
+	  $('input[name="task"]').val(event.target.task);
+	})
+
+	$('.selectAlg').on('click',function(event){
+	  $('input[name="alg"]').val(event.target.id);
+	})
+
+});
+  </script>
+{% endblock %}
+{% block nav %}
+ <ul class="nav navbar-nav">
+          <li><a href="{{url_for('about')}}" style = "color:black" >learn more</a></li>
+          <li class = "evalButton"><a href="{{url_for('launchBox')}}" style = "color:white">examine</a></li>
+        <li><a href="{{url_for('contribute')}}" class = "inactive">contribute</a></li>      </ul>
+{% endblock %}
+{% block content %}
+<div class = "row">
+	<div class="col-md-4">
+		<h1> Stimuli</h1>
+		  <table>
+		    <tr>
+		        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+		        <th>Name</th>
+		        <th>Description</th>
+		        <th>Image Path</th>
+		        <th>Task</th>
+		    </tr>
+		    {% for stimulus in stimuli %}
+		    <tr>
+		        <td class = "selectStim" id = "{{stimulus['asset_id']}}" task = "{{stimulus['task']}}">{{stimulus['name']}}</td>
+		        <td>{{stimulus['description']}}</td>
+		        <td>{{stimulus['imgpath']}}</td>
+		        <td>{{stimulus['task']}}</td>
+		    </tr>
+		    {% endfor %}
+		</table>
+	</div>
+	<div class="col-md-4">
+		<h1> Algorithms</h1>
+		  <table>
+		    <tr>
+		        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+		        <th>Name</th>
+		        <th>Description</th>
+		        <th>Image Path</th>
+		        <th>Task</th>
+		    </tr>
+		    {% for algorithm in algorithms %}
+		    <tr>
+		        <td class = "selectAlg" id = "{{algorithm['asset_id']}}" >{{algorithm['name']}}</td>
+		        <td>{{algorithm['description']}}</td>
+		        <td>{{algorithm['imgpath']}}</td>
+		        <td>{{algorithm['task']}}</td>
+		    </tr>
+		    {% endfor %}
+		</table>
+	</div>
+	<div class="col-md-4">
+		<h1> Metrics</h1>
+		  <table>
+		    <tr>
+		        <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+		        <th>Name</th>
+		        <th>Description</th>
+		        <th>Image Path</th>
+		        <th>Task</th>
+		    </tr>
+		    {% for metric in metrics %}
+		    <tr>
+		        <td>{{metric['name']}}</td>
+		        <td>{{metric['description']}}</td>
+		        <td>{{metric['imgpath']}}</td>
+		        <td>{{metric['task']}}</td>
+		    </tr>
+		    {% endfor %}
+		</table>
+	</div>
+</div>
+  <form action="{{ url_for('launchBox') }}" method="post">
+            <input type="Stim" name="stim" style = "display:none"/>
+            <input type="Alg" name="alg" style = "display:none"/>
+            <input type="Task" name="task" style = "display:none"/>
+            <input type=submit value="Launch Box" id = "submit">
+        </form>
+<h1>Reports</h1>
+<ul>
+	<li><a href = "report/0"/>Dummy</li>
+	<li><a href = "report/1"/>Compas</li>
+	<li><a href = "report/2"/>Swim</li>
+</ul>
+
+{% endblock %}

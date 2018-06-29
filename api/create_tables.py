@@ -20,7 +20,7 @@ else:
     username = rds_username
     password = rds_password
     url = rds_url
-    port = rds_port
+    port = rds_port6
     name = rds_name
 
 conn = psycopg2.connect(
@@ -30,79 +30,155 @@ conn = psycopg2.connect(
     user=username,
     password=password)
 
-data = """
-    CREATE TABLE data (
-        id              varchar(256) PRIMARY KEY,
-        title           varchar(256),
-        description     varchar(256),
+assets = """
+    CREATE TABLE assets (
+        asset_id        varchar(256) PRIMARY KEY,
         type            varchar(256),
-        path            varchar(256)
-    );
-    """
-
-models = """
-    CREATE TABLE models (
-        id              varchar(256),
-        title           varchar(256),
+        path            varchar(256),
+        imgpath         varchar(256),
+        name            varchar(256),
         description     varchar(256),
-        input_type      varchar(256),
-        output_type     varchar(256),
-        path            varchar(256)
+        tags            varchar(256),
+        task            varchar(256)
     );
     """
 
-jobs = """
-    CREATE TABLE jobs (
+comcon = """
+    CREATE TABLE comcon (
         id              varchar(256),
-        model_id        varchar(256),
-        data_id         varchar(256),
-        logfile         varchar(256),
-        completed       boolean
+        alg1            varchar(256),
+        alg2            varchar(256),
+        stim1           varchar(256),
+        stim2           varchar(256),
+        task            varchar(256),
+        path            varchar(256),
+        completed       integer
+    );
+    """
+metrics = """
+    CREATE TABLE comcon (
+        id              varchar(256),
+        metric          varchar(256),
+        comcon          varchar(256),
+        output1         varchar(256),
+        output2         varchar(256)
     );
     """
 
-add_data = """ INSERT INTO data VALUES  (%s, %s, %s, %s, %s)"""
-add_model = """ INSERT INTO models VALUES  (%s, %s, %s, %s, %s, %s)"""
+drop_assets = """
+    DROP TABLE assets;
+    """
+
+drop_comcon = """
+    DROP TABLE comcon;
+    """
+
+drop_comcon = """
+    DROP TABLE metrics;
+    """
+
+add_asset = """ INSERT INTO assets VALUES  (%s, %s, %s, %s, %s,%s, %s, %s)"""
+add_comcon = """ INSERT INTO comcon VALUES  (%s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
 if __name__ == '__main__':
 
     cur = conn.cursor()
-    cur.execute(data)
-    cur.execute(add_data, (
-        "1",
-        "data1",
-        "this is dummy data",
-        "botsheet",
-        "assets/data/data1.csv",))
+    cur.execute(drop_assets)
+    cur.execute(assets)
+    cur.execute(add_asset, (
+        "stimulus1",
+        "stimulus",
+        "stimulus/dummy.csv",
+        "img/MLalg.png",
+        "recidivism",
+        "raw data for recidivism risk score",
+        "crime, predpol",
+        "compas"))
 
-    for i,swim in enumerate(os.listdir("assets/data/swim")):
-        cur.execute(add_data, (
-            hash_token(swim),
-            "Swim Suite Image {}".format(i),
-            swim,
-            "image",
-            "assets/data/swim/{}".format(swim)))
+    cur.execute(add_asset, (
+        "stimulus2",
+        "stimulus",
+        "stimulus/dummy.csv",
+        "img/MLalg.png",
+        "spam",
+        "spammy dummy data",
+        "spam, dingus",
+        "dummy"))
 
+    cur.execute(add_asset, (
+        "stimulus3",
+        "stimulus",
+        "stimulus/swim.csv",
+        "img/MLalg.png",
+        "MIT Swimsuite dataset",
+        "curated images of swimsite model with sensitive feature z = plus or not",
+        "computer vision, machine gaze, fairness",
+        "CV"))
 
-    cur.execute(models)
-    cur.execute(add_model, (
+    cur.execute(add_asset, (
+        "algorithm1",
+        "algorithm",
+        "algorithm/dummy.py",
+        "img/MLalg.png",
+        "COMPAS*",
+        "the COMPAS recidivism algorithm by Northpointe",
+        "crime, predpol",
+        "compas"))
+
+    cur.execute(add_asset, (
+        "algorithm2",
+        "algorithm",
+        "algorithm/dummy.py",
+        "img/MLalg.png",
+        "Spam Alg",
+        "this is a janky spam alg",
+        "spam, dingus",
+        "dummy"))
+
+    cur.execute(add_asset, (
+        "algorithm3",
+        "algorithm",
+        "algorithm/cf_main.py",
+        "img/MLalg.png",
+        "Clarifai",
+        "Clarifai's NSFW algorithm",
+        "computer vision, NSFW",
+        "swim"))
+    cur.execute(drop_comcon)
+    cur.execute(comcon)
+    cur.execute(add_comcon, (
         "0",
-        "model1",
-        "this is a dummy model",
-        "botsheet",
-        "magnitude",
-        "assets/models/model1.py"))
+        "algorithm2",
+        "",
+        "stimulus2",
+        "",
+        "dummy",
+        "comcon/dummy.csv",
+        1))
 
-    cur.execute(add_model, (
+    cur.execute(add_comcon, (
         "1",
-        "Clarify",
-        "Clarify's vision API",
-        "image",
-        "nsfw score",
-        "assets/models/cf_main.py"))
+        "algorithm1",
+        "",
+        "stimulus1",
+        "",
+        "compas",
+        "comcon/compas.csv",
+        1))
 
-    cur.execute(jobs)
+    cur.execute(add_comcon, (
+        "2",
+        "algorithm3",
+        "",
+        "stimulus3",
+        "",
+        "swim",
+        "comcon/swim.csv",
+        1))
+
+    cur.execute(metrics)
+
     conn.commit()
     cur.close()
     conn.close()

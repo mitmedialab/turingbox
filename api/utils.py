@@ -1,13 +1,14 @@
 import json
+import pandas as pd
 from time import gmtime, strftime
 
 def turing_box(algorithm, args):
-	print(args[2])
 	y = ""
 	success = True 
-	
 	try:
-		y = algorithm(args[1])
+		comcon = algorithm(args[1])
+		y = "worked"
+		comcon.to_csv("assets/comcon/{}.csv".format(args[2]))
 	except Exception as e:
 		y = str(e)
 		success = False
@@ -15,3 +16,10 @@ def turing_box(algorithm, args):
 	output = {"model_reply" : y, "data_url" : args[1], "success" : success, "time" : strftime("%Y-%m-%d %H:%M:%S", gmtime())}
 	with open('assets/logs/{}.txt'.format(args[2]), 'w') as outfile:
 		json.dump(output, outfile)
+
+def evaluate_metric(metric, args):
+	# try:
+	output = metric(args[1])
+	print(output,True)
+	# except Exception as e:
+	# 	print(-1, False)

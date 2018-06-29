@@ -1,0 +1,1 @@
+{"model_reply": "worked", "data_url": "assets/stimulus/dummy.csv", "success": true, "time": "2018-06-28 20:52:17"}

@@ -1,0 +1,112 @@
+<html lang="en">
+  <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Chivo:300,400" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link href="{{ url_for('static', filename='css/navbar-fixed-side.css')}}" rel="stylesheet" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=c-4"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-53112709-4');
+</script>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+                  <nav class="navbar navbar-fixed-side">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     
+       <a href="index.html" class="logo"><img src="{{ url_for('static', filename='img/logo.png')}}" /></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li class = "aboutUsButton"><a href="about.html" style = "color:black">learn more</a></li>
+          <li class = "evalButton"><a href="launchBox.html" style = "color:white">examine</a></li>
+           <li class = "devButton"><a href="upload.html" style = "color:white">contribute</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+  </div>
+  <div class = "content">
+  
+
+    <h1><b>democratizing the study and production of <br> artificial intelligence<b>
+    </h1>
+      <h2><i>discover the platform below</i></h2>
+    <br>
+    <div class = "videowrapper">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/xtgK3kSm9sM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+    <br>
+    <br>
+    For research or media inquiries, please email us at <a href = "mailto:turingbox@mit.edu">turingbox@mit.edu</a>. To stay up to date, enter your email below.
+
+      <div class = "formWrapper">
+      <div>
+         <label>Email Address:</label>
+            <input class = "form-control" type="email" value="" name="EMAIL" class="required email" id="contact-email" style = "width:200px" >
+      </div>
+      <div>
+        <label>Comments:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+               <textarea class = "form-control" value="" name="MMERGE1" class="" style = "width:200px" id="contact-comments"></textarea>
+      </div>
+      <div>
+        <input type="submit" value="Subscribe" name="subscribe" id="subscribeButton" class="button subButton" />
+      </div>
+    </div>
+
+
+    <br>
+    <a href="https://www.media.mit.edu/groups/scalable-cooperation/overview/"><img class = "logoAbout" src="{{ url_for('static', filename='img/logoSC.jpg')}}"></a>
+  <a class = "logoAbout" href="https://www.media.mit.edu"><img class = "logoAbout" style = "margin-right:0px;" src="{{ url_for('static', filename='img/logoML.png')}}"></a>
+  <a href = ""><img class = "logoAbout"  src="{{ url_for('static', filename='img/mit_logo.jpg')}}"></a><br>
+  Scalable Cooperation | MIT Media Lab
+  </div>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  document.getElementById("subscribeButton").onclick = () => {
+  var data = {"email": document.getElementById("contact-email").value, "comments":document.getElementById("contact-comments").value}
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function(){
+  if ( this.readyState == 4 && this.status == 200 ) {
+    //cleanup on succcess 
+    document.getElementById("contact-email").value = "";
+    document.getElementById("contact-comments").value = "";
+    } else if (this.readyState == 4){
+  //show error div
+      }
+  };
+
+  httpRequest.open("PUT", "https://fpejxtu3ih.execute-api.us-east-2.amazonaws.com/prod/entry", true);
+  httpRequest.setRequestHeader("Content-Type", "application/json");
+  httpRequest.send(JSON.stringify(data));
+}
+ </script>
+
+  </body>
+</html>

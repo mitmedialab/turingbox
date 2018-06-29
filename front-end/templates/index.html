@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block nav %}
+ <ul class="nav navbar-nav">
+          <li class = "aboutUsButton"><a href="{{url_for('about')}}" style = "color:black">learn more</a></li>
+          <li class = "evalButton"><a href="{{url_for('launchBox')}}" style = "color:white">examine</a></li>
+           <li class = "devButton"><a href="{{url_for('contribute')}}" style = "color:white">contribute</a></li>
+      </ul>
+{% endblock %}
+{% block content %}
+  
+
+    <h1><b>democratizing the study and production of <br> artificial intelligence<b>
+    </h1>
+      <h2><i>discover the platform below</i></h2>
+    <br>
+    <div class = "videowrapper">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/xtgK3kSm9sM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+    <br>
+    <br>
+    For research or media inquiries, please email us at <a href = "mailto:turingbox@mit.edu">turingbox@mit.edu</a>. To stay up to date, enter your email below.
+
+      <div class = "formWrapper">
+      <div>
+         <label>Email Address:</label>
+            <input class = "form-control" type="email" value="" name="EMAIL" class="required email" id="contact-email" style = "width:200px" >
+      </div>
+      <div>
+        <label>Comments:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+               <textarea class = "form-control" value="" name="MMERGE1" class="" style = "width:200px" id="contact-comments"></textarea>
+      </div>
+      <div>
+        <input type="submit" value="Subscribe" name="subscribe" id="subscribeButton" class="button subButton" />
+      </div>
+    </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  document.getElementById("subscribeButton").onclick = () => {
+  var data = {"email": document.getElementById("contact-email").value, "comments":document.getElementById("contact-comments").value}
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function(){
+  if ( this.readyState == 4 && this.status == 200 ) {
+    //cleanup on succcess 
+    document.getElementById("contact-email").value = "";
+    document.getElementById("contact-comments").value = "";
+    } else if (this.readyState == 4){
+  //show error div
+      }
+  };
+
+  httpRequest.open("PUT", "https://fpejxtu3ih.execute-api.us-east-2.amazonaws.com/prod/entry", true);
+  httpRequest.setRequestHeader("Content-Type", "application/json");
+  httpRequest.send(JSON.stringify(data));
+}
+ </script>
+{% endblock %}

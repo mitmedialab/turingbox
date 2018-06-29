@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block nav %}
+ <ul class="nav navbar-nav">
+  <li class = "aboutUsButton"><a href="{{url_for('about')}}" style = "color:black">learn more</a></li>
+          <li><a href="launchBox.html" class = "inactive">examine</a></li>
+          <li><a href="upload.html" class = "inactive">contribute</a></li>
+      </ul>
+{% endblock %}
+{% block content %}
+  
+<p>"Algorithms are being developed far faster than their impacts are being studied and understood. The Turing box...could help turn the tide. "<br>&nbsp&nbsp&#8211<a href = "https://www.economist.com/news/science-and-technology/21739145-skinner-box-software-understand-digital-advertising-study-its-algorithms">Hal Hodson, The Economist</a></p>
+<p>"The scientific study of machine behavior by those outside of Computer Science and Robotics provides new perspectives on important economic, social and political phenomena that machines influence. "<br>&nbsp&nbsp&#8211<a href = "http://nautil.us/issue/58/self/machine-behavior-needs-to-be-an-academic-discipline">Iyad Rahwan, MIT Media Lab, in The Nautilus</a></p>
+<p>"Our diagnosis suggests that accelerating the scientific study of AI systems requires new incentives for academia and industry, mediated by new tools and institutions."<br>&nbsp&nbsp&#8211<a href = "https://arxiv.org/abs/1803.07233">Epstein and Payne et al.</a></p>
+<img width = "250" src="{{ url_for('static', filename='img/alphabetblocks.png')}}" style = "margin-left: 30%;"/>
+<p>The rapid growth of artificial intelligence has hindered our ability to replicate and audit the behavior of emerging artificial intelligence systems. These hindrances have opened the door to unintended consequences like unexpected biases, unethical behavior, and unequal access to these systems.</p>
+
+<p>TuringBox is a two-sided marketplace that facilitates both the behavioural study of artificial intelligence systems and the production of new, socially-aware systems.</p>
+
+
+<p>Click <a href = "https://arxiv.org/abs/1803.07233">here</a> to read the white paper. For research or media inquiries, please email us at <a href = "mailto:turingbox@mit.edu">turingbox@mit.edu</a> or tweet at us <a href = "https://twitter.com/turing_box">@turing_box</a>. </p>
+<br>
+  <h2>Frequently Asked Questions</h2>
+    <h3><b>1. What is machine behavior?</b></h3>
+    <h4>Machine Behavior is an emerging interdisciplinary field concerned with the scientific study of machines, not as engineering artifacts, but as a class of actors with their own unique behavioral patterns and ecology. It overlaps with, but is distinct from computer science and robotics, because it treats machine output observationally and experimentally, without necessarily appealing to the machine’s internal mechanisms (which is how behavior is defined for social scientists). <br><br>
+     Machine behavior can range from <a href = "https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">uncoving bias in important, high stakes algorithms</a> to <a href = "https://www.nature.com/articles/s41467-017-02597-8">understanding the way in which algorithms cooperate</a>. 
+     You can learn more about <a href = "http://nautil.us/issue/58/self/machine-behavior-needs-to-be-an-academic-discipline">the concept </a> published on The Nautilus</a>, or read  <a href = "https://www.nature.com/articles/s41467-017-02597-8">Cooperating with Machines</a>, one of the technical papers in the discipline published in Nature Communications.</h4> 
+    <h3><b>2. What is a box?</b></h3>
+    <h4>A box is a fundamental unit of TuringBox. It constitutes a stimulus, AI systems, and a way of measuring them. This is depicted in red, yellow and blue respectively in our logo. As an examiner, you can create a box to study the AI systems. As a contributor, you can view boxes people have launched and help add algorithms to them.</h4>
+    <h3><b>3. When is the official launch of the platform?</b></h3>
+    <h4>As you can probably tell, this is not yet a functional site. The full version is coming soon and you can sign up on <a href = "index.html">the landing page</a> to get more information about the launch.</h4>
+     <h3><b>4. Where does the name "TuringBox" come from?</b></h3>
+    <h4>We are inspired by animal behaviorists who, in the 1930s, pionereed the study of animals in controlled environments. These boxes enabled tight control of conditions, easy replication, standardized stimuli and measurement. We aim to put algorithms in a similarly controlled environment, thus promoting the study of their behavior.</h4>
+{% endblock %}
