@@ -2,8 +2,24 @@
 {% block title %}Launch a box{% endblock %}
 {% block head %}
   {{ super() }}
+  <style>
+            table {
+                border-collapse: collapse;
+                border: 2px black solid;
+                font: 12px sans-serif;
+            }
+
+            td {
+                border: 1px black solid;
+                padding: 5px;
+            }
+#scrolltable { margin-top: 20px; height: 200px; overflow: auto; }
+#scrolltable th div { position: absolute; margin-top: -20px; }
+
+        </style>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css')}}">
-<script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" charset="utf-8">
 
 $(document).ready(function(){
     $('#report').on('click',function(){
@@ -14,6 +30,24 @@ $(document).ready(function(){
 	    $('#analyze').addClass("clicked")
 	    $('#report').removeClass("clicked")
 	})
+});
+
+d3.text("http://0.0.0.0:5000/api/v2/{{box['path']}}", function(data) {
+	$('#loading').hide();
+    var parsedCSV = d3.csv.parseRows(data);
+    console.log(parsedCSV)
+
+    var container = d3.select("#scrolltable")
+        .append("table")
+
+        .selectAll("tr")
+            .data(parsedCSV).enter()
+            .append("tr")
+
+        .selectAll("td")
+            .data(function(d) { return d; }).enter()
+            .append("td")
+            .text(function(d) { return d; });
 });
 </script>
 {% endblock %}
@@ -27,7 +61,7 @@ $(document).ready(function(){
    {% if box['success'] %}
    <div class = "row">
 	<div class="col-md-6">
-   		<h2> box #{{box['id']}}</h3>
+   		<h2> box #{{box['id']}}</h2>
 		<h2> stimulus: 
 			{% for stim in box['stim_data']%}
 				<a href = "{{url_for('context', asset_id = stim['asset_id'], asset_type = 'stimulus')}}">{{stim['name']}}</a>
@@ -55,15 +89,19 @@ $(document).ready(function(){
 		<div class = "row">
 			<div class="col-md-6 stats">
 							<h1> alg: {{box['path']}}</h1>
-
+							<div id="scrolltable">
+								<div id = "loading">loading table...</div>
 			</div>
 			<div class="col-md-6 images">
 			</div>
 		</div>	
 
    	</div>
-   	<div class = "row">share on twitter | download notebook | download raw data</div>
+   	
+   </div>
+   <div class = "row">share on twitter | download notebook | <a href= "http://0.0.0.0:5000/api/v2/{{box['path']}}">download raw data</a></div>
     {% else %}
     	<h1> try again </h1>
     {% endif %}
 {% endblock %}
+

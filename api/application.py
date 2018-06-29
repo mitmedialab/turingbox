@@ -1,7 +1,7 @@
 import pandas as pd
 import psycopg2
 import json
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, send_file
 from sqlalchemy import create_engine, text
 from creds import db_username, db_password, db_url
 from creds import db_port, db_name
@@ -155,6 +155,13 @@ def launch_box():
         abort(400)
     output = controller.launch_job(request.json["stimulus"],request.json["algorithm"],request.json["task"], conn, engine)
     return(json.dumps(output))
+
+@app.route('/api/v2/comcon/<file_name>') # this is a job for GET, not POST
+def get_comcon(file_name):
+    return send_file('assets/comcon/{}'.format(file_name),
+                     mimetype='text/csv',
+                     attachment_filename=file_name,
+                     as_attachment=True)
 
 
 if __name__ == '__main__':
