@@ -43,9 +43,9 @@ def push_form(form, task, filename, asset_type):
     data  = json.loads(r.text)
     print(data)
 
-def push_job(stimulus, algorithm, task):
+def push_job(stimulus, algorithm, metric, task):
     url = 'http://0.0.0.0:5000/api/v2/launch/'
-    payload = {"stimulus" : stimulus , "algorithm" : algorithm, "task" : task}
+    payload = {"stimulus" : stimulus , "algorithm" : algorithm, "metric" : metric, "task" : task}
     headers = {'content-type': 'application/json'}
     r = requests.post(url, json = payload)
     data  = json.loads(r.text)
@@ -82,9 +82,10 @@ def launchBox():
     if request.method == 'POST':
         stimulus = request.form['stim']
         algorithm = request.form['alg']
-        task =  47
+        metric = request.form['metric']
+        task =  request.form['task']
         print("pushing job")
-        payload = push_job(stimulus, algorithm, task)
+        payload = push_job(stimulus, algorithm, metric, task)
         return redirect(url_for('report', box_id = payload['box_id']))
         print(payload['box_id'])
     payload = get_assets()
@@ -107,6 +108,7 @@ def report(box_id):
         box['success'] = True
     else:
         box = {"success" : False}
+        print(box)
     return render_template('report.html', box_id = box_id, box = box)
 
 @app.route('/context/<asset_type>/<asset_id>')
@@ -133,8 +135,7 @@ def submit(asset_type, task):
 
 @app.route('/cv')
 def cv_domain():
-    print(swim_thin)
-    return render_template('cv.html', swim_thin = swim_thin,swim_plus = swim_plus)
+    return render_template('testing3.html')
 
 
 if __name__ == '__main__':
