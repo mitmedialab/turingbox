@@ -153,7 +153,7 @@ def launch_box():
     """
     if not request.json:
         abort(400)
-    output = controller.launch_job(request.json["stimulus"],request.json["algorithm"],request.json["task"], conn, engine)
+    output = controller.launch_job(request.json["stimulus"],request.json["algorithm"],request.json["metric"], request.json["task"], conn, engine)
     return(json.dumps(output))
 
 @app.route('/api/v2/comcon/<file_name>') # this is a job for GET, not POST

@@ -56,12 +56,12 @@ comcon = """
     );
     """
 metrics = """
-    CREATE TABLE comcon (
-        id              varchar(256),
-        metric          varchar(256),
-        comcon          varchar(256),
-        output1         varchar(256),
-        output2         varchar(256)
+    CREATE TABLE metrics (
+        metric_id          varchar(256),
+        comcon_id          varchar(256),
+        output             varchar(256),
+        label              varchar(256),
+        referent           varchar(256)
     );
     """
 
@@ -73,7 +73,7 @@ drop_comcon = """
     DROP TABLE comcon;
     """
 
-drop_comcon = """
+drop_metrics = """
     DROP TABLE metrics;
     """
 
@@ -145,6 +145,17 @@ if __name__ == '__main__':
         "Clarifai's NSFW algorithm",
         "computer vision, NSFW",
         "swim"))
+
+    cur.execute(add_asset, (
+        "metric1",
+        "metric",
+        "metric/average.py",
+        "img/MLalg.png",
+        "Difference in Means",
+        "difference in y hat on one binary sensitive attribute",
+        "stats, disparate treatment",
+        "swim"))
+
     cur.execute(drop_comcon)
     cur.execute(comcon)
     cur.execute(add_comcon, (
@@ -176,7 +187,7 @@ if __name__ == '__main__':
         "swim",
         "comcon/swim.csv",
         1))
-
+    cur.execute(drop_metrics)
     cur.execute(metrics)
 
     conn.commit()

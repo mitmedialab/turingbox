@@ -20,6 +20,6 @@ def turing_box(algorithm, args):
 def evaluate_metric(metric, args):
 	# try:
 	output = metric(args[1])
-	print(output,True)
+	print(json.dumps(output))
 	# except Exception as e:
-	# 	print(-1, False)
+		# print("metric failed")
