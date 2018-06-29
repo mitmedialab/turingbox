@@ -3,11 +3,12 @@ import numpy as np
 import csv
 import os
 import pandas as pd
+from textblob import TextBlob
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
+from api_cred import Credentials
 
-AZURE_SUBSCRIPTION_KEY = ""
-AZURE_ENDPOINT = ""
+
 
 from google.cloud import language
 from google.cloud.language import enums
@@ -16,10 +17,11 @@ from google.cloud.language import types
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/js/fairnlp.json"
 
 def run_azure(input_array):
-        headers = { 'Ocp-Apim-Subscription-Key' : AZURE_SUBSCRIPTION_KEY }
-        sentiment_api_url =  AZURE_ENDPOINT + "sentiment"
+        creds = Credentials().get('azure')
+        headers = { 'Ocp-Apim-Subscription-Key' : creds['subscription_key'] }
+        sentiment_api_url =  creds['endpoint'] + "sentiment"
         docs = []
-        assert(len(input_array.flatten()) < 1000)
+        assert(len(input_array.flatten()) <= 1000)
         for i, input_text in enumerate(input_array.flatten()):
             docs.append({'id' : str(i+1), 'language' : 'en', 'text' : input_text})
         documents = { 'documents' : docs }
@@ -28,22 +30,38 @@ def run_azure(input_array):
         print(sentiments)
         scores = [x['score'] for x in sentiments['documents']]
         scores = np.array(scores)
-        return scores.reshape(input_array.shape)
+        return scores.reshape(input_array.shape[0], 1)
 
-def write_results(tweet_list, label_list, api_func, save_file, score_label): 
+
+def run_textblob(input_array): 
+    result_arr = []
+    for r in input_array: 
+        blob = TextBlob(r)
+        result_arr.append([blob.sentiment.polarity, blob.sentiment.subjectivity])
+    return result_arr
+
+def api_chunks(twt_list, n=1000):
+    for i in range(0, len(twt_list), n): 
+        yield twt_list[i:i+n]
+
+def write_results(tweet_list, label_list, sensitive_attr, api_func, save_file, score_label): 
     with open(save_file, 'w') as f: 
         csv_writer = csv.writer(f)
         if len(score_label) == 1: 
-            csv_writer.writerow(["text", "label", score_label])
+            csv_writer.writerow(["text X", "Z", "label Y", score_label])
         else: 
-            print(["text", "label"] + score_label)
-            csv_writer.writerow(["text", "label"] + score_label)
-        sentiment = api_func(np.array(tweet_list))
+            print(["text X", "Z", "label Y"] + score_label)
+            csv_writer.writerow(["text X", "Z", "label Y"] + score_label)
+        sentiment = [] 
+        review_iter = api_chunks(tweet_list, 50)
+        for sub_list in review_iter: 
+            sentiment += list(api_func(np.array(sub_list)))
+
         for i, twt in enumerate(tweet_list): 
             if len(sentiment[i]) == 1: 
-                csv_writer.writerow([twt, label_list[i], sentiment[i][0]])
+                csv_writer.writerow([twt, sensitive_attr[i], label_list[i], sentiment[i][0]])
             else: 
-                csv_writer.writerow([twt, label_list[i]] + sentiment[i])
+                csv_writer.writerow([twt, sensitive_attr[i], label_list[i]] + sentiment[i])
 
 def run_google_sentiment(input_array): 
     # Instantiates a client
@@ -90,13 +108,15 @@ def run_custom_sentiment(input_array):
     return class_prob
 
 
+
+
 if __name__ == "__main__": 
 
     reviews = [] 
     sensitive_attr = [] 
     labels = [] 
-
-    with open('datasets/movies1000.csv', 'r') as f: 
+    dataset_str = 'movies'
+    with open('datasets/' + dataset_str + '1000.csv', 'r') as f: 
         csv_reader = csv.reader(f)
         row = next(csv_reader)
         for row in csv_reader: 
@@ -104,9 +124,8 @@ if __name__ == "__main__":
             sensitive_attr.append(row[1])
             labels.append(row[2])
 
-    print(reviews[:10])
-    print(labels[:10])
-    print(sensitive_attr[:10])
-    # write_results(tweets, labels, run_azure, 'results/twitter_sentiment100_results.csv')
-    #write_results(tweets, labels, run_custom_sentiment, 'results/amazon_sentiment100_custom_results.csv', ['NB_prob'])
+    #write_results(reviews, labels, sensitive_attr, run_azure, 'results/'+ dataset_str + '_azure_results.csv', ['sentiment'])
+    
+    #write_results(reviews, labels, sensitive_attr, run_textblob, 'results/'+ dataset_str + '_tb_results.csv', ['sentiment'])
 
+    #write_results(reviews, labels, sensitive_attr, run_google_sentiment, 'results/'+ dataset_str + '_google_results.csv', ['sentiment', 'magnitude'])
