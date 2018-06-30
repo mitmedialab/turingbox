@@ -7,6 +7,7 @@ from flask import render_template
 from wtforms import Form, BooleanField, StringField, FileField, validators
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import CombinedMultiDict
+import datetime
 
 asset_library = '/Users/zive/GDrive/research/machine-behavior/turingbox/api/assets'
 
@@ -52,12 +53,22 @@ def push_job(stimulus, algorithm, metric, task):
     print(data)
     return data
 
+def push_comment(comment, asset_id):
+    url = 'http://0.0.0.0:5000/api/v2/comment/'
+    payload = {'comment': comment, 'asset_id' : asset_id}
+    headers = {'content-type': 'application/json'}
+    r = requests.post(url, json = payload)
+    data  = json.loads(r.text)
+
 
 class AlgForm(Form):
     name = StringField('name', [validators.Length(min=4, max=25)])
     description = StringField('description', [validators.Length(min=6, max=35)])
     tags = StringField('tags', [validators.Length(min=6, max=35)])
     alg = FileField(u'algorithm file')
+
+class CommentForm(Form):
+    comment = StringField('', [validators.Length(min=4, max=25)])
 
 app = Flask(__name__)
 app.secret_key = 'skinner'
@@ -108,15 +119,19 @@ def report(box_id):
         box['success'] = True
     else:
         box = {"success" : False}
-        print(box)
     return render_template('report.html', box_id = box_id, box = box)
 
-@app.route('/context/<asset_type>/<asset_id>')
+@app.route('/context/<asset_type>/<asset_id>',  methods=['GET', 'POST'])
 def context(asset_type, asset_id):
     if asset_id in static_pages:
         return render_template(asset_id)
     payload = get_asset_context(asset_id)
-    return render_template('context.html', asset_type = asset_type, payload = payload)
+    form = CommentForm(CombinedMultiDict((request.files, request.form)))
+    render_time = lambda s: datetime.datetime.fromtimestamp(s/1000).strftime('%Y-%m-%d %H:%M:%S')
+    if request.method == 'POST' and form.validate():
+        push_comment(form.comment.data, asset_id)
+        return redirect(url_for('context', asset_id = asset_id, asset_type = asset_type))
+    return render_template('context.html', asset_type = asset_type, payload = payload, form = form, render_time = render_time)
 
 @app.route('/submit/<asset_type>/<task>',  methods=['GET', 'POST'])
 def submit(asset_type, task):
