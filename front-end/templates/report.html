@@ -6,14 +6,13 @@
             table {
                 border-collapse: collapse;
                 border: 2px black solid;
-                font: 12px sans-serif;
             }
 
             td {
                 border: 1px black solid;
                 padding: 5px;
             }
-#scrolltable { margin-top: 20px; height: 200px; overflow: auto; }
+#scrolltable { margin: 20px; height: 200px; overflow: auto; }
 #scrolltable th div { position: absolute; margin-top: -20px; }
 
         </style>
@@ -60,18 +59,24 @@ d3.text("http://0.0.0.0:5000/api/v2/{{box['path']}}", function(data) {
 {% block content %}
    {% if box['success'] %}
    <div class = "row">
+   	<div class="col-md-2">
+   		
+   	<img src="{{ url_for('static', filename='img/smurfs/examiner2.png')}}" width = "80px"/>
+   </div>
+   <div class="col-md-1">
+   		</div>
 	<div class="col-md-6">
-   		<h2> box #{{box['id']}}</h2>
-		<h2> stimulus: 
+   		<h4> box #{{box['id']}} ({{box['task']}})</h4>
+		<h4> stimulus: 
 			{% for stim in box['stim_data']%}
 				<a href = "{{url_for('context', asset_id = stim['asset_id'], asset_type = 'stimulus')}}">{{stim['name']}}</a>
 			{% endfor %}
-		</h2>
-   		<h2> alg: {% for stim in box['alg_data']%}
+		</h4>
+   		<h4> algorithm: {% for stim in box['alg_data']%}
 				<a href = "{{url_for('context', asset_id = stim['asset_id'], asset_type = 'algorithm')}}">{{stim['name']}}</a>
-			{% endfor %}</h2>
+			{% endfor %}</h4>
    	</div>
-   	<div class="col-md-6">   	visual representaiton of box</div>
+   	<div class="col-md-3">   	visual representaiton of box</div>
    </div>
    	<div class = "row reportContent">
    		 <div class = "row">
@@ -87,12 +92,15 @@ d3.text("http://0.0.0.0:5000/api/v2/{{box['path']}}", function(data) {
 			</div>
 		</div>
 		<div class = "row">
-			<div class="col-md-6 stats">
-							<h1> alg: {{box['path']}}</h1>
+			<div class="col-md-12 stats">
+						{%for metric in box['metrics']%}
+							<h2>{{metric['name']}}= {{metric['output']}}</h2>
+							<h4> for label <b>{{metric['label']}}</b> and referent <b>{{metric['referent']}} </b></h4>
+							{% endfor %}
 							<div id="scrolltable">
-								<div id = "loading">loading table...</div>
+								<div id = "loading">loading table...<img src="{{ url_for('static', filename='img/load.gif')}}" width = "25%"/></div>
 			</div>
-			<div class="col-md-6 images">
+			<div class="col-md-0 images">
 			</div>
 		</div>	
 

@@ -11,6 +11,7 @@ import controller
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
+
 UPLOAD_FOLDER = '/assets/models'
 ALLOWED_EXTENSIONS = set(['py'])
 
@@ -54,7 +55,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 
-@app.route('/api/v2/refresh/', methods=['GET'])
+@app.route('/api/v2/refresh/', methods=['GET', 'POST'])
 def get_assets():
     """
     Input:
@@ -70,7 +71,7 @@ def get_assets():
                 }]
         }
     """
-    state = controller.get_assets("47", engine)
+    state = controller.get_assets(request.json['task'], engine)
     return(jsonify(state))
 
 
@@ -135,7 +136,7 @@ def ingest_asset():
     
     if not request.json:
         abort(400)
-    output = controller.ingest_asset(request.json["form_data"], engine, conn,  from_db = False)
+    output = controller.ingest_asset(request.json["form_data"], conn,  from_db = False)
     return(json.dumps(output))
 
 
@@ -153,7 +154,7 @@ def launch_box():
     """
     if not request.json:
         abort(400)
-    output = controller.launch_job(request.json["stimulus"],request.json["algorithm"],request.json["task"], conn, engine)
+    output = controller.launch_job(request.json["stimulus"],request.json["algorithm"],request.json["metric"], request.json["task"], conn, engine)
     return(json.dumps(output))
 
 @app.route('/api/v2/comcon/<file_name>') # this is a job for GET, not POST
@@ -162,6 +163,27 @@ def get_comcon(file_name):
                      mimetype='text/csv',
                      attachment_filename=file_name,
                      as_attachment=True)
+
+@app.route('/api/v2/comment/', methods = ['POST'])
+def ingest_comment():
+    """
+    Input:
+        {
+            "asset_id": str,
+        }
+    Returns JSON of data/models available
+        {
+            "box": {
+                    "title": str,
+                    "desc" : "str"
+                }
+        }
+    """
+    
+    if not request.json:
+        abort(400)
+    output = controller.ingest_comment(request.json["comment"],request.json["asset_id"], conn,  from_db = False)
+    return(json.dumps(output))
 
 
 if __name__ == '__main__':

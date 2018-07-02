@@ -1,7 +1,9 @@
 # File for preprocessing tweets 
 import tokenizer
 import re 
+import nltk
 import pandas as pd
+from nltk.corpus import names
 
 def process_tweet(raw_twt, lower=True): 
     t = re.sub(r"http\S+", "", raw_twt)
@@ -42,6 +44,31 @@ def extract_and_preprocess_n(filenames_list, n=100):
                 author_dict[a] = flat_list
     return author_dict.values() 
 
+def tokenize_reviews(reviews): 
+    reviews = [re.sub(r"<br />", "", r) for r in reviews]
+    reviews = [re.sub(r"[\n\(\)\/\\]", " ", r) for r in reviews]
+    reviews = [re.sub(r"([.,!?()])", r" \1 ", r) for r in reviews]
+    #word tokenize
+    tokenized_reviews = [nltk.tokenize.word_tokenize(r) for r in reviews]
+    return tokenized_reviews
+
+def binarize_reviews(ratings): 
+    # split into binary pos vs neg reviews
+    rating = [0 if r < 4 else 1 for r in ratings]
+    return rating
+
+def load_names(): 
+    # Load names
+    male_names = names.words('male.txt')
+    male_names = [n.lower() for n in male_names]
+    female_names = names.words('female.txt')
+    female_names = [n.lower() for n in female_names]
+    intersection_names = set(male_names).intersection(set(female_names))
+    print("number of male names: ", len(male_names))
+    print("number of female names: ", len(female_names))
+    print("number of male and female names: ", len(intersection_names))
+    return male_names, female_names, intersection_names
+    
 if __name__ == "__main__": 
     file_list = ["../datasets/raw/white_tweets.csv", "../datasets/raw/aae_tweets.csv"]
 
@@ -57,3 +84,4 @@ if __name__ == "__main__":
         for twt in b_tweets_list: 
             if(len(twt) > 3):
                 f.write(" ".join(twt) + '\n')
+

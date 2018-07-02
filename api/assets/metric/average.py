@@ -1,16 +1,32 @@
-#!/usr/bin/env python
 import pandas as pd
 import sys
 import numpy as np
-
 sys.path.append('/Users/zive/GDrive/research/machine-behavior/turingbox/api')
-from utils import evaluate_metric
+from utils import evaluate_metric, Metric
 
-def metric(path_to_comcon):
-	df = pd.read_csv(path_to_comcon)
-	diff = np.mean(df[df['z']]['yhat']) - np.mean(df[~df['z']]['yhat'])
-	return diff 
+class MeanDiffMetric(Metric): 
+    def __init__(self): 
+        self.name = 'mean_diff'
+        self.dataset = None
+        self.algorithm = None 
+        self.df = None 
+        self.ref_Z = False
+        self.comp_Z = [] 
 
-#clarifai API 
-if __name__ == "__main__":
-	evaluate_metric(metric, sys.argv)
+    def calc_result(self): 
+        mean_dict = {}
+        for name, group in self.df.groupby('z'): 
+            mean_dict[name] = group.mean()['yhat']
+        comp_dict = {} 
+        for comp in self.comp_Z: 
+            comp_dict[comp] = mean_dict[comp] - mean_dict[self.ref_Z]
+        return comp_dict
+
+def call(path_to_comcon): 
+    metric = MeanDiffMetric() 
+    metric.set_data(path_to_comcon)
+    mean_dict = metric.calc_result()
+    return mean_dict
+
+if __name__ == "__main__": 
+    evaluate_metric(call, sys.argv)

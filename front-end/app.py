@@ -7,15 +7,16 @@ from flask import render_template
 from wtforms import Form, BooleanField, StringField, FileField, validators
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import CombinedMultiDict
+import datetime
 
 asset_library = '/Users/zive/GDrive/research/machine-behavior/turingbox/api/assets'
 
 
-def get_assets():
+def get_assets(task):
     url = 'http://0.0.0.0:5000/api/v2/refresh/'
-    payload = {'user_id': 'test47'}
+    payload = {'task': task}
     headers = {'content-type': 'application/json'}
-    r = requests.get(url)
+    r = requests.post(url, json = payload)
     data  = json.loads(r.text)
     return data
 
@@ -43,14 +44,21 @@ def push_form(form, task, filename, asset_type):
     data  = json.loads(r.text)
     print(data)
 
-def push_job(stimulus, algorithm, task):
+def push_job(stimulus, algorithm, metric, task):
     url = 'http://0.0.0.0:5000/api/v2/launch/'
-    payload = {"stimulus" : stimulus , "algorithm" : algorithm, "task" : task}
+    payload = {"stimulus" : stimulus , "algorithm" : algorithm, "metric" : metric, "task" : task}
     headers = {'content-type': 'application/json'}
     r = requests.post(url, json = payload)
     data  = json.loads(r.text)
     print(data)
     return data
+
+def push_comment(comment, asset_id):
+    url = 'http://0.0.0.0:5000/api/v2/comment/'
+    payload = {'comment': comment, 'asset_id' : asset_id}
+    headers = {'content-type': 'application/json'}
+    r = requests.post(url, json = payload)
+    data  = json.loads(r.text)
 
 
 class AlgForm(Form):
@@ -58,6 +66,9 @@ class AlgForm(Form):
     description = StringField('description', [validators.Length(min=6, max=35)])
     tags = StringField('tags', [validators.Length(min=6, max=35)])
     alg = FileField(u'algorithm file')
+
+class CommentForm(Form):
+    comment = StringField('', [validators.Length(min=4, max=25)])
 
 app = Flask(__name__)
 app.secret_key = 'skinner'
@@ -79,15 +90,20 @@ def about():
 
 @app.route('/launchBox.html',  methods=['GET', 'POST'])
 def launchBox():
+    return render_template('index.html')
+
+@app.route('/launchBox/<task>',  methods=['GET', 'POST'])
+def launchTask(task):
     if request.method == 'POST':
         stimulus = request.form['stim']
         algorithm = request.form['alg']
-        task =  47
+        metric = request.form['metric']
+        task =  request.form['task']
         print("pushing job")
-        payload = push_job(stimulus, algorithm, task)
+        payload = push_job(stimulus, algorithm, metric, task)
         return redirect(url_for('report', box_id = payload['box_id']))
         print(payload['box_id'])
-    payload = get_assets()
+    payload = get_assets(task)
     stimuli = payload['stimuli']
     algorithms = payload['algorithms']
     metrics = payload['metrics']
@@ -109,12 +125,17 @@ def report(box_id):
         box = {"success" : False}
     return render_template('report.html', box_id = box_id, box = box)
 
-@app.route('/context/<asset_type>/<asset_id>')
+@app.route('/context/<asset_type>/<asset_id>',  methods=['GET', 'POST'])
 def context(asset_type, asset_id):
     if asset_id in static_pages:
         return render_template(asset_id)
     payload = get_asset_context(asset_id)
-    return render_template('context.html', asset_type = asset_type, payload = payload)
+    form = CommentForm(CombinedMultiDict((request.files, request.form)))
+    render_time = lambda s: datetime.datetime.fromtimestamp(s/1000).strftime('%Y-%m-%d %H:%M:%S')
+    if request.method == 'POST' and form.validate():
+        push_comment(form.comment.data, asset_id)
+        return redirect(url_for('context', asset_id = asset_id, asset_type = asset_type))
+    return render_template('context.html', asset_type = asset_type, payload = payload, form = form, render_time = render_time)
 
 @app.route('/submit/<asset_type>/<task>',  methods=['GET', 'POST'])
 def submit(asset_type, task):

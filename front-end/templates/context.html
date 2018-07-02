@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% from "_formhelpers.html" import render_field %}
 {% block title %}Launch a box{% endblock %}
 {% block head %}
   {{ super() }}
@@ -18,12 +19,23 @@
  <h2>type: {{payload['asset_context']['type']}}</h2>
  <h2>boxes:</h2>
  {% for box in payload['boxes']%} 
- <div class = "relatedBox">
- 	<a href="{{ url_for('report', box_id = box['id']) }}"><img  width = "100px" src="{{ url_for('static', filename='img/logoSansText.png')}}" /><br>&nbsp;&nbsp;&nbsp;box # {{box['id']}}</a>
+ <div class = "relatedBox" style = "display:inline-block">
+ 	<a href="{{ url_for('report', box_id = box['id']) }}"><img  width = "100px" src="{{ url_for('static', filename='img/examiner2.png')}}" /><br>&nbsp;&nbsp;&nbsp;box # {{box['id']}}</a>
 	
 </div>
  {% endfor %}
  <h2> comments: </h2>
+  {% for comment in payload['commets']%} 
+ <div class = "comment">
+		{{render_time(comment['ts'])}} | {{comment['comment']}}
+</div>
+ {% endfor %}
+ <form method=post enctype="multipart/form-data">
+  <dl>
+    {{ render_field(form.comment) }}
+  </dl>
+  <p><input type=submit value=Post id = "postComment" style = "white-space: nowrap;">
+</form>
  {% else %}
  <h1>Asset not loaded correctly. Please try again later.
  {% endif %}

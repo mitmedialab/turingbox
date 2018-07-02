@@ -284,10 +284,11 @@
     </style>
 
 </head>
+<script>
+    console.log(4)
+</script>
 <body onload = "initialize()">
-   <script>
-
-console.log(47)
+   <script type="text/javascript">
     if (screen.width>=1500){
         document.write("<style>body{zoom:70%;}</style>");
     }
@@ -295,20 +296,7 @@ console.log(47)
    
     var testdatabase = {topics: ["cv", "recidivism", "autonomous driving", "NLP"], apis: [["name", "name"],["name"],["name","name", "name"], ["name", "name"]], imglinks : [["src1.0", "src1.1"], ["src2.0"], ["src3.0", "src3.1", "src3.2"], ["src4.0", "src4.1"]]};
 
-	function initialize(){
-		console.log("initialized");
-    	var i, j, topics, div, text;
-    	topics = testdatabase.topics.length;
-    	div = document.getElementById("wrapper");
-    	for (i = 0; i < topics; i++){//next line topics[i] doesnt return name
-    		text = '<span class = "circle"><p>' + testdatabase.topics[i] + '</p>';
-    		for (j = 0; j < testdatabase.apis[i].length; j++){
-    			text += '<div draggable = "true" ondragstart="drag(event)" id = "' + testdatabase.apis[j] + 'Drag" class="rcorners4" droppable = "true">' + '<img src = "{{ url_for("static",filename="img/' + 'google.png' + '") }}" draggable = "false" class = "circImg" onmouseover="showDes(\'gPop\')" onmouseout="hideDes(\'gPop\')" />' + '<div id = \"gPop\" onmouseover="showDes(\'gPop\')" onmouseout="hideDes(\'gPop\')">Google Cloud Image API<br> <a></div></span><br>';
-    		}
-    	div.innerHTML += text;
-
-    	}
-    }//fix styling
+	
     
 
     function allowDrop(ev) {
@@ -600,7 +588,7 @@ console.log(47)
 
                         <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)"  draggable="true">
                             <button type="button"  class="rcorners2" onclick = "showMetric1Div()"> 
-                                <img src="{{ url_for('static',filename='img/metric.jpg') }}" id = "metric1" class="rcorners1" width="150">
+                                <img src="{{ url_for('static',filename='img/examiner1.png') }}" id = "metric1" class="rcorners1" width="150">
                             </button>
                         </div>
                         <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true">

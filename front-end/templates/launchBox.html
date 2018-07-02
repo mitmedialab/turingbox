@@ -2,6 +2,7 @@
 {% block title %}Launch a box{% endblock %}
 {% block head %}
   {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/launchBox.css')}}">
   <script>
 $(document).ready(function(){
     $('.selectStim').on('click',function(event){
@@ -11,6 +12,14 @@ $(document).ready(function(){
 
 	$('.selectAlg').on('click',function(event){
 	  $('input[name="alg"]').val(event.target.id);
+	})
+
+	$('.selectMetric').on('click',function(event){
+	  $('input[name=metric]').val(event.target.id);
+	})
+
+	$('input[name=submit]').on('click',function(event){
+	  $('.loading').show();
 	})
 
 });
@@ -76,7 +85,7 @@ $(document).ready(function(){
 		    </tr>
 		    {% for metric in metrics %}
 		    <tr>
-		        <td>{{metric['name']}}</td>
+		        <td class = "selectMetric" id = "{{metric['asset_id']}}" >{{metric['name']}}</td>
 		        <td>{{metric['description']}}</td>
 		        <td>{{metric['imgpath']}}</td>
 		        <td>{{metric['task']}}</td>
@@ -88,9 +97,11 @@ $(document).ready(function(){
   <form action="{{ url_for('launchBox') }}" method="post">
             <input type="Stim" name="stim" style = "display:none"/>
             <input type="Alg" name="alg" style = "display:none"/>
+            <input type="Metric" name="metric" style = "display:none"/>
             <input type="Task" name="task" style = "display:none"/>
-            <input type=submit value="Launch Box" id = "submit">
+            <input type=submit value="Launch Box" id = "submit" name = "submit">
         </form>
+        <div class = "loading" style = "display: none"><h1>loading box...</h1>	<img src="{{ url_for('static', filename='img/load.gif')}}" width = "25%"/></div>
 <h1>Reports</h1>
 <ul>
 	<li><a href = "report/0"/>Dummy</li>
