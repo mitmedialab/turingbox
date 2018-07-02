@@ -90,9 +90,9 @@ def about():
 
 @app.route('/launchBox.html',  methods=['GET', 'POST'])
 def launchBox():
-    return render_template('index.html')
+    return render_template('selectTask.html')
 
-@app.route('/launchBox/<task>',  methods=['GET', 'POST'])
+@app.route('/launchTask/<task>',  methods=['GET', 'POST'])
 def launchTask(task):
     if request.method == 'POST':
         stimulus = request.form['stim']
@@ -107,7 +107,7 @@ def launchTask(task):
     stimuli = payload['stimuli']
     algorithms = payload['algorithms']
     metrics = payload['metrics']
-    return render_template('launchBox.html', stimuli = stimuli, algorithms = algorithms, metrics = metrics)
+    return render_template('launchBox.html', stimuli = stimuli, algorithms = algorithms, metrics = metrics, task = task)
 
 @app.route('/upload.html')
 def contribute():

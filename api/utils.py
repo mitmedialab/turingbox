@@ -40,7 +40,7 @@ class Metric:
         box_arr = path_arr[-1].split("_")
         self.dataset = box_arr[0]
         self.algorithm = box_arr[1]
-        self.df = pd.read_csv(dataset_path, header=0, names=['X', 'Z', 'Y_true', "Y_pred"], usecols=[0, 1, 2, 3])
+        self.df = pd.read_csv(dataset_path, header=0)
         Z_arr = list(set(self.df['Z'].tolist()))
         self.ref_Z = self.df['Z'][0]
         for comp in Z_arr: 

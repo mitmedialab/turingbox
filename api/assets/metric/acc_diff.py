@@ -4,7 +4,7 @@ import numpy as np
 
 class AccDiffMetric(Metric): 
     def __init__(self): 
-        self.name = 'mean_diff'
+        self.name = 'acc_diff'
         self.dataset = None
         self.algorithm = None 
         self.df = None 
@@ -20,8 +20,11 @@ class AccDiffMetric(Metric):
             comp_dict[comp] = mean_dict[comp] - mean_dict[self.ref_Z]
         return comp_dict
 
-if __name__ == "__main__": 
+def call(path_to_comcon): 
     metric = AccDiffMetric() 
-    metric.set_data('results/clothing_tb_results.csv')
-    mean_dict = metric.calc_result()
-    print(mean_dict)
+    metric.set_data(path_to_comcon)
+    acc_dict = metric.calc_result()
+    return acc_dict
+
+if __name__ == "__main__": 
+    evaluate_metric(call, sys.argv)

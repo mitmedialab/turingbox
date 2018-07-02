@@ -125,7 +125,9 @@ def launch_job(stimulus, algorithm, metric, task, conn, engine):
 	data_path = get_asset_property('path',stimulus, engine)
 	metric_path = get_asset_property('path',metric, engine)
 
-	job_id = hash_token(data_path + model_path)
+	clean = lambda s,ft: s.split("/")[-1].replace(ft,"")
+
+	job_id = "{}_{}_results".format(clean(data_path, ".csv"),clean(model_path,".py"))
 
 	comcon_query = """ SELECT * from comcon where id = '{}' """.format(job_id)
 	box = query2json(comcon_query, engine)
@@ -151,18 +153,24 @@ def launch_job(stimulus, algorithm, metric, task, conn, engine):
 		print("added to db")
 
 		if metric:
+			print("metric_path: {}".format(metric_path))
+			print("job_id: {}".format(job_id))
 			command = ["python3","assets/"+metric_path, "assets/comcon/{}.csv".format(job_id)]
 			result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=False)
+			print(result)
+			print(result.stdout)
 			print("out: {}".format(result.stdout))
 			metric_outputs = json.loads(result.stdout)
-			for metric_output in metric_outputs:
-				print("metric result: {}".format(metric_output))
-				cur.execute(add_metric, (
-			        metric,
-			        job_id,
-			        metric_output['output'],
-			        metric_output['label'],
-			        metric_output['referent']))
+			ref = metric_outputs['ref']
+			for key, value in metric_outputs.items():
+				if key != 'ref':
+					print("metric result: {}".format(metric_outputs[key]))
+					cur.execute(add_metric, (
+				        metric,
+				        job_id,
+				        metric_outputs[key],
+				        key,
+				        ref))
 
 		conn.commit()
 		cur.close()

@@ -94,7 +94,7 @@ $(document).ready(function(){
 		</table>
 	</div>
 </div>
-  <form action="{{ url_for('launchBox') }}" method="post">
+  <form action="{{ url_for('launchTask', task = task) }}" method="post">
             <input type="Stim" name="stim" style = "display:none"/>
             <input type="Alg" name="alg" style = "display:none"/>
             <input type="Metric" name="metric" style = "display:none"/>
