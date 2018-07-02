@@ -1,7 +1,8 @@
 from metrics import Metric
-from utils import evaluate_metric
+import pandas as pd 
+import numpy as np 
 
-class MeanDiffMetric(Metric): 
+class AccDiffMetric(Metric): 
     def __init__(self): 
         self.name = 'mean_diff'
         self.dataset = None
@@ -10,20 +11,17 @@ class MeanDiffMetric(Metric):
         self.ref_Z = None 
         self.comp_Z = [] 
 
-    def calc_result(self): 
+    def calc_result(self):
         mean_dict = {}
         for name, group in self.df.groupby('Z'): 
-            mean_dict[name] = group.mean()['Y_true']
+            mean_dict[name] = len(np.where(group['Y_true'] == group['Y_pred_abs'])[0])/len(group)
         comp_dict = {} 
         for comp in self.comp_Z: 
             comp_dict[comp] = mean_dict[comp] - mean_dict[self.ref_Z]
         return comp_dict
 
-def call(path_to_comcon): 
-    metric = MeanDiffMetric() 
-    metric.set_data(path_to_comcon)
-    mean_dict = metric.calc_result()
-    return mean_dict
-
 if __name__ == "__main__": 
-    evaluate_metric(call, sys.argv)
+    metric = AccDiffMetric() 
+    metric.set_data('results/clothing_tb_results.csv')
+    mean_dict = metric.calc_result()
+    print(mean_dict)
