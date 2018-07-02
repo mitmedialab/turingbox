@@ -52,15 +52,16 @@ def get_box(box_id,engine, from_db):
 	if not from_db:
 		# try:
 		comcon_query = """ SELECT * from comcon where id = '{}' """.format(box_id)
+		print(box_id)
 		box = query2json(comcon_query, engine)
 		if len(box) == 0:
 			return({"success" : False})
 		box = box[0]
 		box['alg_data'] = id2assets([box["alg1"], box["alg2"]], engine)
 		box['stim_data'] = id2assets([box["stim1"], box["stim2"]], engine)
-		print(4747)
 		metrics_query = """ SELECT * from metrics where comcon_id = '{}' """.format(box_id)
 		metrics = query2json(metrics_query, engine)
+		print(metrics)
 		for metric in metrics:
 			metric_name = get_asset_property('name', metric['metric_id'], engine)
 			metric['name'] = metric_name
@@ -121,9 +122,13 @@ def launch_job(stimulus, algorithm, metric, task, conn, engine):
 	"""
 	core computation that launch_box() calls in the API
 	"""
+	print(algorithm)
 	model_path = get_asset_property('path', algorithm, engine)
 	data_path = get_asset_property('path',stimulus, engine)
-	metric_path = get_asset_property('path',metric, engine)
+	
+
+	cur = conn.cursor()
+
 
 	clean = lambda s,ft: s.split("/")[-1].replace(ft,"")
 
@@ -133,14 +138,14 @@ def launch_job(stimulus, algorithm, metric, task, conn, engine):
 	box = query2json(comcon_query, engine)
 	if len(box) != 0:
 		print("job already completed. serving static data")
-		return({"box_id" : job_id, "preprocessed" : 1})
 	else:
 
 		print("doing job {}".format(job_id))
 
-		subprocess.call("python3 assets/{} assets/{} {}".format(model_path,data_path, job_id), shell=True)
+		run_algorithm = "python3 assets/{} assets/{} {}".format(model_path,data_path, job_id)
+		print("bash is running : {}".format(run_algorithm))
+		subprocess.call(run_algorithm, shell=True)
 		print("finished run")
-		cur = conn.cursor()
 		cur.execute(add_comcon, (
 	        job_id,
 	        algorithm,
@@ -152,27 +157,35 @@ def launch_job(stimulus, algorithm, metric, task, conn, engine):
 	        1))
 		print("added to db")
 
-		if metric:
-			print("metric_path: {}".format(metric_path))
-			print("job_id: {}".format(job_id))
-			command = ["python3","assets/"+metric_path, "assets/comcon/{}.csv".format(job_id)]
-			result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=False)
-			print(result)
-			print(result.stdout)
-			print("out: {}".format(result.stdout))
-			metric_outputs = json.loads(result.stdout)
-			ref = metric_outputs['ref']
-			for key, value in metric_outputs.items():
-				if key != 'ref':
-					print("metric result: {}".format(metric_outputs[key]))
-					cur.execute(add_metric, (
-				        metric,
-				        job_id,
-				        metric_outputs[key],
-				        key,
-				        ref))
+	metric_query = """ SELECT * from metrics where metric_id = '{}' and comcon_id = '{}' """.format(metric,job_id)
+	previous_metric = query2json(metric_query, engine)
+	if len(previous_metric) != 0 or len(metric)==0:
+		print("metric already computed or no metric was given. serving static data")
+		return({"box_id" : job_id})
+	else:
+		metric_path = get_asset_property('path',metric, engine)
+		print("metric_path: {}".format(metric_path))
+		print("job_id: {}".format(job_id))
+		command = ["python3","assets/"+metric_path, "assets/comcon/{}.csv".format(job_id)]
+		print("bash is running (metric): {}".format(" ".join(command)))
+		result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=False)
+		print(result)
+		print(result.stdout)
+		print("out: {}".format(result.stdout))
+		metric_outputs = json.loads(result.stdout)
+		ref = metric_outputs['ref']
+		print(metric)
+		for key, value in metric_outputs.items():
+			if key != 'ref':
+				print("metric result: {}".format(metric_outputs[key]))
+				cur.execute(add_metric, (
+			        metric,
+			        job_id,
+			        metric_outputs[key],
+			        key,
+			        ref))
 
 		conn.commit()
 		cur.close()
-		return({"box_id" : job_id, "preprocessed" : 0})
+	return({"box_id" : job_id})
 

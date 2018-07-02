@@ -20,6 +20,7 @@ class MeanDiffMetric(Metric):
         comp_dict = {} 
         for comp in self.comp_Z: 
             comp_dict[comp] = mean_dict[comp] - mean_dict[self.ref_Z]
+        comp_dict['ref'] = str(self.ref_Z)
         return comp_dict
 
 def call(path_to_comcon): 

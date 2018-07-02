@@ -105,10 +105,10 @@ if __name__ == '__main__':
     cur.execute(add_asset, (
         "stimulus1",
         "stimulus",
-        "stimulus/dummy.csv",
+        "stimulus/criminalHistory.csv",
         "img/MLalg.png",
-        "recidivism",
-        "raw data for recidivism risk score",
+        "Criminal Records",
+        "raw data of criminal records used to make a risk assessment",
         "crime, predpol",
         "compas"))
 
@@ -131,16 +131,6 @@ if __name__ == '__main__':
         "curated images of swimsite model with sensitive feature z = plus or not",
         "computer vision, machine gaze, fairness",
         "swim"))
-
-    cur.execute(add_asset, (
-        "stimulus4",
-        "stimulus",
-        "stimulus/amazon_sentiment100.csv",
-        "img/MLalg.png",
-        "Amazon Sentiment Dataset",
-        "amazon review dataset labelled",
-        "NLP, fairness, online shopping",
-        "NLP"))
 
     cur.execute(add_asset, (
         "stimulus5",
@@ -196,10 +186,10 @@ if __name__ == '__main__':
     cur.execute(add_asset, (
         "algorithm1",
         "algorithm",
-        "algorithm/dummy.py",
+        "algorithm/compas.py",
         "img/MLalg.png",
         "COMPAS*",
-        "the COMPAS recidivism algorithm by Northpointe",
+        "the COMPAS risk assessment algorithm by Northpointe. *To be clear, we do not have access to this algorithm at this time, although we would love to have it on the platform for the public to scrutinize.",
         "crime, predpol",
         "compas"))
 
@@ -222,6 +212,36 @@ if __name__ == '__main__':
         "Clarifai's NSFW algorithm",
         "computer vision, NSFW",
         "swim"))
+
+    cur.execute(add_asset, (
+        "algorithm4",
+        "algorithm",
+        "algorithm/google_sentiment.py",
+        "img/MLalg.png",
+        "Google Sentiment",
+        "Google's sentiment algorithm",
+        "NLP, sentiment",
+        "NLP"))
+
+    cur.execute(add_asset, (
+        "algorithm5",
+        "algorithm",
+        "algorithm/microsoft_sentiment.py",
+        "img/MLalg.png",
+        "Microsoft Sentiment",
+        "Microsoft's sentiment algorithm",
+        "NLP, sentiment",
+        "NLP"))
+
+    cur.execute(add_asset, (
+        "algorithm6",
+        "algorithm",
+        "algorithm/textblob_sentiment.py",
+        "img/MLalg.png",
+        "Textblob Sentiment",
+        "sentiment text blob",
+        "NLP, sentiment",
+        "NLP"))
 
 
     cur.execute(add_asset, (
@@ -267,13 +287,13 @@ if __name__ == '__main__':
         1))
 
     cur.execute(add_comcon, (
-        "1",
+        "criminalHistory_compas_results",
         "algorithm1",
         "",
         "stimulus1",
         "",
         "compas",
-        "comcon/compas.csv",
+        "comcon/criminalHistory_compas_results.csv",
         1))
 
     cur.execute(add_comcon, (

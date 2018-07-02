@@ -1,6 +1,8 @@
-from metrics import Metric
-import pandas as pd 
-import numpy as np 
+import pandas as pd
+import sys
+import numpy as np
+sys.path.append('/Users/zive/GDrive/research/machine-behavior/turingbox/api')
+from utils import evaluate_metric, Metric
 
 class AccDiffMetric(Metric): 
     def __init__(self): 
@@ -18,6 +20,7 @@ class AccDiffMetric(Metric):
         comp_dict = {} 
         for comp in self.comp_Z: 
             comp_dict[comp] = mean_dict[comp] - mean_dict[self.ref_Z]
+            comp_dict['ref'] = str(self.ref_Z)
         return comp_dict
 
 def call(path_to_comcon): 

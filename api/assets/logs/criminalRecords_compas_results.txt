@@ -1,0 +1,1 @@
+{"model_reply": "File b'assets/stimulus/criminalRecords.csv' does not exist", "data_url": "assets/stimulus/criminalRecords.csv", "success": false, "time": "2018-07-02 19:47:10"}

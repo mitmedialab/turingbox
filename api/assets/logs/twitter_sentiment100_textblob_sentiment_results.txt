@@ -1,0 +1,1 @@
+{"model_reply": "worked", "data_url": "assets/stimulus/twitter_sentiment100.csv", "success": true, "time": "2018-07-02 19:31:34"}

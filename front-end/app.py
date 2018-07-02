@@ -68,7 +68,7 @@ class AlgForm(Form):
     alg = FileField(u'algorithm file')
 
 class CommentForm(Form):
-    comment = StringField('', [validators.Length(min=4, max=25)])
+    comment = StringField('', [validators.Length(min=6, max=400)])
 
 app = Flask(__name__)
 app.secret_key = 'skinner'
@@ -98,7 +98,6 @@ def launchTask(task):
         stimulus = request.form['stim']
         algorithm = request.form['alg']
         metric = request.form['metric']
-        task =  request.form['task']
         print("pushing job")
         payload = push_job(stimulus, algorithm, metric, task)
         return redirect(url_for('report', box_id = payload['box_id']))
