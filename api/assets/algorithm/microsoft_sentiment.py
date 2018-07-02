@@ -27,7 +27,7 @@ def run_azure(input_array):
         return scores.reshape(input_array.shape[0], 1)
 
 def call(path_to_data): 
-    df = pd.read_csv(path_to_data, header=0, names=['X', 'Z', 'Y_true'])
+    df = pd.read_csv(path_to_data, header=0)
     df['Y_pred'] = [0 for i in range(0,df.shape[0])]
     for index,row in df.iterrows():
         try:
