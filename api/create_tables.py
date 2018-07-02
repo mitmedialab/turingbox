@@ -86,6 +86,12 @@ drop_metrics = """
     DROP TABLE metrics;
     """
 
+drop_comments = """
+    DROP TABLE comments;
+    """
+
+
+
 add_asset = """ INSERT INTO assets VALUES  (%s, %s, %s, %s, %s,%s, %s, %s)"""
 add_comcon = """ INSERT INTO comcon VALUES  (%s, %s, %s, %s, %s, %s, %s, %s)"""
 add_comment = """ INSERT INTO comments VALUES  (%s, %s, %s)"""
@@ -124,7 +130,68 @@ if __name__ == '__main__':
         "MIT Swimsuite dataset",
         "curated images of swimsite model with sensitive feature z = plus or not",
         "computer vision, machine gaze, fairness",
-        "CV"))
+        "swim"))
+
+    cur.execute(add_asset, (
+        "stimulus4",
+        "stimulus",
+        "stimulus/amazon_sentiment100.csv",
+        "img/MLalg.png",
+        "Amazon Sentiment Dataset",
+        "amazon review dataset labelled",
+        "NLP, fairness, online shopping",
+        "NLP"))
+
+    cur.execute(add_asset, (
+        "stimulus5",
+        "stimulus",
+        "stimulus/clothing1000.csv",
+        "img/MLalg.png",
+        "Clothing ",
+        "dataset of clothing, 1000",
+        "NLP, fairness",
+        "NLP"))
+
+    cur.execute(add_asset, (
+        "stimulus6",
+        "stimulus",
+        "stimulus/movies1000.csv",
+        "img/MLalg.png",
+        "movies1000 Dataset",
+        "data set of 1000 movie reviews, labelled",
+        "NLP, fairness",
+        "NLP"))
+
+    cur.execute(add_asset, (
+        "stimulus7",
+        "stimulus",
+        "stimulus/sst_sentiment100.csv",
+        "img/MLalg.png",
+        "Rotten Tomatoes dataset",
+        "dataset of 100 rotten tomoatoes comments",
+        "NLP, fairness",
+        "NLP"))
+
+    cur.execute(add_asset, (
+        "stimulus8",
+        "stimulus",
+        "stimulus/twitter_sentiment100.csv",
+        "img/MLalg.png",
+        "Twitter",
+        "datatset of 100 annotated tweets with sentiment",
+        "NLP, fairness, twitter",
+        "NLP"))
+
+    cur.execute(add_asset, (
+        "stimulus9",
+        "stimulus",
+        "stimulus/amazon_sentiment100.csv",
+        "img/MLalg.png",
+        "Yelp",
+        "yelp dataset labelled with sentiment",
+        "NLP, fairness, online shopping",
+        "NLP"))
+
 
     cur.execute(add_asset, (
         "algorithm1",
@@ -156,6 +223,7 @@ if __name__ == '__main__':
         "computer vision, NSFW",
         "swim"))
 
+
     cur.execute(add_asset, (
         "metric1",
         "metric",
@@ -165,6 +233,26 @@ if __name__ == '__main__':
         "difference in y hat on one binary sensitive attribute",
         "stats, disparate treatment",
         "swim"))
+
+    cur.execute(add_asset, (
+        "metric2",
+        "metric",
+        "metric/acc_diff.py",
+        "img/MLalg.png",
+        "Difference in Accuracy",
+        "difference in test set accuracy of classifier with respect to sensitive attribute",
+        "stats, disparate mistreatment",
+        "NLP"))
+
+    cur.execute(add_asset, (
+        "metric3",
+        "metric",
+        "metric/mean_diff.py",
+        "img/MLalg.png",
+        "Difference in Means",
+        "difference in y hat on one binary sensitive attribute",
+        "stats, disparate treatment",
+        "NLP"))
 
     cur.execute(drop_comcon)
     cur.execute(comcon)
@@ -200,6 +288,7 @@ if __name__ == '__main__':
     cur.execute(drop_metrics)
     cur.execute(metrics)
 
+    cur.execute(drop_comments)
     cur.execute(comments)
     cur.execute(add_comment, (
         "algorithm2",

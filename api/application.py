@@ -55,7 +55,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 
-@app.route('/api/v2/refresh/', methods=['GET'])
+@app.route('/api/v2/refresh/', methods=['GET', 'POST'])
 def get_assets():
     """
     Input:
@@ -71,7 +71,7 @@ def get_assets():
                 }]
         }
     """
-    state = controller.get_assets("47", engine)
+    state = controller.get_assets(request.json['task'], engine)
     return(jsonify(state))
 
 

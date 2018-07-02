@@ -37,13 +37,13 @@ def hash_token(mystring):
 	return(hashlib.md5(mystring.encode()).hexdigest())
 
 
-def get_assets(user_id, engine):
+def get_assets(task, engine):
 	"""
 	returns data and models visible to user
 	"""
-	data_query = """ SELECT * from assets where type = 'stimulus' """
-	models_query = """ SELECT * from assets where type = 'algorithm' """
-	metrics_query = """ SELECT * from assets where type = 'metric' """
+	data_query = """ SELECT * from assets where type = 'stimulus' and task = '{}' """.format(task)
+	models_query = """ SELECT * from assets where type = 'algorithm' and task = '{}'""".format(task)
+	metrics_query = """ SELECT * from assets where type = 'metric' and task = '{}' """.format(task)
 
 	return {"stimuli" : query2json(data_query, engine),"algorithms" : query2json(models_query, engine),"metrics" : query2json(metrics_query,engine)}
 

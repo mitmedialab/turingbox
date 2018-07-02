@@ -12,11 +12,11 @@ import datetime
 asset_library = '/Users/zive/GDrive/research/machine-behavior/turingbox/api/assets'
 
 
-def get_assets():
+def get_assets(task):
     url = 'http://0.0.0.0:5000/api/v2/refresh/'
-    payload = {'user_id': 'test47'}
+    payload = {'task': task}
     headers = {'content-type': 'application/json'}
-    r = requests.get(url)
+    r = requests.post(url, json = payload)
     data  = json.loads(r.text)
     return data
 
@@ -90,6 +90,10 @@ def about():
 
 @app.route('/launchBox.html',  methods=['GET', 'POST'])
 def launchBox():
+    return render_template('index.html')
+
+@app.route('/launchBox/<task>',  methods=['GET', 'POST'])
+def launchTask(task):
     if request.method == 'POST':
         stimulus = request.form['stim']
         algorithm = request.form['alg']
@@ -99,7 +103,7 @@ def launchBox():
         payload = push_job(stimulus, algorithm, metric, task)
         return redirect(url_for('report', box_id = payload['box_id']))
         print(payload['box_id'])
-    payload = get_assets()
+    payload = get_assets(task)
     stimuli = payload['stimuli']
     algorithms = payload['algorithms']
     metrics = payload['metrics']
