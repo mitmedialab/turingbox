@@ -133,8 +133,7 @@ def submit(asset_type, task):
 
 @app.route('/cv')
 def cv_domain():
-    print(swim_thin)
-    return render_template('cv.html', swim_thin = swim_thin,swim_plus = swim_plus)
+    return render_template('testing3.html')
 
 
 if __name__ == '__main__':
