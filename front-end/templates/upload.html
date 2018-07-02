@@ -43,13 +43,15 @@ $(document).ready(function(){
          </ul>
 {% endblock %}
 {% block content %}
-<img src="{{ url_for('static', filename='img/contributor.png')}}" width = "300px"/>
+
 <h1>contribute an <div id = "algType" class = "unclicked">&nbsp;algorithm&nbsp;</div>, a <div id = "stimType" class = "unclicked">&nbsp;stimulus&nbsp;</div>, or a <div id = "metricType" class = "unclicked">&nbsp;metric&nbsp;</div></h1>
 <div class = "taskSelector" style = "display: none;">
 	<h1> select a task</h1>
-	<ul>
-		<li><a id = "submitNLP" href = "submit/">NLP</a></li>
-		<li><a id = "submitCV" href = "submit/">Computer Vision</a></li>
-	</ul>
+		<div class = "task">
+		<a id = "submitNLP" href = "submit/"><img src="{{ url_for('static', filename='img/smurfs/contributor1.png')}}" width = "100px"/><br>NLP</a></div>
+		<div class = "task">
+		<a id = "submitCV" href = "submit/"><img src="{{ url_for('static', filename='img/smurfs/contributor2.png')}}" width = "100px"/><br>Computer Vision</a></div>
+		<div class = "task">
+		<a id = "submitCOMPAS" href = "submit/"><img src="{{ url_for('static', filename='img/smurfs/contributor3.png')}}" width = "100px"/><br>Risk Assessment</a></div>
 </div>
 {% endblock %}

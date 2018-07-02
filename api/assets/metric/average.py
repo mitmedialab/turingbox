@@ -15,7 +15,7 @@ def call(path_to_comcon):
 	levels = list(df['z'].value_counts().index)
 	referent = levels[0]
 	levels.remove(referent)
-	return [{"label" : label, "referent" : referent, "output" : metric(df,label,referent)} for label in levels]
+	return [{"label" : label, "referent" : referent, "output" : metric(df,level,referent)} for level in levels]
 
 #clarifai API 
 if __name__ == "__main__":

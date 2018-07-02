@@ -61,12 +61,12 @@ d3.text("http://0.0.0.0:5000/api/v2/{{box['path']}}", function(data) {
    <div class = "row">
    	<div class="col-md-2">
    		
-   	<img src="{{ url_for('static', filename='img/examiner2.png')}}" width = "80px"/>
+   	<img src="{{ url_for('static', filename='img/smurfs/examiner2.png')}}" width = "80px"/>
    </div>
    <div class="col-md-1">
    		</div>
 	<div class="col-md-6">
-   		<h4> box #{{box['id']}}</h4>
+   		<h4> box #{{box['id']}} ({{box['task']}})</h4>
 		<h4> stimulus: 
 			{% for stim in box['stim_data']%}
 				<a href = "{{url_for('context', asset_id = stim['asset_id'], asset_type = 'stimulus')}}">{{stim['name']}}</a>
@@ -98,7 +98,7 @@ d3.text("http://0.0.0.0:5000/api/v2/{{box['path']}}", function(data) {
 							<h4> for label <b>{{metric['label']}}</b> and referent <b>{{metric['referent']}} </b></h4>
 							{% endfor %}
 							<div id="scrolltable">
-								<div id = "loading">loading table...<img src="{{ url_for('static', filename='img/load.gif')}}" width = "80px"/></div>
+								<div id = "loading">loading table...<img src="{{ url_for('static', filename='img/load.gif')}}" width = "25%"/></div>
 			</div>
 			<div class="col-md-0 images">
 			</div>

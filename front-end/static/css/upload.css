@@ -25,6 +25,10 @@
   input[type=submit]{
     color:white;
     background: #29abe2;
-     
+  }
 
+  .task{
+    display: inline-block;
+     text-align: center;
+     padding-left: 20px;
   }
