@@ -10,6 +10,7 @@ def turing_box(algorithm, args):
 		y = "worked"
 		comcon.to_csv("assets/comcon/{}.csv".format(args[2]))
 	except Exception as e:
+		print(e)
 		y = str(e)
 		success = False
 
