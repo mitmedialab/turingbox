@@ -65,6 +65,15 @@ metrics = """
     );
     """
 
+comments = """
+    CREATE TABLE comments (
+        asset_id           varchar(256),
+        comment            varchar(256),
+        ts                 timestamp
+    );
+    """
+
+
 drop_assets = """
     DROP TABLE assets;
     """
@@ -79,6 +88,7 @@ drop_metrics = """
 
 add_asset = """ INSERT INTO assets VALUES  (%s, %s, %s, %s, %s,%s, %s, %s)"""
 add_comcon = """ INSERT INTO comcon VALUES  (%s, %s, %s, %s, %s, %s, %s, %s)"""
+add_comment = """ INSERT INTO comments VALUES  (%s, %s, %s)"""
 
 
 if __name__ == '__main__':
@@ -189,6 +199,12 @@ if __name__ == '__main__':
         1))
     cur.execute(drop_metrics)
     cur.execute(metrics)
+
+    cur.execute(comments)
+    cur.execute(add_comment, (
+        "algorithm2",
+        "this algorithm is bogus",
+        '2016-06-22 19:10:25-07'))
 
     conn.commit()
     cur.close()

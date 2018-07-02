@@ -11,6 +11,7 @@ import controller
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
+
 UPLOAD_FOLDER = '/assets/models'
 ALLOWED_EXTENSIONS = set(['py'])
 
@@ -135,7 +136,7 @@ def ingest_asset():
     
     if not request.json:
         abort(400)
-    output = controller.ingest_asset(request.json["form_data"], engine, conn,  from_db = False)
+    output = controller.ingest_asset(request.json["form_data"], conn,  from_db = False)
     return(json.dumps(output))
 
 
@@ -162,6 +163,27 @@ def get_comcon(file_name):
                      mimetype='text/csv',
                      attachment_filename=file_name,
                      as_attachment=True)
+
+@app.route('/api/v2/comment/', methods = ['POST'])
+def ingest_comment():
+    """
+    Input:
+        {
+            "asset_id": str,
+        }
+    Returns JSON of data/models available
+        {
+            "box": {
+                    "title": str,
+                    "desc" : "str"
+                }
+        }
+    """
+    
+    if not request.json:
+        abort(400)
+    output = controller.ingest_comment(request.json["comment"],request.json["asset_id"], conn,  from_db = False)
+    return(json.dumps(output))
 
 
 if __name__ == '__main__':

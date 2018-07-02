@@ -6,10 +6,12 @@ import json
 import psycopg2
 from sqlalchemy import create_engine, text
 import hashlib
+from time import gmtime, strftime
 
 add_asset = """ INSERT INTO assets VALUES  (%s, %s, %s, %s, %s,%s, %s, %s)"""
 add_comcon = """ INSERT INTO comcon VALUES  (%s, %s, %s, %s, %s, %s, %s, %s)"""
 add_metric = """ INSERT INTO metrics VALUES  (%s, %s, %s, %s, %s)"""
+add_comment = """ INSERT INTO comments VALUES  (%s, %s, %s)"""
 
 def query2json(query,engine):
 	pd_data = pd.read_sql_query(text(query), engine)
@@ -79,11 +81,14 @@ def get_asset_context(asset_id,engine, from_db):
 
 			comcon_query = """ SELECT * from comcon where alg1 = '{}' or alg2 = '{}' or stim1 = '{}' or stim2 = '{}' """.format(asset_id,asset_id,asset_id,asset_id)
 			boxes = query2json(comcon_query, engine)
+
+			comment_query = """ SELECT * from comments where asset_id = '{}' """.format(asset_id)
+			commets = query2json(comment_query, engine)
 		except:
 			return({"success" : False})
-	return({"success" : True, 'asset_context' : asset_context, "boxes" : boxes})
+	return({"success" : True, 'asset_context' : asset_context, "boxes" : boxes,  "commets" : commets})
 
-def ingest_asset(form_data, engine, conn, from_db):
+def ingest_asset(form_data, conn, from_db):
 	if not from_db:
 		cur = conn.cursor()
 		cur.execute(add_asset, (
@@ -95,6 +100,18 @@ def ingest_asset(form_data, engine, conn, from_db):
 	        form_data['description'],
 	        form_data['tags'],
 	        form_data['task']))
+		conn.commit()
+		cur.close()
+	return({"success" : True})
+
+def ingest_comment(comment, asset_id, conn, from_db):
+	ts = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+	if not from_db:
+		cur = conn.cursor()
+		cur.execute(add_comment, (
+	        asset_id,
+	        comment,
+	        ts))
 		conn.commit()
 		cur.close()
 	return({"success" : True})
