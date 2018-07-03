@@ -1,0 +1,609 @@
+{% extends "layout.html" %}
+{% block title %}Launch a box{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style>
+        body {
+            /*background-color: #f4e600;*/
+            background-color: white;
+
+        }
+        .content{
+            top:20vh;
+            padding:10vh 10vw 10vw 10vw;
+            font-family: 'Chivo',sans-serif;
+            overflow: hidden;
+        }
+
+
+        .column {
+            float: left;
+            padding: 10px;
+
+        }
+
+        .left {
+            margin-left: 200px;
+            width: 20%;
+        }
+
+        .mid {
+            width: 60%;
+        }
+
+        .right{
+            margin-left:50%;
+            width:20%;
+            min-width: 150px;
+        }
+
+        .bank{
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            border: 1px dashed black;
+            padding: 10px;
+            width: 100%;
+
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .centerBlock {
+            display: table;
+            margin: auto;
+        }
+
+        .rcorners1 {
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+           
+            background-color: transparent;
+
+            padding: 20px;
+            /*height: 300px;*/
+        }
+        .rcorners2 {
+            border-radius: 15px;
+            /*border: 6px solid #29abe2;*/
+            background-color: transparent;
+           border: transparent;
+            width: 100%;
+
+            /*height: 300px;*/
+        }
+        .rcorners5 {
+            border-radius: 15px;
+            border: 1px dashed black;
+            background-color: white;
+            padding: 20px;
+            float:left;
+        }
+
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+            .#rcorners1 {
+                width: 100%;
+            }
+            .#rcorners2 {
+                width: 100%;
+            }
+            .#rcorners3 {
+                width: 100%;
+            }
+
+        }
+
+        #leftWrapper, #rightWrapper{
+            padding:5px;
+            border-radius: 15px;
+            height:100%;
+            width:100%;
+            overflow-y:scroll;
+            
+        }
+
+        #left{
+            background-color:red;
+            height:500px;
+            width:200px;
+            position:relative;
+          
+        }
+
+        #mid{
+            height: 500px;
+            width: 600px;
+            background-color: yellow;
+            overflow:hidden;
+            position: relative;
+        }
+
+        #right{
+            float:right;
+            background-color: #00AEEF;
+            height:500px;
+            width:200px;
+        }
+
+        #stimDesc{
+            width:250px;
+            margin-left:-15px;
+        }
+
+        #metricDesc{
+            width:250px; 
+            margin-left:-45%;
+        }
+
+        .circle{
+            height:40%;
+            width:4 0% ;
+            border-radius:50%;
+            background-color: transparent
+;
+            display:inline-block;
+            padding:10%;
+            text-align:center;
+            margin:auto;
+            position: relative;
+            z-index: 1;
+            white-space-collapsing:discard;
+        }
+
+        .circle:hover{
+            border-radius: 50%;
+            border: 1px solid red;
+        }
+
+        .circImg{
+            height:100%;
+            width:90%;
+            margin:auto;   
+        }
+
+        #wrapper{
+            position:absolute;
+            height:500px;
+            width:600px;
+            overflow-y:scroll;
+            overflow-x:scroll;
+            padding:20px;
+        }
+
+        .button{
+            height:20px;
+            width:100px;
+            position:relative;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            z-index:1;
+        }
+
+        /*.popups {
+            position: relative;
+            background: white;
+            border-radius: .4em;
+            width:100px;
+            width:100px;
+            padding:8px;
+
+        }
+
+        .popups:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 13px solid transparent;
+            border-bottom-color: white;
+            border-top: 0;
+            margin-left: -13px;
+            margin-top: -13px;
+        }*/
+        .popups{
+            display:none;
+            background-color: white;
+            text-align: center;
+            position:absolute;
+            border:1px solid #000;
+            width:100px;
+            border-radius:20%;
+            padding:5px;
+            min-height: 100px;
+            z-index:4;
+            margin-left:50px;
+        }
+
+        #instructions{
+            width:30%;
+            font-weight: bold;
+            font-size: 15px;
+            margin-left:15%;
+            /*display:inline-block;*/
+        }
+
+        #wrapperBot {
+          height: 0;
+          overflow: hidden;
+          transition: height 0.66s ease-out;
+        }
+        #wrapperBot.loaded {
+          height: 100px;
+        }
+
+        #turing{
+            position:relative;
+            /*display: inline-block;*/
+            width: 20em;
+            height:20em;
+            border: 10px double black;
+            margin-top: -10%;
+            overflow: auto;
+            margin-left: 50%;
+           
+        }
+
+        #turingChoices{
+            height:100%;
+            width:100%;
+            padding:10px;
+           
+            
+        }
+
+        #lbbutton{
+            display: inline-block;
+            margin-left: 80%; 
+        }
+
+        #launchbox{
+            border: 3px solid black;
+            padding: 10px;
+            border-radius: 30%; 
+            font-size: 20px;
+            display:inline-block;
+            right:0px;
+        }
+
+        .tcircleBlue{
+            position:absolute;
+            border:3px solid black;
+            height:25%;
+            width:25% ;
+            border-radius:50%;
+            background-color:#00AEEF;
+            padding:10%;
+            margin-top:85%;
+            margin-bottom:-60px;
+            margin-left:225px;
+            float:right;
+        }
+
+        .tcircleRed{
+            position:absolute;
+            border:3px solid black;
+            height:25%;
+            width:25% ;
+            border-radius:50%;
+            background-color:red;
+            padding:10%;
+            margin-bottom:100%;
+            margin-top:-50px;
+            margin-left:-50px;
+            float:left;
+        }
+
+        #form{
+            display:inline-block;
+            width:10%;
+            float:right;
+            margin-right: 10%;
+            margin-top:-150px;
+        }
+
+        #submit {
+          border: 0;
+          border-radius: 0;
+          outline: 0;
+          background: #4e68c7;
+          box-shadow: 1px 0px 1px #203891,0px 1px 1px #3852b1,2px 1px 1px #203891,1px 2px 1px #3852b1,3px 2px 1px #203891,2px 3px 1px #3852b1,4px 3px 1px #203891,3px 4px 1px #3852b1,5px 4px 1px #203891,4px 5px 1px #3852b1,6px 5px 1px #203891;
+          color: white;
+          white-space: nowrap;
+          padding: 9px 16px;
+          position: relative;
+        }
+
+        #submit:active {
+          box-shadow: 1px 0px 1px #203891,0px 1px 1px #3852b1,2px 1px 1px #203891,1px 2px 1px #3852b1,3px 2px 1px #203891;
+          @include transform(translate(3px, 3px));
+        }
+
+        p{
+            font-size:15px;
+            text-align:center;
+            margin-top:-20px;
+            font-weight: bold; 
+            font-family:'Chivo',sans-serif;
+
+        }
+
+        h3, h2, h1 {
+            text-align: center;
+        }
+    
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+
+</style>
+  <script>
+    $(document).ready(function(){
+    $('.selectStim').on('drag',function(event){
+      $('input[name="stim"]').val(event.target.id);
+      $('input[name="task"]').val(event.target.task);
+    })
+
+    $('.selectAlg').on('drag',function(event){
+      $('input[name="alg"]').val(event.target.id);
+    })
+
+    $('.selectMetric').on('drag',function(event){
+      $('input[name=metric]').val(event.target.id);
+    })
+
+    $('input[name=submit]').on('drag',function(event){
+      $('.loading').show();
+    })
+
+});
+/*
+    function initialize(){
+        width = window.getComputedStyle(document.getElementById("wrapper")).getPropertyValue('width');
+        width = parseInt(width.slice(0, 3))
+        numAlgs = document.querySelectorAll(".circle");
+        max = 100;
+        var r = [];
+        var currsum = 0;
+        for(var i=0; i<numAlgs.length-1; i++) {
+            r[i] = randombetween(1, max-(numAlgs.length-i-1)-currsum);
+            currsum += r[i];
+        }
+        r[numAlgs.length-1] = max - currsum;  
+        console.log(r)     
+        console.log("works up to here")
+        for (var j = 0; j < numAlgs.length; j++){
+            r[j] = parseFloat("." + String(r[j]));
+            console.log(r[j]);
+           // numAlgs[j].style.width = r[j]*0.5+100 + "px";
+            //numAlgs[j].style.height = r[j]*0.5 +50 + "px";
+            numAlgs[j].style.width = width;
+            numAlgs[j].style.height = width*60/100;
+            numAlgs[j].style.transform = "scale(" + r[j] + ")";
+
+        }
+    }
+
+    function randombetween(min, max){
+        return Math.floor(Math.random()*(max-min+1)+min);
+    }
+*/
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text")
+        
+        ev.target.appendChild(document.getElementById(data));
+        dropped = document.getElementById(data);
+        if (ev.target.id == "leftWrapper"){
+            dropped.classList.add('rcorners2');
+            console.log(dropped.classList)
+        }else{
+            dropped.style.display = "inline-block";
+        dropped.style.height = "60px";
+        dropped.style.width = "100px";
+        dropped.style.border = "none";
+        dropped.style.padding = "3px";
+        }
+        //chosenOnes();
+    }
+    function chosenOnes(){
+        var choice, i, div, width, numOfDivs;
+        console.log(turingChoices);
+        div = document.getElementById("turingChoices");
+        width = window.getComputedStyle(div).getPropertyValue('width');
+        width = parseInt(width.slice(0, 3))
+        numOfDivs = Math.ceil(div.childNodes.length/2);
+        for (choice = 0; choice < div.childNodes.length; choice++){
+            div.childNodes[choice].style.display = "inline-block";
+            div.childNodes[choice].style.padding = "20px"
+            div.childNodes[choice].style.height = Math.floor(width/numOfDivs);
+            div.childNodes[choice].style.width = div.childNodes[choice].style.width;
+            console.log(Math.floor(width/numOfDivs))
+        }
+
+        //console.log(numOfDivs)
+        //console.log(div.childNodes.length)
+        //console.log("style of child nodes changed")
+    }
+    
+    function showDesc(type, name, desc){
+        if (type == "stimulus"){
+            div = document.getElementById("stimuliDes");
+        }else{
+            div = document.getElementById("metricDes");
+        }
+        div.style.display = "block";
+        if (div.innerHTML == "<h4>the " + name + " </h4>" + desc){
+            div.innerHTML = "";
+        }
+        else{
+            div.innerHTML ="<h4>the " + name + " </h4>" + desc;
+        }
+    }
+    var zoomVal = 1.0;
+
+    function zoom(num){
+        element = document.getElementById("wrapper");
+        switch(num){
+            case 0: 
+                zoomVal += 0.04;
+                element.style.transform = "scale(" + zoomVal + ")";
+                break;
+            case 1: 
+                zoomVal -= 0.04;
+                element.style.transform = "scale(" + zoomVal + ")";
+                break;
+            case 2: 
+                zoomVal = 1.0;
+                element.style.transform = "scale(" + zoomVal + ")";
+                break;
+        }
+    }
+
+    function showDes(popup){
+        document.getElementById(popup).style.display = "block";
+    }
+    function hideDes(popup){
+        document.getElementById(popup).style.display = "none";
+    }
+
+  </script>
+  <body>
+{% endblock %}
+{% block nav %}
+ <ul class="nav navbar-nav">
+          <li><a href="{{url_for('about')}}" style = "color:black" >learn more</a></li>
+          <li class = "evalButton"><a href="{{url_for('launchBox')}}" style = "color:white">examine</a></li>
+        <li><a href="{{url_for('contribute')}}" class = "inactive">contribute</a></li>      </ul>
+{% endblock %}
+{% block content %}
+<div class = "row">
+    <div class="col-md-4">
+            <div class="column left">
+                <h1>stimuli</h1>
+                <div class="row">
+                    <div class="centerBlock bank" id= "left">
+                        <div id = "leftWrapper" ondrop="drop(event)" ondragover="allowDrop(event)"><!--
+           {% for stimulus in stimuli %}
+                        --><div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true"><!--
+                           
+                           --><button type="button" class="rcorners2 selectStim" id = "{{stimulus['asset_id']}}" task = "{{stimulus['task']}}" ondragstart="drag(event)" id = "{{stimulus['name']}}Btn" onclick="showDesc('stimulus', '{{stimulus['name']}}', '{{stimulus['description']}}')"><!-- 
+                                --><img src = "{{ url_for('static',filename=stimulus['imgpath']) }}" id = "{{stimulus['name']}}Img" class="rcorners1" width="150"><!--
+                            --></button><!--
+                        --></div><!--
+            {% endfor %}
+                    --></div>
+                </div>
+                </div>
+                <div class="row" id = "stimDesc">
+                    <div id = "stimuliDes"style="display:block; min-height: 150px">
+                        </div>
+                </div>
+
+            </div>
+
+    </div><!-- fix left column description and img-->
+    <div class="col-md-4">
+        <div class="column mid">
+        <h1>algorithms</h1>
+            <div class = "row">
+                <div class="centerBlock bank" id = "mid" ondrop="drop(event)" ondragover="allowDrop(event)" droppable = "true">
+                        <div id = "wrapper">
+            {% for algorithm in algorithms %}
+            <span class = "circle">
+                <p>{{algorithm['task']}}</p>
+                <!--added ziv's tags to img-->
+                <div draggable="true" ondragstart="drag(event)" class="rcorners4" id = "{{algorithm['name']}}" droppable = "true"onmouseover="showDes('{{algorithm['name']}}Pop')" onmouseout="hideDes('{{algorithm['name']}}Pop')">
+                     <img src = "{{ url_for('static',filename=algorithm['imgpath']) }}" draggable = "false" class = "circImg selectAlg" id = "{{algorithm['asset_id']}}" /> 
+                        <div class = "popups" id = "{{algorithm['name']}}Pop" style = "display:none">{{algorithm['description']}}<br>
+                            <a>Link</a>
+                        </div>
+                </div>
+            </span>     
+            {% endfor %}
+            </div>
+            <button id="zin" class = "button" onclick = "zoom(0)">zoom in</button>
+            <button id="zout" class = "button" onclick = "zoom(1)">zoom out</button>
+            <button id="zreset" class = "button" onclick = "zoom(2)">reset zoom</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class = "column right">
+         <h1>metrics</h1>
+          <div class ="row">
+            <div class="centerBlock bank" id= "right">
+                <div id = "rightWrapper" ondrop="drop(event)" ondragover="allowDrop(event)">
+                {% for metric in metrics %}
+                <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true">
+                    <!--added ziv's tags to button-->
+                    <button type = "button" class="selectMetric rcorners2" id = "{{metric['asset_id']}}" onclick = "showDesc('metric', '{{metric['name']}}','{{metric['description']}}')">
+                        <img src = "{{ url_for('static',filename=metric['imgpath']) }}" id = "{{metric['name']}}" class="rcorners1" width="150"/>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+          </div>
+          <div class = "row" id = "metricDesc">
+            <div id = "metricDes" style="display:block; min-height: 150px">
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <div class = "row">
+        <div id = "instructions">
+            INSTRUCTIONS<br>
+            1. drag one (or more) stimuli into the turing box<br>
+            2. drag one (or more) algorithms into the box<br>
+            3. drag one (or more) metrics into the box<br>
+            4. press launch box to watch your results!
+        </div>
+        <div class="centerBlock bank" id = "turing" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="tcircleRed"></div>
+                <div class="tcircleBlue"></div>
+                <div id = "turingChoices"></div>
+        </div>
+        <form action="{{ url_for('launchBox') }}" id = "form"method="post">
+            <input type="Stim" name="stim" style = "display:block"/>
+            <input type="Alg" name="alg" style = "display:block"/>
+            <input type="Metric" name="metric" style = "display:block"/>
+            <input type=submit value="Launch Box" id = "submit">
+        </form>
+    </div>
+
+<br><br><br><br>
+  
+<h1>Reports</h1>
+<ul>
+    <li><a href = "report/0"/>Dummy</li>
+    <li><a href = "report/1"/>Compas</li>
+    <li><a href = "report/2"/>Swim</li>
+</ul>
+</body>
+{% endblock %}
