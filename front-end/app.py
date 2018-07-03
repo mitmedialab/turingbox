@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, abort, redirect, url_for
+from flask import Flask, jsonify, request, abort, redirect, url_for, Markup
 import requests
 import json
 import pandas as pd
@@ -122,7 +122,12 @@ def report(box_id):
         box['success'] = True
     else:
         box = {"success" : False}
-    return render_template('report.html', box_id = box_id, box = box)
+    if box['metrics']:
+        metric_to_view = box['metrics'][0]['metric_id']
+        metrix = [m for m in box['metrics'] if m['metric_id'] == metric_to_view]
+    metric_viz = json.dumps(metrix)
+    print(metric_viz)
+    return render_template('report.html', box_id = box_id, box = box, metric_viz =metric_viz)
 
 @app.route('/context/<asset_type>/<asset_id>',  methods=['GET', 'POST'])
 def context(asset_type, asset_id):

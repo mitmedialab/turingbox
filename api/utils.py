@@ -2,6 +2,7 @@ import json
 import pandas as pd
 from time import gmtime, strftime
 import numpy as np 
+from IPython.display import HTML
 
 def turing_box(algorithm, args):
 	y = ""
@@ -83,3 +84,59 @@ def false_pos_per_class(file_df):
 
 def false_negative_per_class(file_df): 
     pass 
+
+
+def colorize(i):
+    if i%2==0:
+        return '#ED1C24'
+    else:
+        return '#00AEEF'
+
+
+def plot(data,models):
+    i = 0
+    for m in models:
+        for d in data:
+            plt.figure(i)
+            col = box[d][m]
+            plt.hist(col, normed=True, bins=30, color = colorize(i))
+            plt.ylabel('Probability');
+            plt.title("{} => {}".format(d,m))
+            i+=1
+
+
+HTML('''
+    <script type="text/javascript>
+        IPython.notebook.kernel.execute("URL = ' + window.location + "'")
+    </script>''')
+
+def init(URL):
+    comcon = URL[URL.index('?comcon=')+8:URL.index('&')]
+    df = pd.read_csv("assets/comcon/{}.csv".format(comcon))
+    return df
+
+def unique(x):
+    return(list(set(x)))
+
+
+def summarize(data, models):
+    print("using datatsets: '{}".format("','".join(data)) + "'")
+    print("using models: '{}".format("','".join(models)) + "'")
+    print("access raw values with 'box[<data>][<model>]'")
+    for d in data:
+        try:
+            datum = box[d]
+            try:
+                print("Stimulus mean is {}".format(datum['label'].mean()))
+            except:
+                pass
+            for m in models:
+                print("{} =>  {} = '{}' (mean)".format(d, m.capitalize(), round(datum[m].mean(),4)))        
+        except:
+            pass
+
+
+
+
+
+

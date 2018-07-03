@@ -137,9 +137,9 @@ if __name__ == '__main__':
         "stimulus",
         "stimulus/clothing1000.csv",
         "img/MLalg.png",
-        "Clothing ",
-        "dataset of clothing, 1000",
-        "NLP, fairness",
+        "Women's Clothing E-Commerce Shopping Reviews ",
+        "1000 clothing reviews including review text, binarized (0/1) ratings and shopper age",
+        "NLP, fairness, shopping",
         "NLP"))
 
     cur.execute(add_asset, (
@@ -147,41 +147,20 @@ if __name__ == '__main__':
         "stimulus",
         "stimulus/movies1000.csv",
         "img/MLalg.png",
-        "movies1000 Dataset",
-        "data set of 1000 movie reviews, labelled",
-        "NLP, fairness",
+        "Amazon Movie Reviews",
+        "1000 movie reviews from 1997 - 2012 including review text, binarized (0/1) ratings and inferred reviewer gender based on first name ",
+        "NLP, fairness, movies",
         "NLP"))
 
     cur.execute(add_asset, (
         "stimulus7",
         "stimulus",
-        "stimulus/sst_sentiment100.csv",
+        "stimulus/yelp1000.csv",
         "img/MLalg.png",
-        "Rotten Tomatoes dataset",
-        "dataset of 100 rotten tomoatoes comments",
+        "Yelp Business Reviews",
+        "1000 business reviews from Yelp including review text, binarized (0/1) ratings and inferred reviewer gender based on first name ",
         "NLP, fairness",
         "NLP"))
-
-    cur.execute(add_asset, (
-        "stimulus8",
-        "stimulus",
-        "stimulus/twitter_sentiment100.csv",
-        "img/MLalg.png",
-        "Twitter",
-        "datatset of 100 annotated tweets with sentiment",
-        "NLP, fairness, twitter",
-        "NLP"))
-
-    cur.execute(add_asset, (
-        "stimulus9",
-        "stimulus",
-        "stimulus/amazon_sentiment100.csv",
-        "img/MLalg.png",
-        "Yelp",
-        "yelp dataset labelled with sentiment",
-        "NLP, fairness, online shopping",
-        "NLP"))
-
 
     cur.execute(add_asset, (
         "algorithm1",
@@ -218,8 +197,8 @@ if __name__ == '__main__':
         "algorithm",
         "algorithm/google_sentiment.py",
         "img/MLalg.png",
-        "Google Sentiment",
-        "Google's sentiment algorithm",
+        "Google Sentiment Analysis",
+        "Sentiment score form Google's sentiment algorithm from Cloud Natural Language API",
         "NLP, sentiment",
         "NLP"))
 
@@ -228,8 +207,8 @@ if __name__ == '__main__':
         "algorithm",
         "algorithm/microsoft_sentiment.py",
         "img/MLalg.png",
-        "Microsoft Sentiment",
-        "Microsoft's sentiment algorithm",
+        "Microsoft Sentiment Analysis",
+        "Sentiment score form Microsoft sentiment algorithm from Azure Text Analytics API",
         "NLP, sentiment",
         "NLP"))
 
@@ -238,8 +217,8 @@ if __name__ == '__main__':
         "algorithm",
         "algorithm/textblob_sentiment.py",
         "img/MLalg.png",
-        "Textblob Sentiment",
-        "sentiment text blob",
+        "Textblob Sentiment Analysis",
+        "Sentiment polarity score from python Textblob library",
         "NLP, sentiment",
         "NLP"))
 
@@ -255,14 +234,24 @@ if __name__ == '__main__':
         "swim"))
 
     cur.execute(add_asset, (
-        "metric2",
+        "metric4",
         "metric",
-        "metric/acc_diff.py",
+        "metric/average.py",
         "img/MLalg.png",
-        "Difference in Accuracy",
-        "difference in test set accuracy of classifier with respect to sensitive attribute",
-        "stats, disparate mistreatment",
-        "NLP"))
+        "Difference in Means",
+        "difference in y hat on one binary sensitive attribute",
+        "stats, disparate treatment",
+        "compas"))
+
+    # cur.execute(add_asset, (
+    #     "metric2",
+    #     "metric",
+    #     "metric/acc_diff.py",
+    #     "img/MLalg.png",
+    #     "Difference in Accuracy",
+    #     "difference in test set accuracy of classifier with respect to sensitive attribute",
+    #     "stats, disparate mistreatment",
+    #     "NLP"))
 
     cur.execute(add_asset, (
         "metric3",
