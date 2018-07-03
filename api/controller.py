@@ -96,7 +96,7 @@ def ingest_asset(form_data, conn, from_db):
 	        form_data['asset_type'] + hash_token(form_data['filename']),
 	        form_data['asset_type'],
 	        form_data['asset_type'] + "/" + form_data['filename'],
-	        "img/MLalg.png",
+	        "img/assets/{}.png".format(form_data['asset_type']),
 	        form_data['name'],
 	        form_data['description'],
 	        form_data['tags'],
