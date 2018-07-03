@@ -8,6 +8,7 @@ from wtforms import Form, BooleanField, StringField, FileField, validators
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import CombinedMultiDict
 import datetime
+import time
 
 asset_library = '/Users/zive/GDrive/research/machine-behavior/turingbox/api/assets'
 
@@ -100,6 +101,7 @@ def launchTask(task):
         metric = request.form['metric']
         print("pushing job")
         payload = push_job(stimulus, algorithm, metric, task)
+        time.sleep(3)
         return redirect(url_for('report', box_id = payload['box_id']))
         print(payload['box_id'])
     payload = get_assets(task)

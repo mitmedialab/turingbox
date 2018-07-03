@@ -1,1 +1,1 @@
-{"model_reply": "worked", "data_url": "assets/stimulus/swim.csv", "success": true, "time": "2018-07-02 22:06:49"}
+{"model_reply": "worked", "data_url": "assets/stimulus/swim.csv", "success": true, "time": "2018-07-03 17:38:33"}
