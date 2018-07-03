@@ -33,3 +33,29 @@
     padding-top: 10px;
     font-size: 150%;
   }
+
+    .bar{
+    fill:#ff1d25;
+  }
+
+  .bar:hover{
+    fill: #29abe2;
+  }
+
+  .axis {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+  }
+
+  .button{
+    padding-top: 10px;
+    font-size: 150%;
+  }
+

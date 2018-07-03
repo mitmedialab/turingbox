@@ -255,14 +255,24 @@ if __name__ == '__main__':
         "swim"))
 
     cur.execute(add_asset, (
-        "metric2",
+        "metric4",
         "metric",
-        "metric/acc_diff.py",
+        "metric/average.py",
         "img/MLalg.png",
-        "Difference in Accuracy",
-        "difference in test set accuracy of classifier with respect to sensitive attribute",
-        "stats, disparate mistreatment",
-        "NLP"))
+        "Difference in Means",
+        "difference in y hat on one binary sensitive attribute",
+        "stats, disparate treatment",
+        "compas"))
+
+    # cur.execute(add_asset, (
+    #     "metric2",
+    #     "metric",
+    #     "metric/acc_diff.py",
+    #     "img/MLalg.png",
+    #     "Difference in Accuracy",
+    #     "difference in test set accuracy of classifier with respect to sensitive attribute",
+    #     "stats, disparate mistreatment",
+    #     "NLP"))
 
     cur.execute(add_asset, (
         "metric3",
