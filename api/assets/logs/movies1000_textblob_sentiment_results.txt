@@ -1,1 +1,1 @@
-{"model_reply": "worked", "data_url": "assets/stimulus/movies1000.csv", "success": true, "time": "2018-07-02 19:30:44"}
+{"model_reply": "worked", "data_url": "assets/stimulus/movies1000.csv", "success": true, "time": "2018-07-03 16:03:32"}

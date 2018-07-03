@@ -4,36 +4,6 @@
   {{ super() }}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css')}}">
 
-<script>
-
-$(document).ready(function(){
-    $('#algType').on('click',function(){
-	    $('#algType').addClass("clicked")
-	    $('#stimType').removeClass("clicked")
-	    $('#metricType').removeClass("clicked")
-	    $('.taskSelector').show();
-	    $("#submitNLP").attr("href", "submit/algorithm/NLP");
-	    $("#submitCV").attr("href", "submit/algorithm/CV");
-	});
-	  $('#stimType').on('click',function(){
-	    $('#stimType').addClass("clicked")
-	    $('#algType').removeClass("clicked")
-	    $('#metricType').removeClass("clicked")
-	    $('.taskSelector').show();
-	    $("#submitNLP").attr("href", "submit/stimulus/NLP");
-	    $("#submitCV").attr("href", "submit/stimulus/CV");
-	})
-    $('#metricType').on('click',function(){
-	    $('#metricType').addClass("clicked")
-	    $('#stimType').removeClass("clicked")
-	    $('#algType').removeClass("clicked")
-	    $('.taskSelector').show();
-	    $("#submitNLP").attr("href", "submit/metric/NLP");
-	    $("#submitCV").attr("href", "submit/metric/CV");
-	})
-
-});
-</script>
 {% endblock %}
 {% block nav %}
   <ul class="nav navbar-nav">
@@ -44,12 +14,14 @@ $(document).ready(function(){
 {% endblock %}
 {% block content %}
 <div class = "taskSelector">
-	<h1> select a task</h1>
+	<h1>turing box is divided into <i>tasks</i>, each with their own data representation, methods and community.</h1>
+	<h2> select a task</h2>
 		<div class = "task">
-		<a id = "submitNLP" href = "{{url_for('launchTask', task='NLP')}}"><img src="{{ url_for('static', filename='img/smurfs/examiner1.png')}}" width = "100px"/><br>NLP</a></div>
+		<a id = "submitCV" href = "{{url_for('launchTask', task='swim')}}"><img src="{{ url_for('static', filename='img/smurfs/examiner2.png')}}" width = "200px"/><br>Computer Vision</a></div>
 		<div class = "task">
-		<a id = "submitCV" href = "{{url_for('launchTask', task='swim')}}"><img src="{{ url_for('static', filename='img/smurfs/examiner2.png')}}" width = "100px"/><br>Computer Vision</a></div>
+		<a id = "submitCOMPAS" href = "{{url_for('launchTask', task='compas')}}"><img src="{{ url_for('static', filename='img/smurfs/examiner3.png')}}" width = "200px"/><br>Risk Assessment</a></div>
 		<div class = "task">
-		<a id = "submitCOMPAS" href = "{{url_for('launchTask', task='compas')}}"><img src="{{ url_for('static', filename='img/smurfs/examiner3.png')}}" width = "100px"/><br>Risk Assessment</a></div>
+		<a id = "submitNLP" href = "{{url_for('launchTask', task='NLP')}}"><img src="{{ url_for('static', filename='img/smurfs/examiner1.png')}}" width = "200px"/><br>NLP</a></div>
+		<h2> or <a href = "mailto:turingbox@mit.edu">propose a new task</a></h2>
 </div>
 {% endblock %}

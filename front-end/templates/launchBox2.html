@@ -2,38 +2,19 @@
 {% block title %}Launch a box{% endblock %}
 {% block head %}
   {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/launchBox.css')}}">
   <style>
-        body {
-            /*background-color: #f4e600;*/
-            background-color: white;
-
-        }
-        .content{
-            top:20vh;
-            padding:10vh 10vw 10vw 10vw;
-            font-family: 'Chivo',sans-serif;
-            overflow: hidden;
-        }
-
-
+       
+      
         .column {
             float: left;
             padding: 10px;
 
         }
 
-        .left {
-            margin-left: 200px;
-            width: 20%;
-        }
-
-        .mid {
-            width: 60%;
-        }
 
         .right{
             margin-left:50%;
-            width:20%;
             min-width: 150px;
         }
 
@@ -111,15 +92,15 @@
 
         #left{
             background-color:red;
-            height:500px;
+            height:300px;
             width:200px;
             position:relative;
           
         }
 
         #mid{
-            height: 500px;
-            width: 600px;
+            height: 300px;
+            width: 400px;
             background-color: yellow;
             overflow:hidden;
             position: relative;
@@ -128,28 +109,18 @@
         #right{
             float:right;
             background-color: #00AEEF;
-            height:500px;
+            height:300px;
             width:200px;
         }
 
-        #stimDesc{
-            width:250px;
-            margin-left:-15px;
-        }
-
-        #metricDesc{
-            width:250px; 
-            margin-left:-45%;
-        }
+        
 
         .circle{
             height:40%;
-            width:4 0% ;
+            width:40% ;
             border-radius:50%;
-            background-color: transparent
-;
+            background-color: transparent;
             display:inline-block;
-            padding:10%;
             text-align:center;
             margin:auto;
             position: relative;
@@ -163,15 +134,11 @@
         }
 
         .circImg{
-            height:100%;
-            width:90%;
             margin:auto;   
         }
 
         #wrapper{
             position:absolute;
-            height:500px;
-            width:600px;
             overflow-y:scroll;
             overflow-x:scroll;
             padding:20px;
@@ -246,9 +213,7 @@
             width: 20em;
             height:20em;
             border: 10px double black;
-            margin-top: -10%;
             overflow: auto;
-            margin-left: 50%;
            
         }
 
@@ -302,25 +267,9 @@
             float:left;
         }
 
-        #form{
-            display:inline-block;
-            width:10%;
-            float:right;
-            margin-right: 10%;
-            margin-top:-150px;
-        }
+   
 
-        #submit {
-          border: 0;
-          border-radius: 0;
-          outline: 0;
-          background: #4e68c7;
-          box-shadow: 1px 0px 1px #203891,0px 1px 1px #3852b1,2px 1px 1px #203891,1px 2px 1px #3852b1,3px 2px 1px #203891,2px 3px 1px #3852b1,4px 3px 1px #203891,3px 4px 1px #3852b1,5px 4px 1px #203891,4px 5px 1px #3852b1,6px 5px 1px #203891;
-          color: white;
-          white-space: nowrap;
-          padding: 9px 16px;
-          position: relative;
-        }
+     
 
         #submit:active {
           box-shadow: 1px 0px 1px #203891,0px 1px 1px #3852b1,2px 1px 1px #203891,1px 2px 1px #3852b1,3px 2px 1px #203891;
@@ -506,20 +455,18 @@
                     <div class="centerBlock bank" id= "left">
                         <div id = "leftWrapper" ondrop="drop(event)" ondragover="allowDrop(event)"><!--
            {% for stimulus in stimuli %}
-                        --><div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true"><!--
-                           
-                           --><button type="button" class="rcorners2 selectStim" id = "{{stimulus['asset_id']}}" task = "{{stimulus['task']}}" ondragstart="drag(event)" id = "{{stimulus['name']}}Btn" onclick="showDesc('stimulus', '{{stimulus['name']}}', '{{stimulus['description']}}')"><!-- 
-                                --><img src = "{{ url_for('static',filename=stimulus['imgpath']) }}" id = "{{stimulus['name']}}Img" class="rcorners1" width="150"><!--
-                            --></button><!--
+                        --><div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true">
+
+                        <button type="button" class="rcorners2 selectStim" id = "{{stimulus['asset_id']}}" task = "{{stimulus['task']}}" ondragstart="drag(event)" id = "{{stimulus['name']}}Btn" onclick="showDesc('stimulus', '{{stimulus['name']}}', '{{stimulus['description']}}')" onmouseover="showDes('{{stimulus['name']}}Pop')" onmouseout="hideDes('{{stimulus['name']}}Pop')">
+                        <img src = "{{ url_for('static',filename=stimulus['imgpath']) }}" id = "{{stimulus['asset_id']}}" class="rcorners1" width="150"> <div class = "popups" id = "{{stimulus['name']}}Pop" style = "display:none">{{stimulus['name']}}<br>
+                            <a href = "{{url_for('context', asset_id = stimulus['asset_id'], asset_type = 'stimulus')}}">Link</a>
+                        </div></button><!--
                         --></div><!--
             {% endfor %}
                     --></div>
                 </div>
                 </div>
-                <div class="row" id = "stimDesc">
-                    <div id = "stimuliDes"style="display:block; min-height: 150px">
-                        </div>
-                </div>
+               
 
             </div>
 
@@ -532,12 +479,11 @@
                         <div id = "wrapper">
             {% for algorithm in algorithms %}
             <span class = "circle">
-                <p>{{algorithm['task']}}</p>
                 <!--added ziv's tags to img-->
-                <div draggable="true" ondragstart="drag(event)" class="rcorners4" id = "{{algorithm['name']}}" droppable = "true"onmouseover="showDes('{{algorithm['name']}}Pop')" onmouseout="hideDes('{{algorithm['name']}}Pop')">
-                     <img src = "{{ url_for('static',filename=algorithm['imgpath']) }}" draggable = "false" class = "circImg selectAlg" id = "{{algorithm['asset_id']}}" /> 
-                        <div class = "popups" id = "{{algorithm['name']}}Pop" style = "display:none">{{algorithm['description']}}<br>
-                            <a>Link</a>
+                <div draggable="true" ondragstart="drag(event)" class="rcorners4 selectAlg" id = "{{algorithm['asset_id']}}" droppable = "true" onmouseover="showDes('{{algorithm['asset_id']}}Pop')" onmouseout="hideDes('{{algorithm['asset_id']}}Pop')">
+                     <img src = "{{ url_for('static',filename=algorithm['imgpath']) }}" draggable = "false" class = "circImg " id = "{{algorithm['asset_id']}}" /> 
+                        <div class = "popups" id = "{{algorithm['asset_id']}}Pop" style = "display:none">{{algorithm['name']}}<br>
+                            <a href = "{{url_for('context', asset_id = algorithm['asset_id'], asset_type = 'algorithm')}}">Link</a>
                         </div>
                 </div>
             </span>     
@@ -560,44 +506,49 @@
                 {% for metric in metrics %}
                 <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true">
                     <!--added ziv's tags to button-->
-                    <button type = "button" class="selectMetric rcorners2" id = "{{metric['asset_id']}}" onclick = "showDesc('metric', '{{metric['name']}}','{{metric['description']}}')">
-                        <img src = "{{ url_for('static',filename=metric['imgpath']) }}" id = "{{metric['name']}}" class="rcorners1" width="150"/>
+                    <button type = "button" class="selectMetric rcorners2" id = "{{metric['asset_id']}}" onclick = "showDesc('metric', '{{metric['name']}}','{{metric['description']}}')" onmouseover="showDes('{{metric['name']}}Pop')" onmouseout="hideDes('{{metric['name']}}Pop')">
+                        <img src = "{{ url_for('static',filename=metric['imgpath']) }}" id = "{{metric['asset_id']}}" class="rcorners1" width="150"/>
+                         <div class = "popups" id = "{{metric['name']}}Pop" style = "display:none">{{metric['name']}}<br>
+                           <a href = "{{url_for('context', asset_id = metric['asset_id'], asset_type = 'metric')}}">Link</a>
+                        </div>
                     </button>
                 </div>
                 {% endfor %}
             </div>
             </div>
           </div>
-          <div class = "row" id = "metricDesc">
-            <div id = "metricDes" style="display:block; min-height: 150px">
-                </div>
-        </div>
+         
     </div>
 </div>
 </div>
+<br><br>
 
     <div class = "row">
-        <div id = "instructions">
+        <div class="col-md-4">
             INSTRUCTIONS<br>
             1. drag one (or more) stimuli into the turing box<br>
             2. drag one (or more) algorithms into the box<br>
             3. drag one (or more) metrics into the box<br>
             4. press launch box to watch your results!
         </div>
+    <div class="col-md-4">
         <div class="centerBlock bank" id = "turing" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <div class="tcircleRed"></div>
                 <div class="tcircleBlue"></div>
                 <div id = "turingChoices"></div>
         </div>
-        <form action="{{ url_for('launchBox') }}" id = "form"method="post">
+    </div>
+    <div class="col-md-4">
+        <form action="{{ url_for('launchTask', task = task) }}" method="post">
             <input type="Stim" name="stim" style = "display:block"/>
             <input type="Alg" name="alg" style = "display:block"/>
             <input type="Metric" name="metric" style = "display:block"/>
             <input type=submit value="Launch Box" id = "submit">
         </form>
     </div>
+    </div>
 
-<br><br><br><br>
+<br>
   
 <h1>Reports</h1>
 <ul>

@@ -106,7 +106,7 @@ def launchTask(task):
     stimuli = payload['stimuli']
     algorithms = payload['algorithms']
     metrics = payload['metrics']
-    return render_template('launchBox.html', stimuli = stimuli, algorithms = algorithms, metrics = metrics, task = task)
+    return render_template('launchBox2.html', stimuli = stimuli, algorithms = algorithms, metrics = metrics, task = task)
 
 @app.route('/upload.html')
 def contribute():
