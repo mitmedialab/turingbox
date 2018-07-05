@@ -4,18 +4,12 @@
   {{ super() }}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/launchBox.css')}}">
   <style>
-       
-      
         .column {
             float: left;
-
-
         }
-
 
         .right{
             margin-left:50%;
-           
         }
 
         .bank{
@@ -24,7 +18,6 @@
             border: 1px dashed black;
             padding: 10px;
             width: 100%;
-
         }
 
         /* Clear floats after the columns */
@@ -40,21 +33,14 @@
 
         .rcorners1 {
             border-radius: 15px;
-            /*border: 6px solid #29abe2;*/
-           
             background-color: transparent;
-
             padding: 20px;
-            /*height: 300px;*/
         }
         .rcorners2 {
             border-radius: 15px;
-            /*border: 6px solid #29abe2;*/
             background-color: transparent;
            border: transparent;
             width: 100%;
-
-            /*height: 300px;*/
         }
         .rcorners5 {
             border-radius: 15px;
@@ -87,7 +73,6 @@
             height:100%;
             width:100%;
             overflow-y:scroll;
-            
         }
 
         #left{
@@ -95,7 +80,6 @@
             height:300px;
             width:200px;
             position:relative;
-          
         }
 
         #mid{
@@ -113,8 +97,6 @@
             height:300px;
             width:200px;
         }
-
-        
 
         .circle{
             height:40%;
@@ -157,29 +139,6 @@
             z-index:1;
         }
 
-        /*.popups {
-            position: relative;
-            background: white;
-            border-radius: .4em;
-            width:100px;
-            width:100px;
-            padding:8px;
-
-        }
-
-        .popups:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border: 13px solid transparent;
-            border-bottom-color: white;
-            border-top: 0;
-            margin-left: -13px;
-            margin-top: -13px;
-        }*/
         .popups{
             display:none;
             background-color: white;
@@ -199,24 +158,20 @@
             font-weight: bold;
             font-size: 15px;
             margin-left:15%;
-            /*display:inline-block;*/
         }
 
         #turing{
             position:relative;
-            /*display: inline-block;*/
             width: 20em;
             height:20em;
             border: 10px double black;
             overflow: auto;
-           
         }
 
         #turingChoices{
             height:100%;
             width:100%;
             padding:10px;
-            
         }
 
         #lbbutton{
@@ -264,8 +219,6 @@
         ::-webkit-scrollbar{
             background-color:transparent;
         }
-
-     
 
         #submit:active {
           box-shadow: 1px 0px 1px #203891,0px 1px 1px #3852b1,2px 1px 1px #203891,1px 2px 1px #3852b1,3px 2px 1px #203891;
@@ -344,15 +297,18 @@
         return Math.floor(Math.random()*(max-min+1)+min);
     }
 */
+    //prevents the object from performing its default task in order to be able to be dragged and dropped 
     function allowDrop(ev) {
         ev.preventDefault();
     }
 
+    //data transferred is the object's id 
     function drag(ev) {
 
         ev.dataTransfer.setData("text", ev.target.id);
     }
 
+    //on drop, prevent the default function again, append the dragged object to the target and change its size (according to the turing box size)
     function drop(ev) {
 
         ev.preventDefault();
@@ -360,6 +316,7 @@
         
         ev.target.appendChild(document.getElementById(data));
         dropped = document.getElementById(data);
+        //hardcoded change in size of dropped element 
         if (ev.target.id == "leftWrapper"){
             dropped.classList.add('rcorners2');
             console.log(dropped.classList)
@@ -370,9 +327,9 @@
         dropped.style.border = "none";
         dropped.style.padding = "3px";
         }
-        //chosenOnes();
+        //chosenOnes(); <--was trying to resize it dynamically 
     }
-    function chosenOnes(){
+    /*function chosenOnes(){
         var choice, i, div, width, numOfDivs;
         console.log(turingChoices);
         div = document.getElementById("turingChoices");
@@ -386,31 +343,13 @@
             div.childNodes[choice].style.width = div.childNodes[choice].style.width;
             console.log(Math.floor(width/numOfDivs))
         }
+    }*/
 
-        //console.log(numOfDivs)
-        //console.log(div.childNodes.length)
-        //console.log("style of child nodes changed")
-    }
-    
-    function showDesc(type, name, desc){
-        if (type == "stimulus"){
-            div = document.getElementById("stimuliDes");
-        }else{
-            div = document.getElementById("metricDes");
-        }
-        div.style.display = "block";
-        if (div.innerHTML == "<h4>the " + name + " </h4>" + desc){
-            div.innerHTML = "";
-        }
-        else{
-            div.innerHTML ="<h4>the " + name + " </h4>" + desc;
-        }
-    }
     var zoomVal = 1.0;
-
+    //for the zoom buttons, resize the wrapper when a button is clicked
     function zoom(num){
         element = document.getElementById("wrapper");
-        switch(num){
+        switch(num){//case0 = zoom in | case1 = zoom out | case2 = reset zoom
             case 0: 
                 zoomVal += 0.04;
                 element.style.transform = "scale(" + zoomVal + ")";
@@ -426,6 +365,7 @@
         }
     }
 
+    //show or hide the popups next to the item that was hovered over by changing display between block and none
     function showDes(popup){
         document.getElementById(popup).style.display = "block";
     }
@@ -443,40 +383,46 @@
         <li><a href="{{url_for('contribute')}}" class = "inactive">contribute</a></li>      </ul>
 {% endblock %}
 {% block content %}
+<!-- start of stilmuli, algorithms, metrics row-->
 <div class = "row">
+    <!--beginning of stimuli column-->
     <div class="col-md-4">
             <div class="column left">
                 <h1>stimuli</h1>
                 <div class="row">
-                    <div class="centerBlock bank" id= "left">
-                        <div id = "leftWrapper" ondrop="drop(event)" ondragover="allowDrop(event)"><!--
+                    <div class="centerBlock bank" id= "left"><!--encapsulates stimuli column-->
+                        <div id = "leftWrapper" ondrop="drop(event)" ondragover="allowDrop(event)"><!--wrapper for ability to scroll-->
+           <!--eahc stimuli, when generated, will be encapsulated in a div which will include a div, the image, and a description popup div-->
            {% for stimulus in stimuli %}
-                        --><div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true">
+                        <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true">
 
-                        <button type="button" class="rcorners2 selectStim" id = "{{stimulus['asset_id']}}" task = "{{stimulus['task']}}" ondragstart="drag(event)" id = "{{stimulus['name']}}Btn" onmouseover="showDes('{{stimulus['name']}}Pop')" onmouseout="hideDes('{{stimulus['name']}}Pop')">
+                        <div type="button" class="rcorners2 selectStim" id = "{{stimulus['asset_id']}}" task = "{{stimulus['task']}}" ondragstart="drag(event)"onmouseover="showDes('{{stimulus['name']}}Pop')" onmouseout="hideDes('{{stimulus['name']}}Pop')">
                         <img src = "{{ url_for('static',filename=stimulus['imgpath']) }}" id = "{{stimulus['asset_id']}}" class="rcorners1" width="150"> 
                         <div class = "popups" id = "{{stimulus['name']}}Pop" style = "display:none">{{stimulus['name']}}<br>
                             <a href = "{{url_for('context', asset_id = stimulus['asset_id'], asset_type = 'stimulus')}}">Link</a>
-                        </div></button><!--
-                        --></div><!--
+                        </div></div>
+                        </div>
             {% endfor %}
-                    --></div>
+
+                    </div>
                 </div>
                 </div>
                
 
             </div>
 
-    </div><!-- fix left column description and img-->
+    </div>
+    <!--end of stimuli column-->
+    <!--beginning of algorithms column-->
     <div class="col-md-4">
         <div class="column mid">
         <h1>algorithms</h1>
             <div class = "row">
                 <div class="centerBlock bank" id = "mid" ondrop="drop(event)" ondragover="allowDrop(event)" droppable = "true">
                         <div id = "wrapper"><br>
+            <!--each algorithm, when generated, will be in a circle shaped span which will include a draggable div, and image, and description popup div-->
             {% for algorithm in algorithms %}
             <span class = "circle">
-                <!--added ziv's tags to img-->
                 <div draggable="true" ondragstart="drag(event)" class="rcorners4 selectAlg" id = "{{algorithm['asset_id']}}" droppable = "true" onmouseover="showDes('{{algorithm['asset_id']}}Pop')" onmouseout="hideDes('{{algorithm['asset_id']}}Pop')">
                      <img src = "{{ url_for('static',filename=algorithm['imgpath']) }}" draggable = "false" class = "circImg " id = "{{algorithm['asset_id']}}" width = "120"/> 
                         <div class = "popups" id = "{{algorithm['asset_id']}}Pop" style = "display:none">{{algorithm['name']}}<br>
@@ -485,7 +431,9 @@
                 </div>
             </span>     
             {% endfor %}
+
             </div>
+            <!--the zoom buttons (dont work exactly as planned because it just rescales the entire wrapper, not actually zooms into the algorithm images-->
             <button id="zin" class = "button" onclick = "zoom(0)">zoom in</button>
             <button id="zout" class = "button" onclick = "zoom(1)">zoom out</button>
             <button id="zreset" class = "button" onclick = "zoom(2)">reset zoom</button> 
@@ -493,33 +441,36 @@
             </div>
         </div>
     </div>
-
+    <!--end of algoriths=ms column-->
+    <!--beginning of metrics column-->
     <div class="col-md-4">
         <div class = "column right">
          <h1>metrics</h1>
           <div class ="row">
             <div class="centerBlock bank" id= "right">
                 <div id = "rightWrapper" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+                <!--each metric, when generated, will be encapsulated in a div which will include a div, metric image, and description popup div-->
                 {% for metric in metrics %}
                 <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true">
-                    <!--added ziv's tags to button-->
-                    <button type = "button" class="selectMetric rcorners2" id = "{{metric['asset_id']}}" onmouseover="showDes('{{metric['name']}}Pop')" onmouseout="hideDes('{{metric['name']}}Pop')">
+                    <div type = "button" class="selectMetric rcorners2" id = "{{metric['asset_id']}}" onmouseover="showDes('{{metric['name']}}Pop')" onmouseout="hideDes('{{metric['name']}}Pop')">
                         <img src = "{{ url_for('static',filename=metric['imgpath']) }}" id = "{{metric['asset_id']}}" class="rcorners1" width="150"/>
                          <div class = "popups" id = "{{metric['name']}}Pop" style = "display:none">{{metric['name']}}<br>
                            <a href = "{{url_for('context', asset_id = metric['asset_id'], asset_type = 'metric')}}">Link</a>
                         </div>
-                    </button>
+                    </div>
                 </div>
                 {% endfor %}
+
             </div>
             </div>
           </div>
          
     </div>
-</div>
-</div>
+</div><!--end of metrics div-->
+</div><!--end of stimuli, algorithms, metrics row-->
 <br><br>
-
+<!--beginning of row of instructions, turing box, and launch box button-->
     <div class = "row">
         <div class="col-md-4">
             INSTRUCTIONS<br>
@@ -532,7 +483,7 @@
         <div class="centerBlock bank" id = "turing" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <div class="tcircleRed"></div>
                 <div class="tcircleBlue"></div>
-                <div id = "turingChoices"></div>
+                <div id = "turingChoices"></div><!--dropped items will appear in this turingChoices div-->
         </div>
     </div>
     <div class="col-md-4">
