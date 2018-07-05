@@ -92,6 +92,7 @@ def get_asset_context(asset_id,engine, from_db):
 def ingest_asset(form_data, conn, from_db):
 	if not from_db:
 		cur = conn.cursor()
+		print(form_data)
 		cur.execute(add_asset, (
 	        form_data['asset_type'] + hash_token(form_data['filename']),
 	        form_data['asset_type'],

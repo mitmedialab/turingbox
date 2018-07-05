@@ -14,6 +14,7 @@ $(document).ready(function(){
 	    $('.taskSelector').show();
 	    $("#submitNLP").attr("href", "submit/algorithm/NLP");
 	    $("#submitCV").attr("href", "submit/algorithm/CV");
+	    $("#submitCOMPAS").attr("href", "submit/algorithm/compas");
 	});
 	  $('#stimType').on('click',function(){
 	    $('#stimType').addClass("clicked")
@@ -22,6 +23,7 @@ $(document).ready(function(){
 	    $('.taskSelector').show();
 	    $("#submitNLP").attr("href", "submit/stimulus/NLP");
 	    $("#submitCV").attr("href", "submit/stimulus/CV");
+	    $("#submitCOMPAS").attr("href", "submit/stimulus/compas");
 	})
     $('#metricType').on('click',function(){
 	    $('#metricType').addClass("clicked")
@@ -30,6 +32,7 @@ $(document).ready(function(){
 	    $('.taskSelector').show();
 	    $("#submitNLP").attr("href", "submit/metric/NLP");
 	    $("#submitCV").attr("href", "submit/metric/CV");
+	    $("#submitCOMPAS").attr("href", "submit/metric/compas");
 	})
 
 });
@@ -48,10 +51,10 @@ $(document).ready(function(){
 <div class = "taskSelector" style = "display: none;">
 	<h1> select a task</h1>
 		<div class = "task">
-		<a id = "submitNLP" href = "submit/"><img src="{{ url_for('static', filename='img/smurfs/contributor1.png')}}" width = "100px"/><br>NLP</a></div>
+		<a id = "submitCV" href = "submit/"><img src="{{ url_for('static', filename='img/smurfs/contributor2.png')}}" width = "180px"/><br>Computer Vision</a></div>
 		<div class = "task">
-		<a id = "submitCV" href = "submit/"><img src="{{ url_for('static', filename='img/smurfs/contributor2.png')}}" width = "100px"/><br>Computer Vision</a></div>
+		<a id = "submitCOMPAS" href = "submit/"><img src="{{ url_for('static', filename='img/smurfs/contributor1.png')}}" width = "180px"/><br>Risk Assessment</a></div>
 		<div class = "task">
-		<a id = "submitCOMPAS" href = "submit/"><img src="{{ url_for('static', filename='img/smurfs/contributor3.png')}}" width = "100px"/><br>Risk Assessment</a></div>
+		<a id = "submitNLP" href = "submit/"><img src="{{ url_for('static', filename='img/smurfs/contributor3.png')}}" width = "180px"/><br>NLP</a></div>
 </div>
 {% endblock %}

@@ -101,7 +101,7 @@ def launchTask(task):
         metric = request.form['metric']
         print("pushing job")
         payload = push_job(stimulus, algorithm, metric, task)
-        time.sleep(3)
+        time.sleep(2)
         return redirect(url_for('report', box_id = payload['box_id']))
         print(payload['box_id'])
     payload = get_assets(task)

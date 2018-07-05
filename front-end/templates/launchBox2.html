@@ -308,7 +308,7 @@
       $('input[name=metric]').val(event.target.id);
     })
 
-    $('input[name=submit]').on('drag',function(event){
+    $('input[name=submit]').on('click',function(event){
       $('.loading').show();
     })
 
@@ -478,7 +478,7 @@
             <span class = "circle">
                 <!--added ziv's tags to img-->
                 <div draggable="true" ondragstart="drag(event)" class="rcorners4 selectAlg" id = "{{algorithm['asset_id']}}" droppable = "true" onmouseover="showDes('{{algorithm['asset_id']}}Pop')" onmouseout="hideDes('{{algorithm['asset_id']}}Pop')">
-                     <img src = "{{ url_for('static',filename=algorithm['imgpath']) }}" draggable = "false" class = "circImg " id = "{{algorithm['asset_id']}}" /> 
+                     <img src = "{{ url_for('static',filename=algorithm['imgpath']) }}" draggable = "false" class = "circImg " id = "{{algorithm['asset_id']}}" width = "120"/> 
                         <div class = "popups" id = "{{algorithm['asset_id']}}Pop" style = "display:none">{{algorithm['name']}}<br>
                             <a href = "{{url_for('context', asset_id = algorithm['asset_id'], asset_type = 'algorithm')}}">Link</a>
                         </div>
@@ -540,18 +540,10 @@
             <input type="Stim" name="stim" style = "display:none"/>
             <input type="Alg" name="alg" style = "display:none"/>
             <input type="Metric" name="metric" style = "display:none"/>
-            <input type=submit value="Launch Box" id = "submit">
+            <input type="submit" value="Launch Box" id = "submit" name = "submit">
         </form>
+         <div class = "loading" style = "display: none"><h1>loading box...</h1> <img src="{{ url_for('static', filename='img/load.gif')}}" width = "100%"/></div>
     </div>
     </div>
-
-<br>
-  
-<h1>Reports</h1>
-<ul>
-    <li><a href = "report/0"/>Dummy</li>
-    <li><a href = "report/1"/>Compas</li>
-    <li><a href = "report/2"/>Swim</li>
-</ul>
 </body>
 {% endblock %}

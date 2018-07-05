@@ -2,4 +2,7 @@
     border-radius: 5px;
     color:white;
     background: #ff1d25;
+    border: 2px solid black;
+    font-size: 150%;
+    padding: 10px;
   }
