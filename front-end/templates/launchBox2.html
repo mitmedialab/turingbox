@@ -316,6 +316,7 @@
         
         ev.target.appendChild(document.getElementById(data));
         dropped = document.getElementById(data);
+        //hardcoded change in size of dropped element 
         if (ev.target.id == "leftWrapper"){
             dropped.classList.add('rcorners2');
             console.log(dropped.classList)
@@ -348,7 +349,7 @@
     //for the zoom buttons, resize the wrapper when a button is clicked
     function zoom(num){
         element = document.getElementById("wrapper");
-        switch(num){
+        switch(num){//case0 = zoom in | case1 = zoom out | case2 = reset zoom
             case 0: 
                 zoomVal += 0.04;
                 element.style.transform = "scale(" + zoomVal + ")";
@@ -364,7 +365,7 @@
         }
     }
 
-    //show or hide the popups next to the item that was hovered over
+    //show or hide the popups next to the item that was hovered over by changing display between block and none
     function showDes(popup){
         document.getElementById(popup).style.display = "block";
     }
