@@ -247,6 +247,7 @@
 
 </style>
   <script>
+    //populates the input forms for the launch box button depending on which items are dragged from each category
     $(document).ready(function(){
     $('.selectStim').on('drag',function(event){
       $('input[name="stim"]').val(event.target.id);
@@ -266,37 +267,6 @@
     })
 
 });
-/*
-    function initialize(){
-        width = window.getComputedStyle(document.getElementById("wrapper")).getPropertyValue('width');
-        width = parseInt(width.slice(0, 3))
-        numAlgs = document.querySelectorAll(".circle");
-        max = 100;
-        var r = [];
-        var currsum = 0;
-        for(var i=0; i<numAlgs.length-1; i++) {
-            r[i] = randombetween(1, max-(numAlgs.length-i-1)-currsum);
-            currsum += r[i];
-        }
-        r[numAlgs.length-1] = max - currsum;  
-        console.log(r)     
-        console.log("works up to here")
-        for (var j = 0; j < numAlgs.length; j++){
-            r[j] = parseFloat("." + String(r[j]));
-            console.log(r[j]);
-           // numAlgs[j].style.width = r[j]*0.5+100 + "px";
-            //numAlgs[j].style.height = r[j]*0.5 +50 + "px";
-            numAlgs[j].style.width = width;
-            numAlgs[j].style.height = width*60/100;
-            numAlgs[j].style.transform = "scale(" + r[j] + ")";
-
-        }
-    }
-
-    function randombetween(min, max){
-        return Math.floor(Math.random()*(max-min+1)+min);
-    }
-*/
     //prevents the object from performing its default task in order to be able to be dragged and dropped 
     function allowDrop(ev) {
         ev.preventDefault();
@@ -327,23 +297,7 @@
         dropped.style.border = "none";
         dropped.style.padding = "3px";
         }
-        //chosenOnes(); <--was trying to resize it dynamically 
     }
-    /*function chosenOnes(){
-        var choice, i, div, width, numOfDivs;
-        console.log(turingChoices);
-        div = document.getElementById("turingChoices");
-        width = window.getComputedStyle(div).getPropertyValue('width');
-        width = parseInt(width.slice(0, 3))
-        numOfDivs = Math.ceil(div.childNodes.length/2);
-        for (choice = 0; choice < div.childNodes.length; choice++){
-            div.childNodes[choice].style.display = "inline-block";
-            div.childNodes[choice].style.padding = "20px"
-            div.childNodes[choice].style.height = Math.floor(width/numOfDivs);
-            div.childNodes[choice].style.width = div.childNodes[choice].style.width;
-            console.log(Math.floor(width/numOfDivs))
-        }
-    }*/
 
     var zoomVal = 1.0;
     //for the zoom buttons, resize the wrapper when a button is clicked
@@ -366,8 +320,18 @@
     }
 
     //show or hide the popups next to the item that was hovered over by changing display between block and none
-    function showDes(popup){
-        document.getElementById(popup).style.display = "block";
+    //the stim and metric popups location will depend on the parent object and the window scroll --> alter the if statements for these if they get messed up
+    //the alg popups solely depend on where they are but if these get messed up too, alter the if statement to add a condition for their location depending on their parent object - abstraction is working for these already
+    function showDes(type, parent, popup){
+        var ptCoords = document.getElementById(parent).getBoundingClientRect();
+        var popup = document.getElementById(popup);
+        if (type == 'stim'){
+            popup.style.top = ptCoords.top-100+window.scrollY + "px";
+        }
+        else if (type == 'metric'){
+            popup.style.top = ptCoords.top+window.scrollY + "px";
+        }
+        popup.style.display = "block";
     }
     function hideDes(popup){
         document.getElementById(popup).style.display = "none";
@@ -396,7 +360,7 @@
            {% for stimulus in stimuli %}
                         <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true">
 
-                        <div type="button" class="rcorners2 selectStim" id = "{{stimulus['asset_id']}}" task = "{{stimulus['task']}}" ondragstart="drag(event)"onmouseover="showDes('{{stimulus['name']}}Pop')" onmouseout="hideDes('{{stimulus['name']}}Pop')">
+                        <div type="button" class="rcorners2 selectStim" id = "{{stimulus['asset_id']}}" task = "{{stimulus['task']}}" ondragstart="drag(event)"onmouseover="showDes('stim', '{{stimulus['asset_id']}}',  '{{stimulus['name']}}Pop')" onmouseout="hideDes('{{stimulus['name']}}Pop')">
                         <img src = "{{ url_for('static',filename=stimulus['imgpath']) }}" id = "{{stimulus['asset_id']}}" class="rcorners1" width="150"> 
                         <div class = "popups" id = "{{stimulus['name']}}Pop" style = "display:none">{{stimulus['name']}}<br>
                             <a href = "{{url_for('context', asset_id = stimulus['asset_id'], asset_type = 'stimulus')}}">Link</a>
@@ -423,7 +387,7 @@
             <!--each algorithm, when generated, will be in a circle shaped span which will include a draggable div, and image, and description popup div-->
             {% for algorithm in algorithms %}
             <span class = "circle">
-                <div draggable="true" ondragstart="drag(event)" class="rcorners4 selectAlg" id = "{{algorithm['asset_id']}}" droppable = "true" onmouseover="showDes('{{algorithm['asset_id']}}Pop')" onmouseout="hideDes('{{algorithm['asset_id']}}Pop')">
+                <div draggable="true" ondragstart="drag(event)" class="rcorners4 selectAlg" id = "{{algorithm['asset_id']}}" droppable = "true" onmouseover="showDes('alg', '{{algorithm['asset_id']}}', '{{algorithm['asset_id']}}Pop')" onmouseout="hideDes('{{algorithm['asset_id']}}Pop')">
                      <img src = "{{ url_for('static',filename=algorithm['imgpath']) }}" draggable = "false" class = "circImg " id = "{{algorithm['asset_id']}}" width = "120"/> 
                         <div class = "popups" id = "{{algorithm['asset_id']}}Pop" style = "display:none">{{algorithm['name']}}<br>
                             <a href = "{{url_for('context', asset_id = algorithm['asset_id'], asset_type = 'algorithm')}}">Link</a>
@@ -441,7 +405,7 @@
             </div>
         </div>
     </div>
-    <!--end of algoriths=ms column-->
+    <!--end of algorithms column-->
     <!--beginning of metrics column-->
     <div class="col-md-4">
         <div class = "column right">
@@ -453,7 +417,7 @@
                 <!--each metric, when generated, will be encapsulated in a div which will include a div, metric image, and description popup div-->
                 {% for metric in metrics %}
                 <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true">
-                    <div type = "button" class="selectMetric rcorners2" id = "{{metric['asset_id']}}" onmouseover="showDes('{{metric['name']}}Pop')" onmouseout="hideDes('{{metric['name']}}Pop')">
+                    <div type = "button" class="selectMetric rcorners2" id = "{{metric['asset_id']}}" onmouseover="showDes('metric', '{{metric['asset_id']}}', '{{metric['name']}}Pop')" onmouseout="hideDes('{{metric['name']}}Pop')">
                         <img src = "{{ url_for('static',filename=metric['imgpath']) }}" id = "{{metric['asset_id']}}" class="rcorners1" width="150"/>
                          <div class = "popups" id = "{{metric['name']}}Pop" style = "display:none">{{metric['name']}}<br>
                            <a href = "{{url_for('context', asset_id = metric['asset_id'], asset_type = 'metric')}}">Link</a>
