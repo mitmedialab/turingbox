@@ -1,4 +1,4 @@
-![alt text](https://github.com/mitmedialab/turingbox/blob/master/front-end/static/img/logo.png "Logo Title Text 1")
+![alt text](https://github.com/mitmedialab/turingbox/blob/master/front-end/static/img/examineImage.png "Logo Title Text 1")
 
 This is the development repository for the Turing Box platform. It is broken into several components.
 
