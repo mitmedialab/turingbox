@@ -63,7 +63,7 @@ concept contains identities, design and wireframes used in ideation.
 
 `/assets/` contains the information regarding all the assets (mirrored by the databases). See below for how to ingest assets. 
 
-#how to ingest assets
+# how to ingest assets
 for standardization purposes, assets on Turing Box follow a specific formatting. 
 
 ### algorithms 
