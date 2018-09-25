@@ -1,1 +1,0 @@
-{"model_reply": "[Errno 2] No such file or directory: 'assets/data/swim4_front_plus.jpg'", "data_url": "assets/data/swim4_front_plus.jpg", "success": false, "time": "2018-06-21 15:22:47"}

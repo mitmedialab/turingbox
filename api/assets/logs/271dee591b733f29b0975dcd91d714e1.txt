@@ -1,1 +1,0 @@
-{"model_reply": "File b'assets/data/swim.csv' does not exist", "data_url": "assets/data/swim.csv", "success": false, "time": "2018-06-28 21:06:17"}

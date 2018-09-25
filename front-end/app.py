@@ -158,10 +158,6 @@ def submit(asset_type, task):
         return redirect(url_for('land'))
     return render_template('submit.html', asset_type = asset_type, task = task, form = form)
 
-@app.route('/cv')
-def cv_domain():
-    return render_template('testing3.html')
-
 
 if __name__ == '__main__':
     app.run(
