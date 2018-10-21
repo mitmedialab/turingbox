@@ -17,6 +17,10 @@
  <h2>tags: {{payload['asset_context']['tags']}}</h2>
  <h2>task : {{payload['asset_context']['task']}}</h2>
  <h2>type: {{payload['asset_context']['type']}}</h2>
+ {% if payload['asset_context']['framelink'] %}
+ <img src = "{{ url_for('static', filename='img/framelink/' + payload['asset_context']['framelink'])}}">
+ {% endif %}
+
  <h2>boxes:</h2>
  {% for box in payload['boxes']%} 
  <div class = "relatedBox" style = "display:inline-block">

@@ -39,7 +39,8 @@ assets = """
         name            varchar(256),
         description     varchar(256),
         tags            varchar(256),
-        task            varchar(256)
+        task            varchar(256),
+        framelink       varchar(256)
     );
     """
 
@@ -92,7 +93,7 @@ drop_comments = """
 
 
 
-add_asset = """ INSERT INTO assets VALUES  (%s, %s, %s, %s, %s,%s, %s, %s)"""
+add_asset = """ INSERT INTO assets VALUES  (%s, %s, %s, %s, %s,%s, %s, %s, %s)"""
 add_comcon = """ INSERT INTO comcon VALUES  (%s, %s, %s, %s, %s, %s, %s, %s)"""
 add_comment = """ INSERT INTO comments VALUES  (%s, %s, %s)"""
 
@@ -110,7 +111,8 @@ if __name__ == '__main__':
         "Criminal Records",
         "raw data of criminal records used to make a risk assessment",
         "crime, predpol",
-        "compas"))
+        "compas",
+        ""))
 
     cur.execute(add_asset, (
         "stimulus2",
@@ -120,17 +122,19 @@ if __name__ == '__main__':
         "spam",
         "spammy dummy data",
         "spam, dingus",
-        "dummy"))
+        "dummy",
+        ""))
 
     cur.execute(add_asset, (
         "stimulus3",
         "stimulus",
         "stimulus/swim.csv",
         "img/assets/thin_stim.png",
-        "MIT Swimsuite dataset",
-        "curated images of swimsite model with sensitive feature z = plus or not",
+        "MIT Swimsuit dataset",
+        "Curated images of swimsuit models. Sensitive feature is if the model is plus sized or not",
         "computer vision, machine gaze, fairness",
-        "swim"))
+        "swim",
+        "mitswim.png"))
 
     cur.execute(add_asset, (
         "stimulus5",
@@ -140,7 +144,8 @@ if __name__ == '__main__':
         "Women Clothing E-Commerce Shopping Reviews ",
         "1000 clothing reviews including review text, binarized (0/1) ratings and shopper age",
         "NLP, fairness, shopping",
-        "NLP"))
+        "NLP",
+        ""))
 
     cur.execute(add_asset, (
         "stimulus6",
@@ -150,7 +155,8 @@ if __name__ == '__main__':
         "Amazon Movie Reviews",
         "1000 movie reviews from 1997 - 2012 including review text, binarized (0/1) ratings and inferred reviewer gender based on first name ",
         "NLP, fairness, movies",
-        "NLP"))
+        "NLP",
+        ""))
 
     cur.execute(add_asset, (
         "stimulus7",
@@ -160,7 +166,8 @@ if __name__ == '__main__':
         "Yelp Business Reviews",
         "1000 business reviews from Yelp including review text, binarized (0/1) ratings and inferred reviewer gender based on first name ",
         "NLP, fairness",
-        "NLP"))
+        "NLP",
+        ""))
 
     cur.execute(add_asset, (
         "algorithm1",
@@ -170,7 +177,8 @@ if __name__ == '__main__':
         "COMPAS*",
         "the COMPAS risk assessment algorithm by Northpointe. *To be clear, we do not have access to this algorithm at this time, although we would love to have it on the platform for the public to scrutinize.",
         "crime, predpol",
-        "compas"))
+        "compas",
+        ""))
 
     cur.execute(add_asset, (
         "algorithm2",
@@ -180,7 +188,8 @@ if __name__ == '__main__':
         "Spam Alg",
         "this is a janky spam alg",
         "spam, dingus",
-        "dummy"))
+        "dummy",
+        ""))
 
     cur.execute(add_asset, (
         "algorithm3",
@@ -190,7 +199,8 @@ if __name__ == '__main__':
         "Clarifai",
         "Clarifai's NSFW algorithm",
         "computer vision, NSFW",
-        "swim"))
+        "swim",
+        ""))
 
     cur.execute(add_asset, (
         "algorithm4",
@@ -200,7 +210,8 @@ if __name__ == '__main__':
         "Google Sentiment Analysis",
         "Sentiment score form Google's sentiment algorithm from Cloud Natural Language API",
         "NLP, sentiment",
-        "NLP"))
+        "NLP",
+        ""))
 
     cur.execute(add_asset, (
         "algorithm5",
@@ -210,17 +221,19 @@ if __name__ == '__main__':
         "Microsoft Sentiment Analysis",
         "Sentiment score form Microsoft sentiment algorithm from Azure Text Analytics API",
         "NLP, sentiment",
-        "NLP"))
+        "NLP",
+        ""))
 
-    cur.execute(add_asset, (
-        "algorithm6",
-        "algorithm",
-        "algorithm/textblob_sentiment.py",
-        "img/assets/Textblob.png",
-        "Textblob Sentiment Analysis",
-        "Sentiment polarity score from python Textblob library",
-        "NLP, sentiment",
-        "NLP"))
+    # cur.execute(add_asset, (
+    #     "algorithm6",
+    #     "algorithm",
+    #     "algorithm/textblob_sentiment.py",
+    #     "img/assets/Textblob.png",
+    #     "Textblob Sentiment Analysis",
+    #     "Sentiment polarity score from python Textblob library",
+    #     "NLP, sentiment",
+    #     "NLP",
+    #     ""))
 
 
     cur.execute(add_asset, (
@@ -231,7 +244,8 @@ if __name__ == '__main__':
         "Difference in Means",
         "difference in y hat on one binary sensitive attribute",
         "stats, disparate treatment",
-        "swim"))
+        "swim",
+        ""))
 
     cur.execute(add_asset, (
         "metric4",
@@ -241,7 +255,8 @@ if __name__ == '__main__':
         "Difference in Means",
         "difference in y hat on one binary sensitive attribute",
         "stats, disparate treatment",
-        "compas"))
+        "compas",
+        ""))
 
     # cur.execute(add_asset, (
     #     "metric2",
@@ -261,7 +276,8 @@ if __name__ == '__main__':
         "Difference in Means",
         "difference in y hat on one binary sensitive attribute",
         "stats, disparate treatment",
-        "NLP"))
+        "NLP",
+        ""))
 
     cur.execute(drop_comcon)
     cur.execute(comcon)
