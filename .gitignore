@@ -2,3 +2,4 @@ turingBox.pem
 api/ec2.sh
 api/creds.py
 .DS_Store
+api/assets/algorithm/api_cred.py
