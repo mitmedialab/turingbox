@@ -13,7 +13,7 @@ from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/js/fairnlp.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/path/to/credientials.json"
 
 def run_azure(input_array):
         headers = { 'Ocp-Apim-Subscription-Key' : AZURE_SUBSCRIPTION_KEY }

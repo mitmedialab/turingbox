@@ -13,7 +13,7 @@ sys.path.append(os.path.realpath('../api'))
 from utils import turing_box
 
 # CHANGE THIS PATH 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/js/fairnlp.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/path/to/credientials.json"
 
 def run_google_sentiment(input_array): 
     # Instantiates a client
